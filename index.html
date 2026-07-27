@@ -1033,7 +1033,7 @@ function showView(name){
 }
 
 /* ============ CLAUDE API HELPER ============ */
-async function callClaude(messages, system){
+async function callClaude(messages, system) {
   const res = await fetch("/api/claude", {
     method: "POST",
     headers: {
@@ -1047,7 +1047,7 @@ async function callClaude(messages, system){
 
   const data = await res.json();
 
-  if (!res.ok || data.error) {
+  if (!res.ok) {
     throw new Error(data.error || "Claude API request failed");
   }
 
