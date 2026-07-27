@@ -231,6 +231,23 @@ img{max-width:100%;}
 .field-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
 @media (max-width:600px){ .field-row{grid-template-columns:1fr;} }
 
+/* ---------- TOPICS CHECKLIST BOX ---------- */
+.topics-box{
+  border:1px solid var(--paper-line); border-radius:8px; background:#fff;
+  max-height:260px; overflow-y:auto; padding:0.3rem 0.9rem;
+}
+.topic-check{
+  display:flex; align-items:center; gap:0.6rem;
+  padding:0.55rem 0; font-size:0.95rem; font-weight:600; cursor:pointer;
+}
+.topic-check input[type=checkbox]{
+  width:1.15em; height:1.15em; accent-color:#2f6fed; cursor:pointer; flex-shrink:0;
+}
+.topic-check.all-topics{
+  border-bottom:1px solid var(--paper-line); margin-bottom:0.1rem;
+}
+.topic-check.sub-topic{font-weight:500;}
+
 /* ---------- ASK & LEARN (chat) ---------- */
 .notebook{
   border:1px solid var(--paper-line);
@@ -433,6 +450,12 @@ img{max-width:100%;}
 .quiz-opt.correct{background:rgba(79,121,66,0.12); font-weight:600;}
 .quiz-opt.incorrect{background:rgba(232,133,122,0.18); text-decoration:line-through;}
 .quiz-explain{font-size:0.88rem; color:var(--ink-soft); margin-top:0.4rem; padding-left:0.5rem; border-left:2px solid var(--sky);}
+.quiz-solution-btn{font-size:0.85rem; padding:0.4rem 0.8rem;}
+.quiz-solution{
+  font-size:0.9rem; color:var(--ink); margin-top:0.6rem; padding:0.7rem 0.9rem;
+  background:var(--paper); border:1px solid var(--paper-line); border-radius:8px;
+}
+.quiz-solution .q-para{margin:0 0 0.4em;}
 .quiz-graph-wrap{margin:0.6rem 0 0.8rem;}
 .quiz-graph{border:1px solid var(--paper-line); border-radius:8px; background:#fff; max-width:100%;}
 .quiz-score{
@@ -589,7 +612,7 @@ footer p{margin:0.5rem 0;}
     <div class="feature-card">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7 7 1-5 5 1.5 7L12 18l-6.5 4L7 15 2 10l7-1z"/></svg>
       <h3>Practice Tools</h3>
-      <p>Quizzes up to 30 questions per topic, flashcards for quick review, and a graphing calculator — all matched to your course.</p>
+      <p>Quizzes up to 30 questions per topic with instant, step-by-step solutions, plus a graphing calculator — all matched to your course.</p>
     </div>
   </div>
 
@@ -680,12 +703,16 @@ footer p{margin:0.5rem 0;}
         <div class="field-row">
           <div class="field">
             <label for="lsCourse">Course</label>
-            <select id="lsCourse" onchange="populateTopics('lsCourse','lsTopic')"></select>
+            <select id="lsCourse" onchange="populateChapters('lsCourse','lsChapter','lsTopicsBox')"></select>
           </div>
           <div class="field">
-            <label for="lsTopic">Topic</label>
-            <select id="lsTopic"></select>
+            <label for="lsChapter">Chapter</label>
+            <select id="lsChapter" onchange="populateTopicCheckboxes('lsCourse','lsChapter','lsTopicsBox')"></select>
           </div>
+        </div>
+        <div class="field">
+          <label>Topics (choose one, several, or all)</label>
+          <div class="topics-box" id="lsTopicsBox"></div>
         </div>
         <div class="field">
           <label for="lsSlides">Number of slides (content slides, plus title &amp; closing)</label>
@@ -758,12 +785,16 @@ footer p{margin:0.5rem 0;}
         <div class="field-row">
           <div class="field">
             <label for="wsCourse">Course</label>
-            <select id="wsCourse" onchange="populateTopics('wsCourse','wsTopic')"></select>
+            <select id="wsCourse" onchange="populateChapters('wsCourse','wsChapter','wsTopicsBox')"></select>
           </div>
           <div class="field">
-            <label for="wsTopic">Topic</label>
-            <select id="wsTopic"></select>
+            <label for="wsChapter">Chapter</label>
+            <select id="wsChapter" onchange="populateTopicCheckboxes('wsCourse','wsChapter','wsTopicsBox')"></select>
           </div>
+        </div>
+        <div class="field">
+          <label>Topics (choose one, several, or all)</label>
+          <div class="topics-box" id="wsTopicsBox"></div>
         </div>
 
         <div class="option-box">
@@ -842,7 +873,7 @@ footer p{margin:0.5rem 0;}
     <div class="section-head">
       <p class="section-eyebrow">Practice tools</p>
       <h2>Practice that matches your course.</h2>
-      <p class="lead">Generate quizzes up to 30 questions, flashcards for quick review, or plot a function on the graphing calculator.</p>
+      <p class="lead">Generate quizzes up to 30 questions with instant feedback and step-by-step solutions, or plot a function on the graphing calculator.</p>
     </div>
 
     <div class="tools-grid">
@@ -852,12 +883,16 @@ footer p{margin:0.5rem 0;}
         <div class="field-row" style="margin-top:0.8rem;">
           <div class="field" style="margin-bottom:0.5rem;">
             <label for="qzCourse">Course</label>
-            <select id="qzCourse" onchange="populateTopics('qzCourse','qzTopic')"></select>
+            <select id="qzCourse" onchange="populateChapters('qzCourse','qzChapter','qzTopicsBox')"></select>
           </div>
           <div class="field" style="margin-bottom:0.5rem;">
-            <label for="qzTopic">Topic</label>
-            <select id="qzTopic"></select>
+            <label for="qzChapter">Chapter</label>
+            <select id="qzChapter" onchange="populateTopicCheckboxes('qzCourse','qzChapter','qzTopicsBox')"></select>
           </div>
+        </div>
+        <div class="field" style="margin-bottom:0.5rem;">
+          <label>Topics (choose one, several, or all)</label>
+          <div class="topics-box" id="qzTopicsBox"></div>
         </div>
         <div class="field" style="margin-bottom:0.5rem; max-width:340px;">
           <label for="qzType">Question type</label>
@@ -886,26 +921,7 @@ footer p{margin:0.5rem 0;}
         <div id="qzBox" class="quiz-list"></div>
       </div>
 
-      <div class="tool-card">
-        <h3>Flashcards</h3>
-        <p>Definitions, formulas and key facts for a topic. Click a card to flip it.</p>
-        <div class="field" style="margin-top:0.8rem; margin-bottom:0.5rem;">
-          <label for="fcCourse">Course</label>
-          <select id="fcCourse" onchange="populateTopics('fcCourse','fcTopic')"></select>
-        </div>
-        <div class="field" style="margin-bottom:0.5rem;">
-          <label for="fcTopic">Topic</label>
-          <select id="fcTopic"></select>
-        </div>
-        <div class="row">
-          <select id="fcCount"><option value="6">6 cards</option><option value="10" selected>10 cards</option><option value="14">14 cards</option></select>
-          <button class="btn btn-primary" onclick="generateFlashcards()">Generate</button>
-        </div>
-        <div class="status-line" id="fcStatus"></div>
-        <div class="flash-grid" id="fcGrid"></div>
-      </div>
-
-      <div class="tool-card">
+      <div class="tool-card wide">
         <h3>Graphing calculator</h3>
         <p>Plot a function of x, e.g. <code>x^2 - 4</code>, <code>sin(x)</code>, <code>1/x</code>, <code>sqrt(x)</code>.</p>
         <div class="row">
@@ -954,43 +970,1185 @@ footer p{margin:0.5rem 0;}
 <script>
 /* ============ MATH CURRICULUM ============ */
 const COURSE_GROUPS = [
-  { label: "Elementary", courses: ["Kindergarten Math","Grade 1 Math","Grade 2 Math","Grade 3 Math","Grade 4 Math","Grade 5 Math"] },
-  { label: "Middle School", courses: ["Grade 6 Math","Grade 7 Math","Grade 8 Math","Pre-Algebra"] },
-  { label: "High School Math", courses: ["Algebra 1","Geometry","Algebra 2","Trigonometry","Precalculus","Calculus","Statistics"] },
-  { label: "AP Courses", courses: ["AP Precalculus","AP Calculus AB","AP Calculus BC","AP Statistics"] },
-  { label: "Test Prep", courses: ["SAT","ACT"] },
-  { label: "College Math", courses: ["College Algebra","Linear Algebra"] }
+  {
+    label: "Elementary",
+    courses: [
+      "Kindergarten Math",
+      "Grade 1 Math",
+      "Grade 2 Math",
+      "Grade 3 Math",
+      "Grade 4 Math",
+      "Grade 5 Math"
+    ]
+  },
+  {
+    label: "Middle School",
+    courses: [
+      "Grade 6 Math",
+      "Grade 7 Math",
+      "Grade 8 Math",
+      "Pre-Algebra"
+    ]
+  },
+  {
+    label: "High School Math",
+    courses: [
+      "Algebra 1",
+      "Geometry",
+      "Algebra 2",
+      "Trigonometry",
+      "Precalculus",
+      "Calculus",
+      "Statistics"
+    ]
+  },
+  {
+    label: "AP Courses",
+    courses: [
+      "AP Precalculus",
+      "AP Calculus AB",
+      "AP Calculus BC",
+      "AP Statistics"
+    ]
+  },
+  {
+    label: "Test Prep",
+    courses: [
+      "SAT",
+      "ACT"
+    ]
+  },
+  {
+    label: "College Math",
+    courses: [
+      "College Algebra",
+      "Linear Algebra"
+    ]
+  }
 ];
 
 const COURSES = {
-  "Kindergarten Math": ["Counting & Number Recognition (1-20)","Shapes & Spatial Sense","Comparing Sizes & Quantities","Simple Addition & Subtraction (within 10)","Patterns & Sorting","Measurement Basics"],
-  "Grade 1 Math": ["Addition & Subtraction (within 20)","Place Value: Tens & Ones","Counting to 120","Telling Time (hour & half-hour)","Shapes & Simple Fractions","Measuring Length"],
-  "Grade 2 Math": ["Addition & Subtraction (within 100)","Place Value: Hundreds","Skip Counting","Money & Time","Measurement & Data (Graphs)","Arrays & Equal Groups"],
-  "Grade 3 Math": ["Multiplication & Division Basics","Fractions as Numbers","Area & Perimeter","Place Value & Rounding","Time, Money & Data","Two-Step Word Problems"],
-  "Grade 4 Math": ["Multi-Digit Multiplication & Division","Fraction Equivalence & Operations","Decimals","Angles & Geometry","Factors & Multiples","Multi-Step Word Problems"],
-  "Grade 5 Math": ["Fraction Operations (All Four)","Decimal Operations","Volume & 3D Shapes","The Coordinate Plane (Intro)","Order of Operations","Intro to Ratios"],
-  "Grade 6 Math": ["Ratios & Rates","Fractions, Decimals & Percents","Negative Numbers & Integers","Expressions & Equations","Area, Surface Area & Volume","Statistics & Data Displays","The Coordinate Plane"],
-  "Grade 7 Math": ["Ratios & Proportional Relationships","Operations with Rational Numbers","Expressions, Equations & Inequalities","Angles, Area & Volume","Probability & Statistics","Percent Applications"],
-  "Grade 8 Math": ["Linear Equations & Functions","Systems of Linear Equations","Exponents & Scientific Notation","The Pythagorean Theorem","Transformations & Congruence","Volume of Cylinders, Cones & Spheres","Scatter Plots & Bivariate Data"],
-  "Pre-Algebra": ["Integers & Order of Operations","Fractions, Decimals & Percents","Ratios, Rates & Proportions","Expressions & Equations","Inequalities","Linear Equations & Graphing","Exponents & Square Roots","Geometry: Area, Perimeter & Volume","Probability & Statistics"],
-  "Algebra 1": ["Linear Equations & Inequalities","Linear Functions & Graphing","Systems of Linear Equations","Exponents & Polynomials","Factoring Polynomials","Quadratic Equations & Functions","Radical Expressions & Equations","Rational Expressions & Equations","Functions & Function Notation","Statistics & Data Analysis"],
-  "Geometry": ["Lines, Angles & Triangle Basics","Triangle Congruence & Similarity","Right Triangle Trigonometry","Circles & Arcs","Area, Surface Area & Volume","Coordinate Geometry","Transformations","Geometric Proofs"],
-  "Algebra 2": ["Polynomial Functions & Equations","Rational Functions","Radical Functions & Complex Numbers","Exponential & Logarithmic Functions","Sequences & Series","Conic Sections","Matrices","Trigonometric Functions","Probability & Statistics"],
-  "Trigonometry": ["Right Triangle Trigonometry","The Unit Circle","Graphing Trigonometric Functions","Trigonometric Identities","Solving Trigonometric Equations","Law of Sines & Law of Cosines","Inverse Trigonometric Functions","Polar Coordinates"],
-  "Precalculus": ["Functions, Graphs & Transformations","Polynomial & Rational Functions","Exponential & Logarithmic Functions","Trigonometric Functions & Graphs","Trigonometric Identities & Equations","Polar Coordinates & Complex Numbers","Vectors","Sequences, Series & Limits"],
-  "Calculus": ["Limits & Continuity","Derivatives & Differentiation Rules","Applications of Derivatives","Integrals & the Fundamental Theorem","Applications of Integration","Sequences & Series (Intro)"],
-  "Statistics": ["Describing Data & Distributions","Probability","Probability Distributions","Sampling & Experimental Design","Confidence Intervals","Hypothesis Testing","Correlation & Regression"],
-  "AP Precalculus": ["Polynomial & Rational Functions","Exponential & Logarithmic Functions","Trigonometric & Polar Functions","Function Composition & Transformations","Conics & Parametric Equations","Vectors & Matrices"],
-  "AP Calculus AB": ["Limits & Continuity","Definition of the Derivative","Differentiation Rules","Applications of Derivatives","Definite & Indefinite Integrals","Fundamental Theorem of Calculus","Applications of Integration","Differential Equations"],
-  "AP Calculus BC": ["Limits & Continuity","Differentiation & Applications","Integration & Applications","Parametric & Polar Functions","Vector-Valued Functions","Sequences & Series","Taylor & Maclaurin Series"],
-  "AP Statistics": ["Exploring One-Variable Data","Exploring Two-Variable Data","Collecting Data: Sampling & Experiments","Probability & Random Variables","Sampling Distributions","Confidence Intervals","Significance Tests","Inference for Means","Inference for Categorical Data & Regression"],
-  "SAT": ["Heart of Algebra","Problem Solving & Data Analysis","Passport to Advanced Math","Additional Topics: Geometry & Trig","Mixed Full Practice"],
-  "ACT": ["Pre-Algebra & Elementary Algebra","Intermediate Algebra & Coordinate Geometry","Plane Geometry","Trigonometry","Word Problems & Data Analysis","Mixed Full Practice"],
-  "College Algebra": ["Real Number System & Algebraic Expressions","Equations & Inequalities","Functions & Graphs","Polynomial & Rational Functions","Exponential & Logarithmic Functions","Systems of Equations","Sequences & Series","Conic Sections"],
-  "Linear Algebra": ["Systems of Linear Equations & Matrices","Vector Spaces","Matrix Operations & Inverses","Determinants","Eigenvalues & Eigenvectors","Linear Transformations","Orthogonality & Least Squares","Applications: Diagonalization"]
+  "Kindergarten Math": {
+    "Counting & Number Recognition (1-20)": [
+      "Counting Objects to 10",
+      "Recognizing Numbers 1-20",
+      "Number Order & Sequencing",
+      "Counting On by Ones"
+    ],
+    "Shapes & Spatial Sense": [
+      "Identifying 2D Shapes",
+      "Identifying 3D Shapes",
+      "Position Words",
+      "Comparing Shapes"
+    ],
+    "Comparing Sizes & Quantities": [
+      "More, Less & Equal",
+      "Comparing Length & Height",
+      "Comparing Weight",
+      "Ordering by Size"
+    ],
+    "Simple Addition & Subtraction (within 10)": [
+      "Adding with Objects",
+      "Subtracting with Objects",
+      "Addition Stories",
+      "Subtraction Stories"
+    ],
+    "Patterns & Sorting": [
+      "Sorting by Attribute",
+      "Simple Repeating Patterns",
+      "Extending Patterns",
+      "Classifying Objects"
+    ],
+    "Measurement Basics": [
+      "Long vs Short",
+      "Heavy vs Light",
+      "Comparing Capacity",
+      "Introducing the Calendar"
+    ]
+  },
+  "Grade 1 Math": {
+    "Addition & Subtraction (within 20)": [
+      "Adding within 20",
+      "Subtracting within 20",
+      "Fact Families",
+      "Word Problems"
+    ],
+    "Place Value: Tens & Ones": [
+      "Building Two-Digit Numbers",
+      "Comparing Two-Digit Numbers",
+      "Expanded Form",
+      "Regrouping Basics"
+    ],
+    "Counting to 120": [
+      "Counting Sequences",
+      "Skip Counting by 2s, 5s & 10s",
+      "Number Patterns",
+      "Number Line Basics"
+    ],
+    "Telling Time (hour & half-hour)": [
+      "Reading an Analog Clock",
+      "Hour & Half-Hour",
+      "Sequencing Daily Events",
+      "Digital vs Analog Time"
+    ],
+    "Shapes & Simple Fractions": [
+      "2D & 3D Shape Attributes",
+      "Halves & Fourths",
+      "Equal Shares",
+      "Composing Shapes"
+    ],
+    "Measuring Length": [
+      "Measuring with Nonstandard Units",
+      "Comparing Lengths",
+      "Ordering by Length",
+      "Using a Ruler"
+    ]
+  },
+  "Grade 2 Math": {
+    "Addition & Subtraction (within 100)": [
+      "Adding Two-Digit Numbers",
+      "Subtracting Two-Digit Numbers",
+      "Regrouping",
+      "Word Problems"
+    ],
+    "Place Value: Hundreds": [
+      "Building Three-Digit Numbers",
+      "Expanded & Standard Form",
+      "Comparing Three-Digit Numbers",
+      "Rounding to Nearest 10"
+    ],
+    "Skip Counting": [
+      "Skip Counting by 2s",
+      "Skip Counting by 5s & 10s",
+      "Even & Odd Numbers",
+      "Number Patterns"
+    ],
+    "Money & Time": [
+      "Counting Coins & Bills",
+      "Making Change",
+      "Telling Time to 5 Minutes",
+      "Elapsed Time Basics"
+    ],
+    "Measurement & Data (Graphs)": [
+      "Measuring in Inches & Centimeters",
+      "Bar Graphs",
+      "Picture Graphs",
+      "Line Plots"
+    ],
+    "Arrays & Equal Groups": [
+      "Building Arrays",
+      "Repeated Addition",
+      "Equal Groups",
+      "Intro to Multiplication"
+    ]
+  },
+  "Grade 3 Math": {
+    "Multiplication & Division Basics": [
+      "Multiplication as Groups",
+      "Multiplication Facts",
+      "Division as Sharing",
+      "Fact Families"
+    ],
+    "Fractions as Numbers": [
+      "Fractions on a Number Line",
+      "Comparing Fractions",
+      "Equivalent Fractions",
+      "Unit Fractions"
+    ],
+    "Area & Perimeter": [
+      "Finding Perimeter",
+      "Finding Area by Counting Squares",
+      "Area Formulas for Rectangles",
+      "Comparing Area & Perimeter"
+    ],
+    "Place Value & Rounding": [
+      "Place Value to 10,000",
+      "Rounding to Nearest 10 & 100",
+      "Comparing Multi-Digit Numbers",
+      "Adding & Subtracting Large Numbers"
+    ],
+    "Time, Money & Data": [
+      "Elapsed Time",
+      "Money Word Problems",
+      "Bar Graphs & Line Plots",
+      "Interpreting Data"
+    ],
+    "Two-Step Word Problems": [
+      "Identifying Operations Needed",
+      "Multi-Step Addition & Subtraction",
+      "Multi-Step Multiplication & Division",
+      "Checking Reasonableness"
+    ]
+  },
+  "Grade 4 Math": {
+    "Multi-Digit Multiplication & Division": [
+      "Multiplying Multi-Digit Numbers",
+      "Long Division",
+      "Estimating Products & Quotients",
+      "Word Problems"
+    ],
+    "Fraction Equivalence & Operations": [
+      "Equivalent Fractions",
+      "Comparing Fractions",
+      "Adding & Subtracting Fractions",
+      "Mixed Numbers"
+    ],
+    "Decimals": [
+      "Decimal Place Value",
+      "Comparing Decimals",
+      "Relating Fractions & Decimals",
+      "Adding Decimals"
+    ],
+    "Angles & Geometry": [
+      "Measuring Angles",
+      "Classifying Angles",
+      "Lines & Line Segments",
+      "Classifying 2D Shapes"
+    ],
+    "Factors & Multiples": [
+      "Finding Factors",
+      "Finding Multiples",
+      "Prime & Composite Numbers",
+      "Greatest Common Factor"
+    ],
+    "Multi-Step Word Problems": [
+      "Multi-Step Problems with Whole Numbers",
+      "Interpreting Remainders",
+      "Problems with Fractions",
+      "Checking Solutions"
+    ]
+  },
+  "Grade 5 Math": {
+    "Fraction Operations (All Four)": [
+      "Adding & Subtracting Fractions",
+      "Multiplying Fractions",
+      "Dividing Fractions",
+      "Mixed Number Operations"
+    ],
+    "Decimal Operations": [
+      "Adding & Subtracting Decimals",
+      "Multiplying Decimals",
+      "Dividing Decimals",
+      "Rounding Decimals"
+    ],
+    "Volume & 3D Shapes": [
+      "Understanding Volume",
+      "Volume of Rectangular Prisms",
+      "Nets of 3D Shapes",
+      "Surface Area Intro"
+    ],
+    "The Coordinate Plane (Intro)": [
+      "Plotting Points",
+      "Ordered Pairs",
+      "Graphing Patterns",
+      "Reading Coordinate Graphs"
+    ],
+    "Order of Operations": [
+      "Using Parentheses",
+      "PEMDAS Basics",
+      "Evaluating Expressions",
+      "Numerical Expressions"
+    ],
+    "Intro to Ratios": [
+      "Understanding Ratios",
+      "Ratio Language",
+      "Equivalent Ratios",
+      "Simple Ratio Problems"
+    ]
+  },
+  "Grade 6 Math": {
+    "Ratios & Rates": [
+      "Understanding Ratios",
+      "Rate & Unit Rate",
+      "Ratio Tables",
+      "Solving Ratio Problems"
+    ],
+    "Fractions, Decimals & Percents": [
+      "Dividing Fractions",
+      "Converting Between Forms",
+      "Percent of a Number",
+      "Fraction-Decimal-Percent Problems"
+    ],
+    "Negative Numbers & Integers": [
+      "Understanding Negative Numbers",
+      "Comparing & Ordering Integers",
+      "Absolute Value",
+      "Integers on a Number Line"
+    ],
+    "Expressions & Equations": [
+      "Writing Expressions",
+      "Evaluating Expressions",
+      "Solving One-Step Equations",
+      "Dependent & Independent Variables"
+    ],
+    "Area, Surface Area & Volume": [
+      "Area of Polygons",
+      "Surface Area of Prisms",
+      "Volume of Rectangular Prisms",
+      "Nets & 3D Figures"
+    ],
+    "Statistics & Data Displays": [
+      "Measures of Center",
+      "Measures of Variability",
+      "Box Plots & Histograms",
+      "Summarizing Data Distributions"
+    ],
+    "The Coordinate Plane": [
+      "Plotting Points in Four Quadrants",
+      "Reflecting Points",
+      "Distance on the Coordinate Plane",
+      "Graphing Relationships"
+    ]
+  },
+  "Grade 7 Math": {
+    "Ratios & Proportional Relationships": [
+      "Unit Rates with Fractions",
+      "Proportional Relationships",
+      "Constant of Proportionality",
+      "Graphing Proportions"
+    ],
+    "Operations with Rational Numbers": [
+      "Adding & Subtracting Rational Numbers",
+      "Multiplying & Dividing Rational Numbers",
+      "Order of Operations with Integers",
+      "Rational Number Word Problems"
+    ],
+    "Expressions, Equations & Inequalities": [
+      "Simplifying Expressions",
+      "Solving Two-Step Equations",
+      "Solving Inequalities",
+      "Writing Equations from Word Problems"
+    ],
+    "Angles, Area & Volume": [
+      "Angle Relationships",
+      "Circles: Circumference & Area",
+      "Area of Composite Figures",
+      "Volume of Prisms & Cylinders"
+    ],
+    "Probability & Statistics": [
+      "Theoretical vs Experimental Probability",
+      "Compound Events",
+      "Sampling & Populations",
+      "Comparing Data Sets"
+    ],
+    "Percent Applications": [
+      "Percent Increase & Decrease",
+      "Simple Interest",
+      "Tax, Tip & Discount",
+      "Markup & Markdown"
+    ]
+  },
+  "Grade 8 Math": {
+    "Linear Equations & Functions": [
+      "Solving Multi-Step Linear Equations",
+      "Slope & Rate of Change",
+      "Functions & Function Notation",
+      "Comparing Functions"
+    ],
+    "Systems of Linear Equations": [
+      "Solving by Graphing",
+      "Solving by Substitution",
+      "Solving by Elimination",
+      "Systems Word Problems"
+    ],
+    "Exponents & Scientific Notation": [
+      "Laws of Exponents",
+      "Negative Exponents",
+      "Scientific Notation",
+      "Operations in Scientific Notation"
+    ],
+    "The Pythagorean Theorem": [
+      "Understanding the Theorem",
+      "Finding Missing Side Lengths",
+      "Applications in the Real World",
+      "Distance on the Coordinate Plane"
+    ],
+    "Transformations & Congruence": [
+      "Translations",
+      "Reflections & Rotations",
+      "Dilations & Similarity",
+      "Congruence & Transformations"
+    ],
+    "Volume of Cylinders, Cones & Spheres": [
+      "Volume of Cylinders",
+      "Volume of Cones",
+      "Volume of Spheres",
+      "Composite Volume Problems"
+    ],
+    "Scatter Plots & Bivariate Data": [
+      "Constructing Scatter Plots",
+      "Line of Best Fit",
+      "Positive, Negative & No Correlation",
+      "Two-Way Tables"
+    ]
+  },
+  "Pre-Algebra": {
+    "Integers & Order of Operations": [
+      "Operations with Integers",
+      "Order of Operations",
+      "Absolute Value",
+      "Number Properties"
+    ],
+    "Fractions, Decimals & Percents": [
+      "Converting Between Forms",
+      "Operations with Fractions",
+      "Operations with Decimals",
+      "Percent Problems"
+    ],
+    "Ratios, Rates & Proportions": [
+      "Writing Ratios & Rates",
+      "Solving Proportions",
+      "Scale Drawings",
+      "Similar Figures"
+    ],
+    "Expressions & Equations": [
+      "Simplifying Expressions",
+      "Solving Multi-Step Equations",
+      "Equations with Variables on Both Sides",
+      "Literal Equations"
+    ],
+    "Inequalities": [
+      "Solving One-Step Inequalities",
+      "Solving Multi-Step Inequalities",
+      "Graphing Inequalities on a Number Line",
+      "Compound Inequalities"
+    ],
+    "Linear Equations & Graphing": [
+      "Slope of a Line",
+      "Slope-Intercept Form",
+      "Graphing Linear Equations",
+      "Writing Linear Equations"
+    ],
+    "Exponents & Square Roots": [
+      "Laws of Exponents",
+      "Square Roots & Cube Roots",
+      "Simplifying Radical Expressions",
+      "Estimating Roots"
+    ],
+    "Geometry: Area, Perimeter & Volume": [
+      "Area & Perimeter of Polygons",
+      "Circles",
+      "Surface Area",
+      "Volume of Solids"
+    ],
+    "Probability & Statistics": [
+      "Theoretical Probability",
+      "Measures of Center & Spread",
+      "Data Displays",
+      "Independent & Dependent Events"
+    ]
+  },
+  "Algebra 1": {
+    "Linear Equations & Inequalities": [
+      "Solving Multi-Step Equations",
+      "Equations with Variables on Both Sides",
+      "Solving & Graphing Inequalities",
+      "Compound Inequalities"
+    ],
+    "Linear Functions & Graphing": [
+      "Slope & Rate of Change",
+      "Slope-Intercept Form",
+      "Point-Slope & Standard Form",
+      "Writing Equations of Lines"
+    ],
+    "Systems of Linear Equations": [
+      "Solving by Graphing",
+      "Solving by Substitution",
+      "Solving by Elimination",
+      "Systems of Inequalities"
+    ],
+    "Exponents & Polynomials": [
+      "Laws of Exponents",
+      "Adding & Subtracting Polynomials",
+      "Multiplying Polynomials",
+      "Special Products"
+    ],
+    "Factoring Polynomials": [
+      "Factoring out the GCF",
+      "Factoring Trinomials",
+      "Difference of Squares",
+      "Factoring by Grouping"
+    ],
+    "Quadratic Equations & Functions": [
+      "Graphing Quadratic Functions",
+      "Solving by Factoring",
+      "The Quadratic Formula",
+      "Completing the Square"
+    ],
+    "Radical Expressions & Equations": [
+      "Simplifying Radicals",
+      "Operations with Radicals",
+      "Solving Radical Equations",
+      "Rational Exponents"
+    ],
+    "Rational Expressions & Equations": [
+      "Simplifying Rational Expressions",
+      "Multiplying & Dividing Rational Expressions",
+      "Adding & Subtracting Rational Expressions",
+      "Solving Rational Equations"
+    ],
+    "Functions & Function Notation": [
+      "Domain & Range",
+      "Evaluating Functions",
+      "Identifying Functions",
+      "Transformations of Functions"
+    ],
+    "Statistics & Data Analysis": [
+      "Measures of Center & Spread",
+      "Scatter Plots & Correlation",
+      "Line of Best Fit",
+      "Analyzing Data Distributions"
+    ]
+  },
+  "Geometry": {
+    "Lines, Angles & Triangle Basics": [
+      "Points, Lines & Planes",
+      "Angle Pairs & Relationships",
+      "Parallel Lines & Transversals",
+      "Triangle Angle Sum"
+    ],
+    "Triangle Congruence & Similarity": [
+      "Congruence Criteria (SSS, SAS, ASA)",
+      "Similarity Criteria (AA, SAS, SSS)",
+      "Proving Triangles Congruent",
+      "Proving Triangles Similar"
+    ],
+    "Right Triangle Trigonometry": [
+      "Pythagorean Theorem & Converse",
+      "Special Right Triangles",
+      "Sine, Cosine & Tangent",
+      "Solving Right Triangles"
+    ],
+    "Circles & Arcs": [
+      "Circle Vocabulary",
+      "Arc Measures & Central Angles",
+      "Inscribed Angles",
+      "Tangent & Secant Lines"
+    ],
+    "Area, Surface Area & Volume": [
+      "Area of Polygons & Circles",
+      "Surface Area of Prisms & Cylinders",
+      "Surface Area of Pyramids & Cones",
+      "Volume of Solids"
+    ],
+    "Coordinate Geometry": [
+      "Distance & Midpoint Formulas",
+      "Slopes of Parallel & Perpendicular Lines",
+      "Equations of Circles",
+      "Proving Figures on the Coordinate Plane"
+    ],
+    "Transformations": [
+      "Translations & Reflections",
+      "Rotations",
+      "Dilations",
+      "Compositions of Transformations"
+    ],
+    "Geometric Proofs": [
+      "Two-Column Proofs",
+      "Proving Angle Relationships",
+      "Proving Triangle Relationships",
+      "Coordinate Proofs"
+    ]
+  },
+  "Algebra 2": {
+    "Polynomial Functions & Equations": [
+      "Graphing Polynomial Functions",
+      "Adding, Subtracting & Multiplying Polynomials",
+      "Dividing Polynomials",
+      "Solving Polynomial Equations"
+    ],
+    "Rational Functions": [
+      "Graphing Rational Functions",
+      "Asymptotes & Discontinuities",
+      "Simplifying Rational Expressions",
+      "Solving Rational Equations"
+    ],
+    "Radical Functions & Complex Numbers": [
+      "Graphing Radical Functions",
+      "Operations with Complex Numbers",
+      "Solving Radical Equations",
+      "Rational Exponents"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Growth & Decay",
+      "Graphing Exponential Functions",
+      "Properties of Logarithms",
+      "Solving Exponential & Log Equations"
+    ],
+    "Sequences & Series": [
+      "Arithmetic Sequences & Series",
+      "Geometric Sequences & Series",
+      "Recursive & Explicit Formulas",
+      "Summation Notation"
+    ],
+    "Conic Sections": [
+      "Parabolas",
+      "Circles & Ellipses",
+      "Hyperbolas",
+      "Identifying Conics from Equations"
+    ],
+    "Matrices": [
+      "Matrix Operations",
+      "Matrix Multiplication",
+      "Determinants & Inverses",
+      "Solving Systems with Matrices"
+    ],
+    "Trigonometric Functions": [
+      "The Unit Circle",
+      "Graphing Sine & Cosine",
+      "Trigonometric Identities Intro",
+      "Solving Basic Trig Equations"
+    ],
+    "Probability & Statistics": [
+      "Permutations & Combinations",
+      "Probability Distributions",
+      "Normal Distribution",
+      "Statistical Inference Basics"
+    ]
+  },
+  "Trigonometry": {
+    "Right Triangle Trigonometry": [
+      "Sine, Cosine & Tangent Ratios",
+      "Solving Right Triangles",
+      "Angles of Elevation & Depression",
+      "Applications"
+    ],
+    "The Unit Circle": [
+      "Radian & Degree Measure",
+      "Unit Circle Coordinates",
+      "Reference Angles",
+      "Evaluating Trig Functions"
+    ],
+    "Graphing Trigonometric Functions": [
+      "Graphing Sine & Cosine",
+      "Amplitude, Period & Phase Shift",
+      "Graphing Tangent",
+      "Transformations of Trig Graphs"
+    ],
+    "Trigonometric Identities": [
+      "Reciprocal & Quotient Identities",
+      "Pythagorean Identities",
+      "Sum & Difference Identities",
+      "Double-Angle Identities"
+    ],
+    "Solving Trigonometric Equations": [
+      "Solving Basic Equations",
+      "Using Identities to Solve Equations",
+      "Multiple Solutions",
+      "Applications"
+    ],
+    "Law of Sines & Law of Cosines": [
+      "Law of Sines",
+      "Law of Cosines",
+      "The Ambiguous Case",
+      "Area of Oblique Triangles"
+    ],
+    "Inverse Trigonometric Functions": [
+      "Inverse Sine, Cosine & Tangent",
+      "Evaluating Inverse Trig Functions",
+      "Domain & Range Restrictions",
+      "Composite Trig Functions"
+    ],
+    "Polar Coordinates": [
+      "Polar Coordinate System",
+      "Converting Between Polar & Rectangular",
+      "Graphing Polar Equations",
+      "Polar Form of Complex Numbers"
+    ]
+  },
+  "Precalculus": {
+    "Functions, Graphs & Transformations": [
+      "Function Composition",
+      "Inverse Functions",
+      "Transformations of Graphs",
+      "Piecewise Functions"
+    ],
+    "Polynomial & Rational Functions": [
+      "End Behavior & Zeros",
+      "Graphing Polynomial Functions",
+      "Graphing Rational Functions",
+      "Asymptotes"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Growth & Decay Models",
+      "Properties of Logarithms",
+      "Solving Exponential & Log Equations",
+      "Applications"
+    ],
+    "Trigonometric Functions & Graphs": [
+      "Unit Circle Review",
+      "Graphing Sine, Cosine & Tangent",
+      "Amplitude, Period & Shifts",
+      "Modeling with Trig Functions"
+    ],
+    "Trigonometric Identities & Equations": [
+      "Fundamental Identities",
+      "Sum, Difference & Double-Angle Formulas",
+      "Solving Trig Equations",
+      "Verifying Identities"
+    ],
+    "Polar Coordinates & Complex Numbers": [
+      "Polar Graphs",
+      "Complex Numbers in Polar Form",
+      "De Moivre's Theorem",
+      "Roots of Complex Numbers"
+    ],
+    "Vectors": [
+      "Vector Basics & Operations",
+      "Component Form",
+      "Dot Product",
+      "Applications of Vectors"
+    ],
+    "Sequences, Series & Limits": [
+      "Arithmetic & Geometric Sequences",
+      "Series & Summation",
+      "Introduction to Limits",
+      "Limits at Infinity"
+    ]
+  },
+  "Calculus": {
+    "Limits & Continuity": [
+      "Estimating Limits Graphically",
+      "Evaluating Limits Algebraically",
+      "One-Sided Limits",
+      "Continuity"
+    ],
+    "Derivatives & Differentiation Rules": [
+      "Definition of the Derivative",
+      "Power, Product & Quotient Rules",
+      "Chain Rule",
+      "Derivatives of Trig, Exp & Log Functions"
+    ],
+    "Applications of Derivatives": [
+      "Related Rates",
+      "Optimization",
+      "Curve Sketching",
+      "Motion Problems"
+    ],
+    "Integrals & the Fundamental Theorem": [
+      "Antiderivatives",
+      "Definite & Indefinite Integrals",
+      "The Fundamental Theorem of Calculus",
+      "U-Substitution"
+    ],
+    "Applications of Integration": [
+      "Area Between Curves",
+      "Volumes of Revolution",
+      "Average Value of a Function",
+      "Accumulation Problems"
+    ],
+    "Sequences & Series (Intro)": [
+      "Sequences & Convergence",
+      "Introduction to Series",
+      "Geometric Series",
+      "Basic Convergence Tests"
+    ]
+  },
+  "Statistics": {
+    "Describing Data & Distributions": [
+      "Measures of Center",
+      "Measures of Spread",
+      "Shapes of Distributions",
+      "Boxplots & Histograms"
+    ],
+    "Probability": [
+      "Basic Probability Rules",
+      "Independent & Dependent Events",
+      "Conditional Probability",
+      "Probability Trees"
+    ],
+    "Probability Distributions": [
+      "Discrete Random Variables",
+      "The Normal Distribution",
+      "Binomial Distribution",
+      "Z-Scores"
+    ],
+    "Sampling & Experimental Design": [
+      "Sampling Methods",
+      "Bias in Sampling",
+      "Observational Studies vs Experiments",
+      "Experimental Design Principles"
+    ],
+    "Confidence Intervals": [
+      "Constructing Confidence Intervals",
+      "Margin of Error",
+      "Confidence Intervals for Means",
+      "Confidence Intervals for Proportions"
+    ],
+    "Hypothesis Testing": [
+      "Null & Alternative Hypotheses",
+      "p-Values",
+      "One-Sample t-Tests",
+      "Type I & Type II Errors"
+    ],
+    "Correlation & Regression": [
+      "Scatter Plots & Correlation",
+      "Correlation Coefficient",
+      "Linear Regression",
+      "Residuals"
+    ]
+  },
+  "AP Precalculus": {
+    "Polynomial & Rational Functions": [
+      "Polynomial Function Behavior",
+      "Rational Function Behavior",
+      "Zeros & End Behavior",
+      "Graphical Analysis"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Models",
+      "Logarithmic Models",
+      "Semi-Log & Log-Log Analysis",
+      "Solving Exponential & Log Equations"
+    ],
+    "Trigonometric & Polar Functions": [
+      "Sinusoidal Functions",
+      "Trigonometric Equations",
+      "Polar Function Graphs",
+      "Polar Function Analysis"
+    ],
+    "Function Composition & Transformations": [
+      "Composing Functions",
+      "Inverse Functions",
+      "Transformations of Functions",
+      "Combining Function Types"
+    ],
+    "Conics & Parametric Equations": [
+      "Parametric Equations Basics",
+      "Conic Sections",
+      "Parametrizing Curves",
+      "Applications"
+    ],
+    "Vectors & Matrices": [
+      "Vector Basics",
+      "Matrix Operations",
+      "Matrices as Transformations",
+      "Applications of Matrices"
+    ]
+  },
+  "AP Calculus AB": {
+    "Limits & Continuity": [
+      "Estimating Limits",
+      "Limit Laws",
+      "Limits Involving Infinity",
+      "Continuity & the IVT"
+    ],
+    "Definition of the Derivative": [
+      "Average vs Instantaneous Rate of Change",
+      "The Limit Definition of the Derivative",
+      "Differentiability",
+      "Tangent Lines"
+    ],
+    "Differentiation Rules": [
+      "Power, Product & Quotient Rules",
+      "Chain Rule",
+      "Implicit Differentiation",
+      "Derivatives of Trig, Exp & Log Functions"
+    ],
+    "Applications of Derivatives": [
+      "Related Rates",
+      "Extrema & Critical Points",
+      "Mean Value Theorem",
+      "Optimization"
+    ],
+    "Definite & Indefinite Integrals": [
+      "Riemann Sums",
+      "Definite Integrals",
+      "Antiderivatives",
+      "Properties of Integrals"
+    ],
+    "Fundamental Theorem of Calculus": [
+      "FTC Part 1",
+      "FTC Part 2",
+      "Average Value of a Function",
+      "Accumulation Functions"
+    ],
+    "Applications of Integration": [
+      "Area Between Curves",
+      "Volumes by Disks & Washers",
+      "Volumes by Cross-Sections",
+      "Motion Problems"
+    ],
+    "Differential Equations": [
+      "Slope Fields",
+      "Separable Differential Equations",
+      "Exponential Growth & Decay",
+      "Applications"
+    ]
+  },
+  "AP Calculus BC": {
+    "Limits & Continuity": [
+      "Limit Laws & Techniques",
+      "Limits Involving Infinity",
+      "Continuity",
+      "L'Hopital's Rule"
+    ],
+    "Differentiation & Applications": [
+      "Advanced Differentiation Rules",
+      "Implicit & Logarithmic Differentiation",
+      "Related Rates & Optimization",
+      "Curve Sketching"
+    ],
+    "Integration & Applications": [
+      "Integration Techniques",
+      "Improper Integrals",
+      "Area & Volume Applications",
+      "Arc Length"
+    ],
+    "Parametric & Polar Functions": [
+      "Parametric Equations & Derivatives",
+      "Arc Length of Parametric Curves",
+      "Polar Equations & Graphs",
+      "Area in Polar Coordinates"
+    ],
+    "Vector-Valued Functions": [
+      "Vector-Valued Function Basics",
+      "Derivatives & Integrals of Vector Functions",
+      "Velocity & Acceleration Vectors",
+      "Motion in the Plane"
+    ],
+    "Sequences & Series": [
+      "Convergence of Sequences",
+      "Convergence Tests for Series",
+      "Power Series",
+      "Interval of Convergence"
+    ],
+    "Taylor & Maclaurin Series": [
+      "Taylor Polynomials",
+      "Maclaurin Series",
+      "Error Bounds",
+      "Applications of Series"
+    ]
+  },
+  "AP Statistics": {
+    "Exploring One-Variable Data": [
+      "Describing Distributions",
+      "Measures of Center & Spread",
+      "Boxplots & Outliers",
+      "The Normal Distribution"
+    ],
+    "Exploring Two-Variable Data": [
+      "Scatter Plots & Association",
+      "Correlation",
+      "Least-Squares Regression",
+      "Residuals & Influential Points"
+    ],
+    "Collecting Data: Sampling & Experiments": [
+      "Sampling Methods",
+      "Surveys & Bias",
+      "Experimental Design",
+      "Random Assignment"
+    ],
+    "Probability & Random Variables": [
+      "Probability Rules",
+      "Discrete Random Variables",
+      "Binomial & Geometric Distributions",
+      "Expected Value"
+    ],
+    "Sampling Distributions": [
+      "Sampling Distribution of the Mean",
+      "Sampling Distribution of a Proportion",
+      "The Central Limit Theorem",
+      "Variability in Sampling"
+    ],
+    "Confidence Intervals": [
+      "Confidence Intervals for a Mean",
+      "Confidence Intervals for a Proportion",
+      "Interpreting Confidence Intervals",
+      "Sample Size Determination"
+    ],
+    "Significance Tests": [
+      "Setting Up Hypotheses",
+      "p-Values & Significance",
+      "Type I & Type II Errors",
+      "Tests for a Mean or Proportion"
+    ],
+    "Inference for Means": [
+      "One-Sample t-Tests",
+      "Two-Sample t-Tests",
+      "Paired t-Tests",
+      "Conditions for Inference"
+    ],
+    "Inference for Categorical Data & Regression": [
+      "Chi-Square Goodness of Fit",
+      "Chi-Square Tests for Association",
+      "Inference for Regression Slope",
+      "Interpreting Computer Output"
+    ]
+  },
+  "SAT": {
+    "Heart of Algebra": [
+      "Linear Equations",
+      "Linear Inequalities",
+      "Systems of Linear Equations",
+      "Linear Word Problems"
+    ],
+    "Problem Solving & Data Analysis": [
+      "Ratios, Rates & Proportions",
+      "Percentages",
+      "Data Interpretation",
+      "Statistics & Probability"
+    ],
+    "Passport to Advanced Math": [
+      "Quadratic Equations",
+      "Exponential Functions",
+      "Polynomial Expressions",
+      "Function Notation"
+    ],
+    "Additional Topics: Geometry & Trig": [
+      "Area & Volume",
+      "Circle Theorems",
+      "Right Triangle Trigonometry",
+      "Coordinate Geometry"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Calculator Section Practice",
+      "No-Calculator Section Practice"
+    ]
+  },
+  "ACT": {
+    "Pre-Algebra & Elementary Algebra": [
+      "Operations & Number Properties",
+      "Ratios, Rates & Percents",
+      "Solving Basic Equations",
+      "Basic Word Problems"
+    ],
+    "Intermediate Algebra & Coordinate Geometry": [
+      "Quadratic Equations",
+      "Systems of Equations",
+      "Functions",
+      "Coordinate Geometry Basics"
+    ],
+    "Plane Geometry": [
+      "Angles & Lines",
+      "Triangles & Polygons",
+      "Circles",
+      "Area & Volume"
+    ],
+    "Trigonometry": [
+      "Right Triangle Trig",
+      "The Unit Circle",
+      "Trig Graphs",
+      "Trig Identities"
+    ],
+    "Word Problems & Data Analysis": [
+      "Multi-Step Word Problems",
+      "Reading Tables & Graphs",
+      "Probability",
+      "Statistics Basics"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Pacing Strategy Practice",
+      "Full-Length Practice Section"
+    ]
+  },
+  "College Algebra": {
+    "Real Number System & Algebraic Expressions": [
+      "Properties of Real Numbers",
+      "Simplifying Expressions",
+      "Exponents & Radicals",
+      "Order of Operations"
+    ],
+    "Equations & Inequalities": [
+      "Linear Equations",
+      "Quadratic Equations",
+      "Absolute Value Equations & Inequalities",
+      "Compound Inequalities"
+    ],
+    "Functions & Graphs": [
+      "Function Notation & Evaluation",
+      "Domain & Range",
+      "Graphing Basic Functions",
+      "Transformations of Functions"
+    ],
+    "Polynomial & Rational Functions": [
+      "Graphing Polynomials",
+      "Polynomial Division",
+      "Rational Functions & Asymptotes",
+      "Solving Rational Equations"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Functions & Graphs",
+      "Logarithmic Functions & Graphs",
+      "Properties of Logarithms",
+      "Solving Exponential & Log Equations"
+    ],
+    "Systems of Equations": [
+      "Systems of Linear Equations",
+      "Solving by Substitution & Elimination",
+      "Systems of Inequalities",
+      "Applications"
+    ],
+    "Sequences & Series": [
+      "Arithmetic Sequences & Series",
+      "Geometric Sequences & Series",
+      "Summation Notation",
+      "Applications"
+    ],
+    "Conic Sections": [
+      "Parabolas",
+      "Circles",
+      "Ellipses",
+      "Hyperbolas"
+    ]
+  },
+  "Linear Algebra": {
+    "Systems of Linear Equations & Matrices": [
+      "Solving Linear Systems",
+      "Matrix Representation",
+      "Row Reduction",
+      "Gaussian Elimination"
+    ],
+    "Vector Spaces": [
+      "Definition & Examples",
+      "Subspaces",
+      "Span & Linear Independence",
+      "Basis & Dimension"
+    ],
+    "Matrix Operations & Inverses": [
+      "Matrix Addition & Multiplication",
+      "Identity & Inverse Matrices",
+      "Finding Inverses",
+      "Properties of Matrix Operations"
+    ],
+    "Determinants": [
+      "Computing Determinants",
+      "Properties of Determinants",
+      "Cofactor Expansion",
+      "Determinants & Invertibility"
+    ],
+    "Eigenvalues & Eigenvectors": [
+      "Characteristic Polynomial",
+      "Finding Eigenvalues",
+      "Finding Eigenvectors",
+      "Eigenspaces"
+    ],
+    "Linear Transformations": [
+      "Definition & Properties",
+      "Matrix Representation of Transformations",
+      "Kernel & Range",
+      "Composition of Transformations"
+    ],
+    "Orthogonality & Least Squares": [
+      "Dot Product & Orthogonality",
+      "Orthogonal Projections",
+      "Gram-Schmidt Process",
+      "Least Squares Approximation"
+    ],
+    "Applications: Diagonalization": [
+      "Diagonalizing a Matrix",
+      "Powers of Matrices",
+      "Applications to Systems",
+      "Symmetric Matrices"
+    ]
+  }
 };
 
-function populateCourseSelect(selectId, topicSelectId){
+function populateCourseSelect(selectId, chapterSelectId, topicsBoxId){
   const sel = document.getElementById(selectId);
   COURSE_GROUPS.forEach(group => {
     const og = document.createElement('optgroup');
@@ -1003,18 +2161,62 @@ function populateCourseSelect(selectId, topicSelectId){
     });
     sel.appendChild(og);
   });
-  if(topicSelectId){ populateTopics(selectId, topicSelectId); }
+  if(chapterSelectId){ populateChapters(selectId, chapterSelectId, topicsBoxId); }
 }
 
-function populateTopics(courseSelectId, topicSelectId){
+/* Populates the "Chapter" dropdown for the selected course, then the topics checklist. */
+function populateChapters(courseSelectId, chapterSelectId, topicsBoxId){
   const course = document.getElementById(courseSelectId).value;
-  const topicSel = document.getElementById(topicSelectId);
-  topicSel.innerHTML = '';
-  (COURSES[course] || []).forEach(topic => {
+  const chapterSel = document.getElementById(chapterSelectId);
+  chapterSel.innerHTML = '';
+  const chapters = COURSES[course] || {};
+  Object.keys(chapters).forEach(chapter => {
     const opt = document.createElement('option');
-    opt.value = topic; opt.textContent = topic;
-    topicSel.appendChild(opt);
+    opt.value = chapter; opt.textContent = chapter;
+    chapterSel.appendChild(opt);
   });
+  if(topicsBoxId){ populateTopicCheckboxes(courseSelectId, chapterSelectId, topicsBoxId); }
+}
+
+/* Populates the scrollable "Topics" checklist (with an "All topics" master checkbox)
+   for the selected course + chapter. */
+function populateTopicCheckboxes(courseSelectId, chapterSelectId, topicsBoxId){
+  const course = document.getElementById(courseSelectId).value;
+  const chapter = document.getElementById(chapterSelectId).value;
+  const box = document.getElementById(topicsBoxId);
+  box.innerHTML = '';
+  const topics = (COURSES[course] && COURSES[course][chapter]) || [];
+
+  const allLabel = document.createElement('label');
+  allLabel.className = 'topic-check all-topics';
+  allLabel.innerHTML = '<input type="checkbox" class="topic-all-cb" checked> <span>All topics</span>';
+  box.appendChild(allLabel);
+
+  const topicCbs = [];
+  topics.forEach(topic => {
+    const label = document.createElement('label');
+    label.className = 'topic-check sub-topic';
+    label.innerHTML = '<input type="checkbox" class="topic-cb" value="' + escapeHtml(topic) + '" checked> <span>' + escapeHtml(topic) + '</span>';
+    box.appendChild(label);
+    topicCbs.push(label.querySelector('input'));
+  });
+
+  const allCb = allLabel.querySelector('input');
+  allCb.addEventListener('change', () => {
+    topicCbs.forEach(cb => { cb.checked = allCb.checked; });
+  });
+  topicCbs.forEach(cb => {
+    cb.addEventListener('change', () => {
+      allCb.checked = topicCbs.every(c => c.checked);
+    });
+  });
+}
+
+/* Returns the list of checked topic names from a topics-box (excludes the "All topics" master). */
+function getSelectedTopics(topicsBoxId){
+  const box = document.getElementById(topicsBoxId);
+  if(!box) return [];
+  return Array.from(box.querySelectorAll('.topic-cb:checked')).map(cb => cb.value);
 }
 
 /* "Any course" select for chat */
@@ -1632,10 +2834,17 @@ function buildLessonPrompt(course, topic, notes, batchStart, batchCount, totalSl
 
 async function generateLesson(){
   const course = document.getElementById('lsCourse').value;
-  const topic = document.getElementById('lsTopic').value;
+  const chapter = document.getElementById('lsChapter').value;
+  const selectedTopics = getSelectedTopics('lsTopicsBox');
+  const statusEl = document.getElementById('lsStatus');
+  if(selectedTopics.length === 0){
+    statusEl.textContent = 'Please select at least one topic.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const topic = chapter + ' — ' + selectedTopics.join(', ');
   const totalSlides = parseInt(document.getElementById('lsSlides').value, 10);
   const notes = document.getElementById('lsNotes').value.trim();
-  const statusEl = document.getElementById('lsStatus');
 
   statusEl.classList.remove('error');
   document.getElementById('genBtn').disabled = true;
@@ -2188,45 +3397,6 @@ function plotGraph(){
   drawGraph(canvas, expr, xmin, xmax);
 }
 
-/* ============ FLASHCARDS ============ */
-async function generateFlashcards(){
-  const course = document.getElementById('fcCourse').value;
-  const topic = document.getElementById('fcTopic').value;
-  const count = document.getElementById('fcCount').value;
-  const statusEl = document.getElementById('fcStatus');
-  const grid = document.getElementById('fcGrid');
-  statusEl.classList.remove('error');
-  statusEl.textContent = 'Generating flashcards...';
-  grid.innerHTML = '';
-
-  const prompt = "Create " + count + " study flashcards for the math topic \"" + topic + "\" in the course \"" + course + "\" (US curriculum).\n" +
-    'Respond with ONLY valid JSON: {"cards":[{"term":"...","definition":"..."}]}\n' +
-    "Each card should be a key term, formula, or short fact with a definition/explanation under 18 words. Use correct LaTeX for any math.";
-
-  try{
-    const text = await callClaude(
-      [{role:'user', content:prompt}],
-      "You are an API that returns only valid, minified JSON for math flashcard sets. Never include markdown or commentary. " + JSON_LATEX_RULES
-    );
-    const data = extractJSON(text);
-    (data.cards || []).forEach(card => {
-      const el = document.createElement('div');
-      el.className = 'flash-card';
-      el.onclick = () => el.classList.toggle('flipped');
-      el.innerHTML = '<div class="flash-inner">' +
-        '<div class="flash-face front">' + escapeHtml(card.term) + '</div>' +
-        '<div class="flash-face back">' + escapeHtml(card.definition) + '</div>' +
-        '</div>';
-      grid.appendChild(el);
-    });
-    renderMath(grid);
-    statusEl.textContent = 'Click a card to flip it.';
-  }catch(err){
-    statusEl.textContent = 'Could not generate flashcards: ' + err.message;
-    statusEl.classList.add('error');
-  }
-}
-
 /* ============ QUIZ ============ */
 const QUIZ_TYPE_INSTRUCTIONS = {
   mixed: "Use a healthy mix of question styles: some conceptual/reasoning questions, some computation/procedure questions, some word problems, and (where the topic supports it) some that involve a graph or diagram.",
@@ -2242,11 +3412,18 @@ function normalizeQuestionText(s){
 
 async function generateQuiz(){
   const course = document.getElementById('qzCourse').value;
-  const topic = document.getElementById('qzTopic').value;
+  const chapter = document.getElementById('qzChapter').value;
+  const statusEl = document.getElementById('qzStatus');
+  const selectedTopics = getSelectedTopics('qzTopicsBox');
+  if(selectedTopics.length === 0){
+    statusEl.textContent = 'Please select at least one topic.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const topic = chapter + ' — ' + selectedTopics.join(', ');
   const difficulty = document.getElementById('qzDifficulty').value;
   const total = parseInt(document.getElementById('qzCount').value, 10);
   const qType = document.getElementById('qzType').value;
-  const statusEl = document.getElementById('qzStatus');
   const box = document.getElementById('qzBox');
   statusEl.classList.remove('error');
   box.innerHTML = '';
@@ -2317,7 +3494,10 @@ async function generateQuiz(){
   }
 }
 
+let currentQuizQuestions = [];
+
 function renderQuiz(questions){
+  currentQuizQuestions = questions;
   const box = document.getElementById('qzBox');
   let html = '';
   questions.forEach((q, qi) => {
@@ -2346,6 +3526,8 @@ function renderQuiz(questions){
         '<input type="radio" name="q' + qi + '" value="' + oi + '"> <span>' + escapeHtml(cleanInlineText(opt)) + '</span></label>';
     });
     html += '<div class="quiz-explain" style="display:none;">' + escapeHtml(cleanInlineText(q.explanation)) + '</div>';
+    html += '<button class="btn btn-outline quiz-solution-btn" style="display:none;" onclick="showStepSolution(' + qi + ')">Check solution</button>';
+    html += '<div class="quiz-solution" id="qsol' + qi + '" style="display:none;"></div>';
     html += '</div>';
   });
   html += '<button class="btn btn-coral" style="margin-top:1rem;" onclick="checkQuiz()">Check answers</button>';
@@ -2382,10 +3564,54 @@ function checkQuiz(){
       else if(oi === selectedVal) opt.classList.add('incorrect');
     });
     div.querySelector('.quiz-explain').style.display = 'block';
+    const solBtn = div.querySelector('.quiz-solution-btn');
+    if(solBtn) solBtn.style.display = 'inline-block';
   });
   const scoreEl = document.getElementById('quizScore');
   scoreEl.style.display = 'block';
   scoreEl.textContent = 'Score: ' + correct + ' / ' + qDivs.length;
+}
+
+async function showStepSolution(qi){
+  const container = document.getElementById('qsol' + qi);
+  const btn = document.querySelector('.quiz-q[data-q="' + qi + '"] .quiz-solution-btn');
+  if(!container || !btn) return;
+
+  if(container.dataset.loaded === '1'){
+    const showing = container.style.display !== 'none';
+    container.style.display = showing ? 'none' : 'block';
+    btn.textContent = showing ? 'Check solution' : 'Hide solution';
+    return;
+  }
+
+  const q = currentQuizQuestions[qi];
+  if(!q) return;
+  btn.disabled = true;
+  btn.textContent = 'Loading...';
+  container.style.display = 'block';
+  container.innerHTML = '<p class="q-para">Working through the solution...</p>';
+
+  try{
+    const correctLetter = String.fromCharCode(65 + q.answer);
+    const optionsText = (q.options || []).map((opt, oi) => String.fromCharCode(65 + oi) + ') ' + opt).join('   ');
+    const prompt = "Question: " + q.q + "\nOptions: " + optionsText +
+      "\nThe correct answer is " + correctLetter + ") " + (q.options ? q.options[q.answer] : '') + ".\n" +
+      "Write a clear, numbered step-by-step solution (at most 6 short steps) showing exactly how to reach the correct answer from the question. " +
+      "Use LaTeX for any math, with $...$ for inline expressions.";
+    const text = await callClaude(
+      [{role:'user', content: prompt}],
+      "You are a patient math tutor. Respond with plain text only — numbered steps, one per line, no markdown headers, no JSON. Use $...$ for inline LaTeX math."
+    );
+    container.innerHTML = renderQuestionContent(text, '');
+    renderMath(container);
+    container.dataset.loaded = '1';
+    btn.textContent = 'Hide solution';
+  }catch(err){
+    container.innerHTML = '<p class="q-para">Could not load solution: ' + escapeHtml(err.message) + '</p>';
+    btn.textContent = 'Check solution';
+  }finally{
+    btn.disabled = false;
+  }
 }
 
 /* ============ WORKSHEETS ============ */
@@ -2393,11 +3619,18 @@ const WS_BW_THEME = { accent:'#000000', ink:'#000000', axis:'#000000', grid:'#dd
 
 async function generateWorksheet(){
   const course = document.getElementById('wsCourse').value;
-  const topic = document.getElementById('wsTopic').value;
+  const chapter = document.getElementById('wsChapter').value;
+  const statusEl = document.getElementById('wsStatus');
+  const selectedTopics = getSelectedTopics('wsTopicsBox');
+  if(selectedTopics.length === 0){
+    statusEl.textContent = 'Please select at least one topic.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const topic = chapter + ' — ' + selectedTopics.join(', ');
   const total = parseInt(document.getElementById('wsCount').value, 10);
   const style = document.getElementById('wsStyle').value;
   const notes = document.getElementById('wsNotes').value.trim();
-  const statusEl = document.getElementById('wsStatus');
   statusEl.classList.remove('error');
 
   const formats = [];
@@ -2693,10 +3926,9 @@ async function downloadWorksheetPdf(){
 }
 
 /* ============ INIT ============ */
-populateCourseSelect('lsCourse', 'lsTopic');
-populateCourseSelect('qzCourse', 'qzTopic');
-populateCourseSelect('fcCourse', 'fcTopic');
-populateCourseSelect('wsCourse', 'wsTopic');
+populateCourseSelect('lsCourse', 'lsChapter', 'lsTopicsBox');
+populateCourseSelect('qzCourse', 'qzChapter', 'qzTopicsBox');
+populateCourseSelect('wsCourse', 'wsChapter', 'wsTopicsBox');
 populateAskCourseSelect();
 plotGraph();
 updateSchemePreview();
