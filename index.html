@@ -447,10 +447,11 @@ img{max-width:100%;}
 }
 .quiz-opt:hover{background:var(--paper);}
 .quiz-opt input{margin-top:0.2rem;}
-.quiz-opt.correct{background:rgba(79,121,66,0.12); font-weight:600;}
-.quiz-opt.incorrect{background:rgba(232,133,122,0.18); text-decoration:line-through;}
+.quiz-opt.correct{background:rgba(79,121,66,0.18); border-left:4px solid #4f7942; font-weight:600; color:#2f4a26;}
+.quiz-opt.incorrect{background:rgba(232,133,122,0.22); border-left:4px solid #c0453a; text-decoration:line-through;}
 .quiz-explain{font-size:0.88rem; color:var(--ink-soft); margin-top:0.4rem; padding-left:0.5rem; border-left:2px solid var(--sky);}
-.quiz-solution-btn{font-size:0.85rem; padding:0.4rem 0.8rem;}
+.quiz-solution-btn{font-size:0.85rem; padding:0.4rem 0.8rem; color:var(--ink); border-color:var(--ink-soft); background:#fff;}
+.quiz-solution-btn:hover{border-color:var(--ink); background:var(--paper);}
 .quiz-solution{
   font-size:0.9rem; color:var(--ink); margin-top:0.6rem; padding:0.7rem 0.9rem;
   background:var(--paper); border:1px solid var(--paper-line); border-radius:8px;
@@ -510,14 +511,23 @@ footer p{margin:0.5rem 0;}
 .deck-slide.title-slide h1{ font-family:'Fraunces',serif; font-size:64px; color:var(--ds-accent, var(--yellow)); margin:0 0 24px; max-width:1000px; line-height:1.15;}
 .deck-slide.title-slide p{ font-size:28px; color:var(--ds-light, var(--chalk)); max-width:1000px; line-height:1.5;}
 .deck-slide .ds-logo{ position:absolute; top:36px; right:36px; height:90px; max-width:220px; object-fit:contain;}
-.deck-slide .ds-logo-sm{ position:absolute; bottom:24px; right:24px; height:56px; max-width:160px; object-fit:contain;}
+.deck-slide.content-slide{ display:flex; flex-direction:column; }
 .deck-slide.content-slide .ds-header{
-  background:var(--ds-dark, var(--board)); color:var(--ds-accent, var(--yellow)); font-family:'Fraunces',serif;
-  font-size:38px; font-weight:800; padding:24px 48px; line-height:1.25;
+  background:var(--ds-dark, var(--board)); color:var(--ds-light, var(--chalk)); font-family:'Fraunces',serif;
+  font-size:34px; font-weight:800; padding:22px 44px; line-height:1.25;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
 }
-.deck-slide.content-slide .ds-body{ padding:36px 48px; display:flex; gap:36px; align-items:flex-start;}
-.deck-slide.content-slide .ds-bullets{ font-size:27px; line-height:1.7; flex:1; padding-left:1.2em; margin:0; color:var(--ds-ink, var(--ink));}
-.deck-slide.content-slide .ds-bullets li{ margin-bottom:20px; }
+.deck-slide.content-slide .ds-header-logo{
+  height:52px; max-width:190px; object-fit:contain; background:#fff; border-radius:8px;
+  padding:6px 12px; flex-shrink:0;
+}
+.deck-slide.content-slide .ds-body{ padding:32px 44px; display:flex; gap:36px; align-items:flex-start; flex:1;}
+.deck-slide.content-slide .ds-bullets-box{
+  flex:1; border:3px solid var(--ds-dark, var(--board)); border-radius:20px;
+  padding:26px 32px; background:var(--ds-paper, #fff);
+}
+.deck-slide.content-slide .ds-bullets{ font-size:26px; line-height:1.65; padding-left:1.1em; margin:0; color:var(--ds-ink, var(--ink));}
+.deck-slide.content-slide .ds-bullets li{ margin-bottom:18px; }
 .deck-slide.content-slide .ds-bullets li::marker{ color:var(--ds-highlight, var(--coral)); }
 .deck-slide.content-slide .ds-graph-wrap canvas{ border:1px solid var(--paper-line); border-radius:8px; }
 .deck-slide.content-slide .ds-graph-wrap{ flex-shrink:0; text-align:center;}
@@ -531,6 +541,11 @@ footer p{margin:0.5rem 0;}
 .deck-slide.content-slide .q-table th{
   background:var(--ds-dark, var(--board)); color:var(--ds-accent, var(--yellow));
 }
+.deck-slide.content-slide .ds-footer{ display:flex; height:32px; font-family:'Inter',sans-serif; font-size:13px; color:#fff; flex-shrink:0;}
+.deck-slide.content-slide .ds-footer span{ display:flex; align-items:center; justify-content:center; }
+.deck-slide.content-slide .ds-footer .ds-footer-fill{ flex:0 0 32%; background:var(--ds-highlight, var(--ds-accent)); opacity:0.6;}
+.deck-slide.content-slide .ds-footer .ds-footer-course{ flex:1; background:var(--ds-dark, var(--board)); opacity:0.9;}
+.deck-slide.content-slide .ds-footer .ds-footer-page{ flex:0 0 12%; background:var(--ds-dark, var(--board));}
 .deck-slide.closing-slide{
   background:var(--ds-dark, var(--board)); color:var(--ds-light, var(--chalk));
   display:flex; flex-direction:column; justify-content:center; padding:80px;
@@ -728,13 +743,13 @@ footer p{margin:0.5rem 0;}
         <div class="field">
           <label for="lsColorScheme">Slide color scheme</label>
           <select id="lsColorScheme" onchange="updateSchemePreview()">
-            <option value="chalkboard" selected>Chalkboard Green</option>
+            <option value="teal" selected>Teal &amp; Coral (Recommended)</option>
             <option value="navy">Navy &amp; Gold</option>
+            <option value="chalkboard">Chalkboard Green</option>
             <option value="maroon">Maroon &amp; Cream</option>
             <option value="slate">Slate Gray</option>
             <option value="purple">Royal Purple</option>
             <option value="mono">Classic Black &amp; White</option>
-            <option value="teal">Teal &amp; Coral</option>
             <option value="crimson">Crimson &amp; Gold</option>
             <option value="amber">Amber &amp; Brown</option>
             <option value="indigo">Indigo &amp; Red</option>
@@ -2851,7 +2866,7 @@ async function generateLesson(){
   document.getElementById('downloadPptxBtn').style.display = 'none';
   document.getElementById('downloadPdfBtn').style.display = 'none';
   document.getElementById('lsPdfLink').style.display = 'none';
-  lessonData = { title: '', subtitle: '', slides: [] };
+  lessonData = { title: '', subtitle: '', course: course, slides: [] };
 
   const BATCH = 3;
   let done = 0;
@@ -2913,7 +2928,7 @@ const COLOR_SCHEMES = {
   slate:      { dark:'37474F', accent:'FFB74D', light:'ECEFF1', highlight:'4FC3F7', paper:'FAFAFA', ink:'263238' },
   purple:     { dark:'3B2F5E', accent:'F4C95D', light:'F3EFFB', highlight:'E8857A', paper:'FAF8FF', ink:'2A2438' },
   mono:       { dark:'1A1A1A', accent:'FFFFFF', light:'E0E0E0', highlight:'999999', paper:'FFFFFF', ink:'1A1A1A' },
-  teal:       { dark:'0F5257', accent:'FFD166', light:'E8F6F6', highlight:'EF6F6C', paper:'F7FDFD', ink:'14302E' },
+  teal:       { dark:'128C93', accent:'FFFFFF', light:'FFFFFF', highlight:'FF6F59', paper:'FFFFFF', ink:'232323' },
   crimson:    { dark:'7A1F2B', accent:'FFE066', light:'FBEAEA', highlight:'4ECDC4', paper:'FFF6F6', ink:'2B1414' },
   amber:      { dark:'4E342E', accent:'FFC857', light:'FBE9E0', highlight:'81C784', paper:'FFF8F0', ink:'2E1F17' },
   indigo:     { dark:'2C2A4A', accent:'F2C14E', light:'E8E6F7', highlight:'FF6B6B', paper:'F8F7FC', ink:'232142' }
@@ -2949,7 +2964,8 @@ function buildDeck(data, logo, schemeKey){
     '<p style="margin-top:60px;font-size:18px;opacity:0.7;">Made with Sabaq</p>';
   container.appendChild(title);
 
-  (data.slides || []).forEach(s => {
+  const totalSlides = (data.slides || []).length;
+  (data.slides || []).forEach((s, idx) => {
     const slide = document.createElement('div');
     slide.className = 'deck-slide content-slide';
     let bulletsHtml = '<ul class="ds-bullets">' + (s.bullets || []).map(b => '<li>' + escapeHtml(cleanInlineText(b)) + '</li>').join('') + '</ul>';
@@ -2975,10 +2991,16 @@ function buildDeck(data, logo, schemeKey){
         '<canvas width="460" height="360" data-shape="' + enc + '"></canvas>' +
         '</div>';
     }
+    const courseLabel = escapeHtml(data.course || '');
     slide.innerHTML =
-      '<div class="ds-header">' + escapeHtml(cleanInlineText(s.heading || '')) + '</div>' +
-      '<div class="ds-body">' + bulletsHtml + tableHtml + graphHtml + '</div>' +
-      (logo ? '<img class="ds-logo-sm" src="' + logo + '">' : '');
+      '<div class="ds-header"><span>' + escapeHtml(cleanInlineText(s.heading || '')) + '</span>' +
+      (logo ? '<img class="ds-header-logo" src="' + logo + '">' : '') + '</div>' +
+      '<div class="ds-body"><div class="ds-bullets-box">' + bulletsHtml + tableHtml + '</div>' + graphHtml + '</div>' +
+      '<div class="ds-footer">' +
+        '<span class="ds-footer-fill"></span>' +
+        '<span class="ds-footer-course">' + courseLabel + '</span>' +
+        '<span class="ds-footer-page">' + (idx+1) + ' / ' + totalSlides + '</span>' +
+      '</div>';
     container.appendChild(slide);
   });
 
