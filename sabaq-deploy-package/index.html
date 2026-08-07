@@ -1,0 +1,4840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabaq Math — AI Math Tutor, Lesson Plans &amp; Worksheets, K-12 to College | Mathaversity</title>
+<meta name="description" content="Sabaq Math is an AI-powered math platform for students and teachers: step-by-step tutoring, PowerPoint/PDF lesson plans, printable worksheets, and practice quizzes for every course from Kindergarten through College Algebra and Linear Algebra — plus dedicated test prep for SAT, ACT, AP Calculus, AP Statistics, AMC, AIME, MATHCOUNTS, Math Kangaroo, PSAT/NMSQT, ACCUPLACER, and ALEKS.">
+<meta name="keywords" content="math tutor, AI math help, math lesson plans, math worksheets generator, math practice quiz, Common Core math, K-12 math curriculum, SAT math prep, ACT math prep, AP Calculus AB, AP Calculus BC, AP Precalculus, AP Statistics, AMC 8, AMC 10, AMC 12, AIME, MATHCOUNTS, Math Kangaroo, PSAT NMSQT, ACCUPLACER, ALEKS placement test, College Algebra, Linear Algebra, Calculus 1, Calculus 2">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Mathaversity LLC">
+<link rel="canonical" href="https://www.mathaversity.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sabaq Math">
+<meta property="og:title" content="Sabaq Math — AI Math Tutor, Lesson Plans &amp; Worksheets, K-12 to College">
+<meta property="og:description" content="Step-by-step math tutoring, downloadable lesson decks, printable worksheets, and practice quizzes for every course from Kindergarten through College Algebra — plus SAT, ACT, AP, AMC, AIME, MATHCOUNTS, and other test prep.">
+<meta property="og:url" content="https://www.mathaversity.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sabaq Math — AI Math Tutor, Lesson Plans &amp; Worksheets, K-12 to College">
+<meta name="twitter:description" content="Step-by-step math tutoring, downloadable lesson decks, printable worksheets, and practice quizzes for every course from Kindergarten through College Algebra — plus SAT, ACT, AP, AMC, AIME, MATHCOUNTS, and other test prep.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Sabaq Math",
+  "alternateName": "Mathaversity",
+  "url": "https://www.mathaversity.com/",
+  "description": "AI-powered math tutoring, lesson plans, worksheets, and practice quizzes for Kindergarten through College Algebra and Linear Algebra, plus test prep for SAT, ACT, AP Calculus, AP Statistics, AMC, AIME, MATHCOUNTS, Math Kangaroo, PSAT/NMSQT, ACCUPLACER, and ALEKS.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mathaversity LLC"
+  },
+  "sameAs": [],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Math Courses and Test Prep",
+    "itemListElement": [
+      { "@type": "Course", "name": "Kindergarten Math" },
+      { "@type": "Course", "name": "Algebra 1" },
+      { "@type": "Course", "name": "Geometry" },
+      { "@type": "Course", "name": "Algebra 2" },
+      { "@type": "Course", "name": "Precalculus" },
+      { "@type": "Course", "name": "Calculus" },
+      { "@type": "Course", "name": "Statistics" },
+      { "@type": "Course", "name": "AP Calculus AB" },
+      { "@type": "Course", "name": "AP Calculus BC" },
+      { "@type": "Course", "name": "AP Statistics" },
+      { "@type": "Course", "name": "College Algebra" },
+      { "@type": "Course", "name": "Linear Algebra" },
+      { "@type": "Course", "name": "SAT Math" },
+      { "@type": "Course", "name": "ACT Math" }
+    ]
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+:root{
+  --board:#1f3d32;
+  --board-deep:#142a21;
+  --chalk:#f6f2e7;
+  --chalk-dim:#c9d3cc;
+  --yellow:#f4c95d;
+  --coral:#e8857a;
+  --sky:#9cc4dc;
+  --paper:#fbf8f1;
+  --paper-line:#e3dccb;
+  --ink:#232323;
+  --ink-soft:#6b665b;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;}
+
+/* ---------- NAV ---------- */
+.topnav{
+  position:sticky; top:0; z-index:50;
+  background:var(--board-deep);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.75rem 1.5rem;
+  flex-wrap:wrap; gap:0.5rem;
+  border-bottom:3px solid var(--yellow);
+}
+.brand{
+  font-family:'Kalam',cursive;
+  font-size:1.7rem;
+  color:var(--chalk);
+  font-weight:700;
+  letter-spacing:0.5px;
+  display:flex; align-items:center; gap:0.5rem;
+}
+.nav-account{ display:flex; align-items:center; gap:0.7rem; }
+.nav-credits{ font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--yellow); white-space:nowrap; }
+.nav-account button{
+  background:none; border:1px solid var(--chalk-dim); color:var(--chalk);
+  padding:0.4rem 0.9rem; border-radius:999px; font-family:'Inter',sans-serif;
+  font-size:0.82rem; font-weight:600; cursor:pointer; white-space:nowrap;
+}
+.nav-account button:hover{ border-color:var(--chalk); background:rgba(246,242,231,0.08); }
+.nav-account button.primary{ background:var(--yellow); color:var(--board-deep); border-color:var(--yellow); }
+.brand .dot{color:var(--coral);}
+.brand-logo{flex-shrink:0;}
+.navlinks{display:flex; gap:0.4rem; flex-wrap:wrap;}
+.navlinks button{
+  font-family:'Inter',sans-serif;
+  font-size:0.92rem;
+  font-weight:600;
+  color:var(--chalk-dim);
+  background:transparent;
+  border:1px solid transparent;
+  padding:0.5rem 0.9rem;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.navlinks button:hover{color:var(--chalk); border-color:rgba(246,242,231,0.25);}
+.navlinks button.active{
+  background:var(--yellow);
+  color:var(--board-deep);
+  border-color:var(--yellow);
+}
+
+/* ---------- VIEWS ---------- */
+.view{display:none;}
+.view.active{display:block; animation:fadein .35s ease;}
+@keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background-color:var(--board);
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(255,255,255,0.04) 0, transparent 38%),
+    radial-gradient(circle at 82% 75%, rgba(255,255,255,0.03) 0, transparent 45%),
+    radial-gradient(circle at 60% 15%, rgba(255,255,255,0.025) 0, transparent 40%);
+  color:var(--chalk);
+  padding:4.5rem 1.5rem 5.5rem;
+  overflow:hidden;
+  text-align:center;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.8rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--sky);
+  margin-bottom:1rem;
+}
+.hero-title{
+  font-family:'Kalam',cursive;
+  font-size:clamp(2.4rem, 7vw, 4.6rem);
+  line-height:1.15;
+  margin:0 auto 1.2rem;
+  max-width:14ch;
+  font-weight:700;
+}
+.hero-title .underline{
+  position:relative;
+  display:inline-block;
+}
+.hero-title .underline::after{
+  content:"";
+  position:absolute;
+  left:-4%; right:-4%; bottom:-0.08em;
+  height:0.32em;
+  background:var(--yellow);
+  opacity:0.55;
+  border-radius:50% 50% 40% 40% / 60% 60% 40% 40%;
+  transform:rotate(-1deg);
+  z-index:-1;
+}
+.hero-sub{
+  font-size:1.1rem;
+  color:var(--chalk-dim);
+  max-width:46ch;
+  margin:0 auto 2.2rem;
+  line-height:1.6;
+}
+.hero-ctas{display:flex; gap:0.9rem; justify-content:center; flex-wrap:wrap;}
+.btn{
+  font-family:'Inter',sans-serif;
+  font-weight:700;
+  font-size:0.98rem;
+  padding:0.85rem 1.6rem;
+  border-radius:8px;
+  border:2px solid transparent;
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--yellow); color:var(--board-deep);}
+.btn-primary:hover{box-shadow:0 4px 0 0 rgba(246,242,231,0.25);}
+.btn-outline{background:transparent; color:var(--chalk); border-color:var(--chalk-dim);}
+.btn-outline:hover{border-color:var(--chalk); background:rgba(246,242,231,0.06);}
+.btn-coral{background:var(--coral); color:var(--board-deep);}
+.btn:disabled{opacity:0.45; cursor:not-allowed;}
+
+/* doodles */
+.doodle{position:absolute; opacity:0.22; stroke:var(--chalk); fill:none; stroke-width:2;}
+.doodle.accent{stroke:var(--yellow);}
+.d1{top:8%; left:6%; width:70px; transform:rotate(-8deg);}
+.d2{top:14%; right:8%; width:90px; transform:rotate(10deg);}
+.d3{bottom:10%; left:12%; width:60px; transform:rotate(6deg);}
+.d4{bottom:14%; right:14%; width:80px; transform:rotate(-12deg);}
+.d5{top:46%; left:2%; width:50px; transform:rotate(4deg);}
+@media (max-width:700px){ .doodle{display:none;} }
+
+/* ---------- FEATURE STRIP ---------- */
+.feature-strip{
+  background:var(--paper);
+  padding:3rem 1.5rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:1.5rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+.feature-card{
+  border:1px solid var(--paper-line);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  background:#fff;
+}
+.feature-card svg{stroke:var(--board); margin-bottom:0.8rem;}
+.feature-card h3{
+  font-family:'Fraunces',serif;
+  font-size:1.2rem;
+  margin:0 0 0.4rem;
+}
+.feature-card p{color:var(--ink-soft); font-size:0.95rem; line-height:1.5; margin:0;}
+
+/* curriculum strip */
+.curriculum-full{ max-width:1100px; margin:0 auto; padding:0 1.5rem 3.5rem; }
+.curriculum-heading{
+  font-family:'Fraunces',serif; font-size:1.3rem; text-align:center;
+  margin:2.2rem 0 1.2rem; color:var(--ink);
+}
+.curriculum-heading:first-child{ margin-top:0; }
+.curriculum-group{ margin-bottom:1rem; }
+.curriculum-group h3{
+  font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:0.06em; color:var(--ink-soft); text-align:center; margin:0 0 0.6rem;
+}
+.curriculum-strip{
+  display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center;
+}
+.course-chip{
+  font-family:'JetBrains Mono',monospace; font-size:0.8rem;
+  border:1px solid var(--paper-line); border-radius:999px;
+  padding:0.35rem 0.9rem; color:var(--ink-soft); background:#fff;
+}
+
+/* ---------- GENERIC SECTION ---------- */
+.section{
+  max-width:1000px;
+  margin:0 auto;
+  padding:2.8rem 1.5rem 4rem;
+}
+.section-head{margin-bottom:1.8rem;}
+.section-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.78rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--coral);
+  margin:0 0 0.4rem;
+}
+.section h2{
+  font-family:'Fraunces',serif;
+  font-size:2.1rem;
+  margin:0 0 0.5rem;
+  font-weight:800;
+}
+.section .lead{color:var(--ink-soft); font-size:1.02rem; line-height:1.6; max-width:60ch;}
+
+/* ---------- SHARED FORM FIELDS ---------- */
+.field{margin-bottom:1.1rem;}
+.field label{
+  display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem;
+}
+.field input[type=text], .field input[type=number], .field select, .field textarea{
+  width:100%; font-family:'Inter',sans-serif; font-size:0.95rem;
+  padding:0.6rem 0.75rem; border:1px solid var(--paper-line); border-radius:8px;
+  background:#fff;
+}
+.field textarea{resize:vertical; min-height:70px;}
+.field input:focus, .field select:focus, .field textarea:focus{outline:2px solid var(--sky); outline-offset:1px;}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+@media (max-width:600px){ .field-row{grid-template-columns:1fr;} }
+
+/* ---------- QUIZ COURSE / TEST PREP TABS ---------- */
+.qz-tab-row{display:flex; gap:0.5rem; margin-top:0.9rem;}
+.qz-tab-btn{
+  font-family:'Inter',sans-serif; font-weight:700; font-size:0.92rem;
+  padding:0.55rem 1.3rem; border-radius:999px; border:2px solid var(--paper-line);
+  background:#fff; color:var(--ink-soft); cursor:pointer; transition:all .12s ease;
+}
+.qz-tab-btn:hover{border-color:var(--ink-soft); color:var(--ink);}
+.qz-tab-btn.active{
+  background:var(--board); border-color:var(--board); color:var(--chalk);
+}
+
+/* ---------- TOPICS CHECKLIST BOX ---------- */
+.topics-box{
+  border:1px solid var(--paper-line); border-radius:8px; background:#fff;
+  max-height:260px; overflow-y:auto; padding:0.3rem 0.9rem;
+}
+.topic-check{
+  display:flex; align-items:center; gap:0.6rem;
+  padding:0.55rem 0; font-size:0.95rem; font-weight:600; cursor:pointer;
+}
+.topic-check input[type=checkbox]{
+  width:1.15em; height:1.15em; accent-color:#2f6fed; cursor:pointer; flex-shrink:0;
+}
+.topic-check.all-topics{
+  border-bottom:1px solid var(--paper-line); margin-bottom:0.1rem;
+}
+.topic-check.sub-topic{font-weight:500;}
+
+/* ---------- ASK & LEARN (chat) ---------- */
+.notebook{
+  border:1px solid var(--paper-line);
+  border-radius:var(--radius);
+  background:#fff;
+  min-height:380px;
+  max-height:480px;
+  overflow-y:auto;
+  padding:1.2rem 1.4rem;
+  position:relative;
+}
+.notebook::before{
+  content:"";
+  position:absolute; top:0; bottom:0; left:48px;
+  width:2px; background:var(--coral); opacity:0.35;
+}
+.msg{margin:0 0 1rem 56px; max-width:80%; line-height:1.55; font-size:0.97rem;}
+.msg.user{
+  margin-left:auto; margin-right:8px;
+  background:var(--board); color:var(--chalk);
+  padding:0.7rem 1rem; border-radius:10px 10px 2px 10px;
+}
+.msg.assistant{
+  background:transparent; color:var(--ink);
+  padding:0.1rem 0;
+}
+.msg.assistant .tag{
+  display:inline-block; font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem; color:var(--ink-soft); margin-bottom:0.25rem;
+  letter-spacing:0.08em; text-transform:uppercase;
+}
+.msg.system-note{
+  margin-left:56px; color:var(--ink-soft); font-style:italic; font-size:0.9rem;
+}
+.chat-input-row{display:flex; gap:0.6rem; margin-top:1rem; align-items:flex-end;}
+.chat-input-row textarea{
+  flex:1; resize:none; font-family:'Inter',sans-serif; font-size:0.97rem;
+  padding:0.75rem 0.9rem; border:1px solid var(--paper-line); border-radius:8px;
+  min-height:50px; max-height:140px;
+}
+.chat-input-row textarea:focus{outline:2px solid var(--sky); outline-offset:1px;}
+.icon-btn{
+  flex-shrink:0; width:46px; height:46px; border-radius:8px;
+  border:1px solid var(--paper-line); background:#fff; color:var(--ink-soft);
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  transition:border-color .15s ease, color .15s ease;
+}
+.icon-btn:hover{ border-color:var(--sky); color:var(--ink); }
+.icon-btn.listening{
+  border-color:var(--coral); color:var(--coral); background:rgba(232,133,122,0.1);
+  animation:mic-pulse 1.2s infinite;
+}
+.icon-btn.unsupported{ opacity:0.4; cursor:not-allowed; }
+@keyframes mic-pulse{
+  0%, 100%{ box-shadow:0 0 0 0 rgba(232,133,122,0.35); }
+  50%{ box-shadow:0 0 0 6px rgba(232,133,122,0.12); }
+}
+.speak-btn{
+  display:inline-flex; align-items:center; gap:0.3rem;
+  font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+  border:1px solid var(--paper-line); border-radius:999px; background:#fff; color:var(--ink-soft);
+  padding:0.15rem 0.6rem; margin-left:0.5rem; cursor:pointer; vertical-align:middle;
+}
+.speak-btn:hover{ border-color:var(--sky); color:var(--ink); }
+.speak-btn.speaking{ border-color:var(--coral); color:var(--coral); }
+.image-preview-row{
+  display:flex; align-items:center; gap:0.6rem; margin-top:0.8rem;
+  border:1px solid var(--paper-line); border-radius:8px; padding:0.5rem 0.75rem;
+  background:#fff; font-size:0.88rem; color:var(--ink-soft);
+}
+.image-preview-thumb{ height:44px; width:44px; object-fit:cover; border-radius:6px; border:1px solid var(--paper-line);}
+.image-preview-name{ flex:1; }
+.image-remove-btn{
+  border:none; background:transparent; color:var(--ink-soft); font-size:1.3rem;
+  line-height:1; cursor:pointer; padding:0 0.25rem;
+}
+.image-remove-btn:hover{ color:#b3402a; }
+.msg-image{ display:block; max-width:220px; max-height:220px; border-radius:8px; margin-bottom:0.4rem; }
+.hint{font-size:0.85rem; color:var(--ink-soft); margin-top:0.6rem;}
+
+/* ---------- LESSON STUDIO ---------- */
+.studio-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:2rem;}
+@media (max-width:820px){ .studio-grid{grid-template-columns:1fr;} }
+.logo-drop{
+  border:2px dashed var(--paper-line); border-radius:8px;
+  padding:1rem; text-align:center; cursor:pointer; font-size:0.9rem; color:var(--ink-soft);
+  background:#fff;
+  transition:border-color .15s ease;
+}
+.logo-drop:hover{border-color:var(--sky);}
+.logo-drop img{max-height:60px; margin-top:0.5rem;}
+.logo-drop input{display:none;}
+
+.toc{
+  border:1px solid var(--paper-line); border-radius:var(--radius);
+  background:#fff; padding:1.5rem;
+  font-family:'Fraunces',serif;
+}
+.toc h3{margin:0 0 1rem; font-size:1.3rem;}
+.toc-item{display:flex; align-items:baseline; gap:0.4rem; margin-bottom:0.7rem; font-size:1rem;}
+.toc-item .label{white-space:nowrap;}
+.toc-item .leader{flex:1; border-bottom:1px dotted var(--ink-soft); height:0.6em;}
+.toc-item .num{font-family:'JetBrains Mono',monospace; font-size:0.85rem; color:var(--ink-soft);}
+.toc-bullets{
+  font-family:'Inter',sans-serif; font-size:0.88rem; color:var(--ink-soft);
+  margin:0.2rem 0 0.9rem 1.2rem; line-height:1.6;
+}
+.scheme-preview{display:flex; gap:0.3rem; margin-top:0.5rem;}
+.scheme-preview span{
+  display:block; width:28px; height:28px; border-radius:6px;
+  border:1px solid var(--paper-line);
+}
+.option-box{
+  border:1px solid var(--paper-line); border-radius:var(--radius);
+  background:#fff; padding:1rem 1.1rem; margin-bottom:1.1rem;
+}
+.option-box h4{
+  margin:0 0 0.6rem; font-family:'Fraunces',serif; font-size:1rem; font-weight:700;
+}
+.option-box select{
+  width:100%; font-family:'Inter',sans-serif; font-size:0.95rem;
+  padding:0.6rem 0.75rem; border:1px solid var(--paper-line); border-radius:8px; background:#fff;
+}
+.checkbox-row{display:flex; gap:1.2rem; flex-wrap:wrap; font-size:0.95rem;}
+.checkbox-row label{display:flex; align-items:center; gap:0.4rem; cursor:pointer;}
+.checkbox-row input{width:1.05em; height:1.05em;}
+.status-line{
+  font-family:'JetBrains Mono',monospace; font-size:0.85rem;
+  color:var(--ink-soft); margin-top:1rem; min-height:1.2em;
+}
+.status-line.error{color:#b3402a;}
+.download-row{display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;}
+
+/* ---------- PRACTICE TOOLS ---------- */
+.tools-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;}
+.tool-card{
+  border:1px solid var(--paper-line); border-radius:var(--radius);
+  background:#fff; padding:1.4rem; position:relative; overflow:hidden;
+  grid-column:span 1;
+}
+.tool-card.wide{grid-column:1/-1;}
+.tool-card h3{font-family:'Fraunces',serif; font-size:1.25rem; margin:0 0 0.5rem;}
+.tool-card p{color:var(--ink-soft); font-size:0.92rem; line-height:1.5;}
+.stamp{
+  position:absolute; top:1rem; right:1rem;
+  font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.12em;
+  color:var(--coral); border:2px solid var(--coral); border-radius:6px;
+  padding:0.25rem 0.5rem; transform:rotate(8deg); opacity:0.75;
+}
+.row{display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.8rem; align-items:center;}
+.row input[type=text], .row input[type=number], .row select{
+  font-family:'Inter',sans-serif; font-size:0.92rem;
+  padding:0.55rem 0.7rem; border:1px solid var(--paper-line); border-radius:8px;
+}
+.row input[type=text]{flex:1; min-width:160px;}
+.row input[type=number]{width:90px;}
+
+/* flashcards */
+.flash-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:0.8rem; margin-top:1.2rem;}
+.flash-card{
+  perspective:800px; height:140px; cursor:pointer;
+}
+.flash-inner{
+  position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;
+}
+.flash-card.flipped .flash-inner{transform:rotateY(180deg);}
+.flash-face{
+  position:absolute; inset:0; backface-visibility:hidden;
+  border:1px solid var(--paper-line); border-radius:8px;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  padding:0.7rem; font-size:0.94rem; line-height:1.35;
+  background:#fff;
+}
+.flash-face.front{font-weight:700; background:repeating-linear-gradient(to bottom, #fff 0, #fff 17px, var(--paper-line) 18px, #fff 19px);}
+.flash-face.back{transform:rotateY(180deg); background:var(--board); color:var(--chalk);}
+
+/* tables & multi-line content embedded in questions/bullets */
+.q-para{margin:0 0 0.4em;}
+.q-para:last-child{margin-bottom:0;}
+.q-table{border-collapse:collapse; margin:0.5rem 0; font-size:0.92em; max-width:100%;}
+.q-table th, .q-table td{border:1px solid var(--paper-line); padding:0.3rem 0.6rem; text-align:center;}
+.q-table th{background:var(--paper); font-weight:700;}
+
+/* quiz */
+.quiz-q{border-top:1px solid var(--paper-line); padding-top:1rem; margin-top:1rem;}
+.quiz-q:first-of-type{border-top:none; margin-top:1.2rem;}
+.quiz-q .qtext{font-weight:600; margin-bottom:0.6rem;}
+.quiz-q .qtext .q-para{margin:0 0 0.3em;}
+.quiz-opt{
+  display:flex; align-items:flex-start; gap:0.5rem; padding:0.4rem 0.5rem;
+  border-radius:6px; cursor:pointer; font-size:0.94rem; margin-bottom:0.3rem;
+}
+.quiz-opt:hover{background:var(--paper);}
+.quiz-opt input{margin-top:0.2rem;}
+.quiz-opt.correct{background:rgba(79,121,66,0.18); border-left:4px solid #4f7942; font-weight:600; color:#2f4a26;}
+.quiz-opt.incorrect{background:rgba(232,133,122,0.22); border-left:4px solid #c0453a; text-decoration:line-through;}
+.quiz-explain{font-size:0.88rem; color:var(--ink-soft); margin-top:0.4rem; padding-left:0.5rem; border-left:2px solid var(--sky);}
+.quiz-solution-btn{font-size:0.85rem; padding:0.4rem 0.8rem; color:var(--ink); border-color:var(--ink-soft); background:#fff;}
+.quiz-solution-btn:hover{border-color:var(--ink); background:var(--paper);}
+.quiz-solution{
+  font-size:0.9rem; color:var(--ink); margin-top:0.6rem; padding:0.7rem 0.9rem;
+  background:var(--paper); border:1px solid var(--paper-line); border-radius:8px;
+}
+.quiz-solution .q-para{margin:0 0 0.4em;}
+.quiz-graph-wrap{margin:0.6rem 0 0.8rem;}
+.quiz-graph{border:1px solid var(--paper-line); border-radius:8px; background:#fff; max-width:100%;}
+.quiz-score{
+  font-family:'Fraunces',serif; font-size:1.4rem; margin-top:1.2rem;
+  background:var(--paper); border:1px solid var(--paper-line); border-radius:8px; padding:1rem; text-align:center;
+}
+.quiz-list{max-height:600px; overflow-y:auto; padding-right:0.4rem;}
+
+/* grapher */
+.graph-canvas{border:1px solid var(--paper-line); border-radius:8px; max-width:100%; margin-top:0.8rem; background:#fff;}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:var(--board-deep); color:var(--chalk-dim);
+  text-align:center; padding:2rem 1rem; font-size:0.85rem;
+}
+footer span{color:var(--yellow);}
+footer p{margin:0.5rem 0;}
+.footer-brand{
+  display:flex; align-items:center; justify-content:center; gap:0.5rem;
+  margin-bottom:0.8rem; font-family:'Kalam',cursive; font-size:1.2rem; color:var(--chalk);
+}
+.footer-brand-by{
+  font-family:'Inter',sans-serif; font-size:0.78rem; font-weight:600;
+  color:var(--chalk-dim); letter-spacing:0.04em;
+}
+.footer-nav{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1.2rem;
+  margin-bottom:1rem;
+}
+.footer-nav button{
+  background:none; border:none; cursor:pointer; padding:0;
+  font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600;
+  color:var(--chalk-dim); letter-spacing:0.02em;
+}
+.footer-nav button:hover{ color:var(--chalk); text-decoration:underline; }
+.footer-copyright{
+  font-size:0.78rem; color:var(--chalk-dim); opacity:0.75; margin-top:0.8rem;
+}
+
+/* loading dots */
+.loading-dots span{animation: blink 1.2s infinite; opacity:0.3;}
+.loading-dots span:nth-child(2){animation-delay:0.2s;}
+.loading-dots span:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,100%{opacity:0.3;} 50%{opacity:1;}}
+
+/* katex sizing */
+.katex{font-size:1em;}
+
+/* ---------- SLIDE DECK (for PPTX capture + PDF print) ---------- */
+#deckContainer{ position:absolute; left:-100000px; top:0; }
+.deck-slide{
+  width:1280px; height:720px; position:relative; overflow:hidden;
+  font-family:'Inter',sans-serif; box-sizing:border-box;
+  background:var(--ds-paper, var(--paper));
+  color:var(--ds-ink, var(--ink));
+}
+.deck-slide.title-slide{
+  background:var(--ds-dark, var(--board)); color:var(--ds-light, var(--chalk));
+  display:flex; flex-direction:column; justify-content:center; padding:80px;
+}
+.deck-slide.title-slide h1{ font-family:'Fraunces',serif; font-size:64px; color:var(--ds-accent, var(--yellow)); margin:0 0 24px; max-width:1000px; line-height:1.15;}
+.deck-slide.title-slide p{ font-size:28px; color:var(--ds-light, var(--chalk)); max-width:1000px; line-height:1.5;}
+.deck-slide .ds-logo{ position:absolute; top:36px; right:36px; height:90px; max-width:220px; object-fit:contain;}
+.deck-slide.content-slide{ display:flex; flex-direction:column; }
+.deck-slide.content-slide .ds-header{
+  background:var(--ds-dark, var(--board)); color:var(--ds-light, var(--chalk)); font-family:'Fraunces',serif;
+  font-size:34px; font-weight:800; padding:22px 44px; line-height:1.25;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.deck-slide.content-slide .ds-header-logo{
+  height:52px; max-width:190px; object-fit:contain; background:#fff; border-radius:8px;
+  padding:6px 12px; flex-shrink:0;
+}
+.deck-slide.content-slide .ds-body{ padding:32px 44px; display:flex; gap:36px; align-items:flex-start; flex:1;}
+.deck-slide.content-slide .ds-bullets-box{
+  flex:1; border:3px solid var(--ds-dark, var(--board)); border-radius:20px;
+  padding:26px 32px; background:var(--ds-paper, #fff);
+}
+.deck-slide.content-slide .ds-bullets{ font-size:26px; line-height:1.65; padding-left:1.1em; margin:0; color:var(--ds-ink, var(--ink));}
+.deck-slide.content-slide .ds-bullets li{ margin-bottom:18px; }
+.deck-slide.content-slide .ds-bullets li::marker{ color:var(--ds-highlight, var(--coral)); }
+.deck-slide.content-slide .ds-graph-wrap canvas{ border:1px solid var(--paper-line); border-radius:8px; }
+.deck-slide.content-slide .ds-graph-wrap{ flex-shrink:0; text-align:center;}
+.deck-slide.content-slide .ds-graph-wrap .ds-graph-label{ font-size:18px; color:var(--ink-soft); margin-top:8px; font-family:'JetBrains Mono',monospace;}
+.deck-slide.content-slide .ds-bullets .q-table, .deck-slide.content-slide .q-table{
+  font-size:22px; border-collapse:collapse; margin:12px 0;
+}
+.deck-slide.content-slide .q-table th, .deck-slide.content-slide .q-table td{
+  border:1px solid var(--paper-line); padding:8px 16px; text-align:center;
+}
+.deck-slide.content-slide .q-table th{
+  background:var(--ds-dark, var(--board)); color:var(--ds-accent, var(--yellow));
+}
+.deck-slide.content-slide .ds-footer{ display:flex; height:32px; font-family:'Inter',sans-serif; font-size:13px; color:#fff; flex-shrink:0;}
+.deck-slide.content-slide .ds-footer span{ display:flex; align-items:center; justify-content:center; }
+.deck-slide.content-slide .ds-footer .ds-footer-fill{ flex:0 0 32%; background:var(--ds-highlight, var(--ds-accent)); opacity:0.6;}
+.deck-slide.content-slide .ds-footer .ds-footer-course{ flex:1; background:var(--ds-dark, var(--board)); opacity:0.9;}
+.deck-slide.content-slide .ds-footer .ds-footer-page{ flex:0 0 12%; background:var(--ds-dark, var(--board));}
+.deck-slide.closing-slide{
+  background:var(--ds-dark, var(--board)); color:var(--ds-light, var(--chalk));
+  display:flex; flex-direction:column; justify-content:center; padding:80px;
+}
+.deck-slide.closing-slide h1{ font-family:'Fraunces',serif; font-size:64px; color:var(--ds-accent, var(--yellow)); margin:0 0 20px;}
+
+/* ---------- WORKSHEET (for PDF export, black & white) ---------- */
+#worksheetContainer{ position:absolute; left:-100000px; top:0; }
+.ws-page{
+  width:816px; height:1056px; padding:72px; box-sizing:border-box; overflow:hidden;
+  background:#fff; color:#000; font-family:'Inter',sans-serif; font-size:12pt; line-height:1.45;
+}
+.ws-header-row{ display:flex; justify-content:space-between; align-items:baseline; font-size:9pt; border-bottom:1px solid #000; padding-bottom:0.3em; margin-bottom:0.5em;}
+.ws-header h1{ font-family:'Fraunces',serif; font-size:18pt; margin:0.3em 0 0.1em;}
+.ws-header p{ font-size:11pt; color:#333; margin:0 0 1em;}
+.ws-question{ display:flex; gap:0.5em; margin-bottom:1.1em;}
+.ws-qnum{ font-weight:700; flex-shrink:0; width:1.7em;}
+.ws-qbody{ flex:1; min-width:0;}
+.ws-qtext{ margin-bottom:0.4em;}
+.ws-options{ display:grid; grid-template-columns:1fr 1fr; gap:0.2em 1em; margin:0.3em 0 0;}
+.ws-blank{ border-bottom:1px solid #999; margin-top:0.7em;}
+.ws-graph-wrap{ text-align:center; margin-top:0.5em;}
+.ws-graph-wrap canvas{ border:1px solid #000;}
+.ws-qbody .q-table{ font-size:10.5pt; border-collapse:collapse; margin:0.4em 0;}
+.ws-qbody .q-table th, .ws-qbody .q-table td{ border:1px solid #000; padding:0.25em 0.6em; text-align:center;}
+.ws-qbody .q-table th{ background:#eee;}
+.ws-akhead{ font-family:'Fraunces',serif; font-size:15pt; border-bottom:2px solid #000; padding-bottom:0.2em; margin:0 0 0.6em;}
+.ws-akitem{ font-size:10.5pt; margin-bottom:0.5em;}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="brand">
+    <svg class="brand-logo" width="34" height="34" viewBox="0 0 36 36" aria-hidden="true">
+      <circle cx="18" cy="18" r="17" fill="var(--yellow)" stroke="var(--board-deep)" stroke-width="2"/>
+      <text x="18" y="24" font-family="Fraunces, serif" font-size="17" font-weight="800" fill="var(--board-deep)" text-anchor="middle">M</text>
+    </svg>
+    Sabaq<span class="dot">.</span>
+  </div>
+  <div class="navlinks">
+    <button class="active" data-view="home" onclick="showView('home')">Home</button>
+    <button data-view="ask" onclick="showView('ask')">Ask &amp; Learn</button>
+    <button data-view="studio" onclick="showView('studio')">Lesson Studio</button>
+    <button data-view="worksheets" onclick="showView('worksheets')">Worksheets</button>
+    <button data-view="tools" onclick="showView('tools')">Practice Tools</button>
+  </div>
+  <div class="nav-account" id="navAccount"></div>
+</nav>
+
+<!-- ================= HOME ================= -->
+<section class="view active" id="view-home" data-view="home">
+  <div class="hero">
+    <svg class="doodle d1" viewBox="0 0 64 64"><circle cx="32" cy="26" r="16"/><line x1="32" y1="42" x2="32" y2="50"/><line x1="24" y1="50" x2="40" y2="50"/><line x1="26" y1="56" x2="38" y2="56"/></svg>
+    <svg class="doodle accent d2" viewBox="0 0 80 60"><path d="M5 50 Q40 5 75 50"/><line x1="40" y1="5" x2="40" y2="50"/></svg>
+    <svg class="doodle d3" viewBox="0 0 60 60"><path d="M5 50 L55 50 M10 50 L10 10 M10 50 L50 10" stroke-width="2"/></svg>
+    <svg class="doodle accent d4" viewBox="0 0 60 60"><text x="0" y="40" font-size="40" fill="none" stroke="var(--yellow)" stroke-width="1.5">&#8747;</text></svg>
+    <svg class="doodle d5" viewBox="0 0 50 50"><path d="M5 28 L20 43 L45 8" stroke-width="4"/></svg>
+
+    <p class="hero-eyebrow">Kindergarten → College Math · Common Core Aligned · Full Test Prep</p>
+    <h1 class="hero-title">Math, <span class="underline">sorted</span>.</h1>
+    <p class="hero-sub">Ask any math question and get a step-by-step answer with real notation — integrals, limits, fractions and all. Build a lesson, worksheet, or quiz for any Common Core-aligned course from Kindergarten through College Algebra, or prep for the SAT, ACT, AP exams, AMC, AIME, MATHCOUNTS, and more.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="showView('ask')">Ask a math question</button>
+      <button class="btn btn-outline" onclick="showView('studio')">Build a lesson</button>
+    </div>
+  </div>
+
+  <div class="feature-strip">
+    <div class="feature-card">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4 8.5 8.5 0 0 1-6.6 3.1 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 3.1-6.6 8.38 8.38 0 0 1 5.4-1.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <h3>Ask &amp; Learn</h3>
+      <p>A patient math tutor for any topic from Kindergarten counting through College Algebra and Linear Algebra. Equations, limits, derivatives and integrals render with correct notation.</p>
+    </div>
+    <div class="feature-card">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h3>Lesson Studio</h3>
+      <p>Pick a course, chapter, and topic, choose up to 20 slides, add graphs where they help, and download a branded .pptx or .pdf with your school's logo.</p>
+    </div>
+    <div class="feature-card">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <h3>Worksheets</h3>
+      <p>Generate a printable worksheet — multiple-choice, short-answer, or free-response — with a full answer key and clear graphs, and download it as a ready-to-print PDF.</p>
+    </div>
+    <div class="feature-card">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7 7 1-5 5 1.5 7L12 18l-6.5 4L7 15 2 10l7-1z"/></svg>
+      <h3>Practice Tools</h3>
+      <p>Quizzes up to 30 questions per topic with instant, step-by-step solutions, plus a graphing calculator — all matched to your course.</p>
+    </div>
+    <div class="feature-card">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4"/></svg>
+      <h3>Test Prep</h3>
+      <p>Dedicated lessons, worksheets, and quizzes for SAT Math, ACT Math, AP Calculus AB/BC, AP Precalculus, AP Statistics, AMC 8/10/12, AIME, MATHCOUNTS, Math Kangaroo, PSAT/NMSQT, ACCUPLACER, and ALEKS.</p>
+    </div>
+    <div class="feature-card">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M6 10.5v4.5c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/><line x1="22" y1="8" x2="22" y2="15"/></svg>
+      <h3>Common Core Curriculum</h3>
+      <p>Every course from Kindergarten through College Algebra and Linear Algebra, aligned to Common Core and standard US state math standards — pick a course, chapter, and topic, and go.</p>
+    </div>
+  </div>
+
+  <div class="curriculum-full">
+    <h2 class="curriculum-heading">All courses, Kindergarten through College</h2>
+    <div class="curriculum-group">
+      <h3>Elementary</h3>
+      <div class="curriculum-strip">
+        <span class="course-chip">Kindergarten Math</span>
+        <span class="course-chip">Grade 1 Math</span>
+        <span class="course-chip">Grade 2 Math</span>
+        <span class="course-chip">Grade 3 Math</span>
+        <span class="course-chip">Grade 4 Math</span>
+        <span class="course-chip">Grade 5 Math</span>
+      </div>
+    </div>
+    <div class="curriculum-group">
+      <h3>Middle School</h3>
+      <div class="curriculum-strip">
+        <span class="course-chip">Grade 6 Math</span>
+        <span class="course-chip">Grade 7 Math</span>
+        <span class="course-chip">Grade 8 Math</span>
+        <span class="course-chip">Pre-Algebra</span>
+      </div>
+    </div>
+    <div class="curriculum-group">
+      <h3>High School Math</h3>
+      <div class="curriculum-strip">
+        <span class="course-chip">Algebra 1</span>
+        <span class="course-chip">Geometry</span>
+        <span class="course-chip">Algebra 2</span>
+        <span class="course-chip">Trigonometry</span>
+        <span class="course-chip">Precalculus</span>
+        <span class="course-chip">Calculus</span>
+        <span class="course-chip">Statistics</span>
+      </div>
+    </div>
+    <div class="curriculum-group">
+      <h3>College Math</h3>
+      <div class="curriculum-strip">
+        <span class="course-chip">College Algebra</span>
+        <span class="course-chip">Linear Algebra</span>
+        <span class="course-chip">Calculus 1</span>
+        <span class="course-chip">Calculus 2</span>
+      </div>
+    </div>
+
+    <h2 class="curriculum-heading">Test prep, all in one place</h2>
+    <div class="curriculum-group">
+      <div class="curriculum-strip">
+        <span class="course-chip">SAT Math</span>
+        <span class="course-chip">ACT Math</span>
+        <span class="course-chip">AP Calculus AB</span>
+        <span class="course-chip">AP Calculus BC</span>
+        <span class="course-chip">AP Precalculus</span>
+        <span class="course-chip">AP Statistics</span>
+        <span class="course-chip">AMC 8</span>
+        <span class="course-chip">AMC 10</span>
+        <span class="course-chip">AMC 12</span>
+        <span class="course-chip">AIME</span>
+        <span class="course-chip">MATHCOUNTS</span>
+        <span class="course-chip">Math Kangaroo</span>
+        <span class="course-chip">PSAT/NMSQT</span>
+        <span class="course-chip">ACCUPLACER</span>
+        <span class="course-chip">ALEKS Placement Test</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ASK & LEARN ================= -->
+<section class="view" id="view-ask" data-view="ask">
+  <div class="section">
+    <div class="section-head">
+      <p class="section-eyebrow">Ask &amp; Learn</p>
+      <h2>Your math tutor is on the board.</h2>
+      <p class="lead">Ask anything — solving equations, proofs, derivatives, integrals, limits, word problems. Explanations come step by step, with correct math notation.</p>
+    </div>
+
+    <div class="field-row" style="align-items:flex-end;">
+      <div class="field" style="max-width:320px; margin-bottom:0;">
+        <label for="askCourse">Focus course (optional)</label>
+        <select id="askCourse">
+          <option value="">Any course</option>
+        </select>
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+          <input type="checkbox" id="readAloud" style="width:1.05em; height:1.05em;">
+          Read answers aloud
+        </label>
+      </div>
+    </div>
+
+    <div class="notebook" id="chatLog">
+      <div class="msg system-note">Sabaq is ready. Try: "Evaluate the limit of (sin x)/x as x approaches 0" or "Find the integral of x^2 from 0 to 3".</div>
+    </div>
+    <div id="imagePreviewRow" class="image-preview-row" style="display:none;">
+      <img id="imagePreviewImg" class="image-preview-thumb" alt="Attached question">
+      <span class="image-preview-name">Image attached</span>
+      <button type="button" class="image-remove-btn" onclick="removeImage()" aria-label="Remove image">&times;</button>
+    </div>
+    <div class="chat-input-row">
+      <button type="button" class="icon-btn" id="micBtn" title="Ask by voice" onclick="toggleMic()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
+      <button type="button" class="icon-btn" title="Take a photo" onclick="document.getElementById('cameraInput').click()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </button>
+      <button type="button" class="icon-btn" title="Upload an image" onclick="document.getElementById('imageInput').click()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </button>
+      <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleImageSelect(event)">
+      <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="handleImageSelect(event)">
+      <textarea id="chatInput" placeholder="Type your math question, or attach a photo of it..." rows="2"></textarea>
+      <button class="btn btn-primary" id="chatSend" onclick="sendChat()">Ask</button>
+    </div>
+    <p class="hint" id="chatHint">Press Enter to send, Shift+Enter for a new line. You can also attach/photograph a question, or tap the mic to ask out loud.</p>
+  </div>
+</section>
+
+<!-- ================= LESSON STUDIO ================= -->
+<section class="view" id="view-studio" data-view="studio">
+  <div class="section">
+    <div class="section-head">
+      <p class="section-eyebrow">Lesson Studio</p>
+      <h2>Turn a topic into a slide deck.</h2>
+      <p class="lead">Pick a course and topic, choose how many slides (up to 20), and generate an outline with correctly-rendered formulas and graphs. Then download a ready .pptx or .pdf with your school's logo.</p>
+    </div>
+
+    <div class="studio-grid">
+      <div>
+        <div class="qz-tab-row" role="tablist">
+          <button type="button" class="qz-tab-btn active" id="lsTabCourses" onclick="lsSwitchTab('courses')">Courses</button>
+          <button type="button" class="qz-tab-btn" id="lsTabTestPrep" onclick="lsSwitchTab('testprep')">Test Prep</button>
+        </div>
+        <div class="field-row" style="margin-top:0.8rem;">
+          <div class="field">
+            <label for="lsCourse">Course</label>
+            <select id="lsCourse" onchange="populateChapters('lsCourse','lsChapter','lsTopicsBox')"></select>
+          </div>
+          <div class="field">
+            <label for="lsChapter">Chapter</label>
+            <select id="lsChapter" onchange="populateTopicCheckboxes('lsCourse','lsChapter','lsTopicsBox')"></select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Topics (choose one, several, or all)</label>
+          <div class="topics-box" id="lsTopicsBox"></div>
+        </div>
+        <div class="field">
+          <label for="lsSlides">Number of slides (content slides, plus title &amp; closing)</label>
+          <select id="lsSlides">
+            <option value="5">5</option>
+            <option value="8" selected>8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lsColorScheme">Slide color scheme</label>
+          <select id="lsColorScheme" onchange="updateSchemePreview()">
+            <option value="teal" selected>Teal &amp; Coral (Recommended)</option>
+            <option value="navy">Navy &amp; Gold</option>
+            <option value="chalkboard">Chalkboard Green</option>
+            <option value="maroon">Maroon &amp; Cream</option>
+            <option value="slate">Slate Gray</option>
+            <option value="purple">Royal Purple</option>
+            <option value="mono">Classic Black &amp; White</option>
+            <option value="crimson">Crimson &amp; Gold</option>
+            <option value="amber">Amber &amp; Brown</option>
+            <option value="indigo">Indigo &amp; Red</option>
+          </select>
+          <div id="schemePreview" class="scheme-preview"></div>
+        </div>
+        <div class="field">
+          <label for="lsNotes">Anything else? (optional)</label>
+          <textarea id="lsNotes" placeholder="e.g. include worked examples, focus on graphing, exam-style practice..."></textarea>
+        </div>
+        <div class="field">
+          <label>School logo (optional)</label>
+          <div class="logo-drop" id="logoDrop" onclick="document.getElementById('logoInput').click()">
+            <span id="logoText">Click to upload a logo (PNG/JPG)</span>
+            <input type="file" id="logoInput" accept="image/*" onchange="handleLogo(event)">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="genBtn" onclick="generateLesson()">Generate outline</button>
+        <div class="status-line" id="lsStatus"></div>
+      </div>
+
+      <div>
+        <div class="toc" id="tocBox">
+          <h3>Outline preview</h3>
+          <p style="color:var(--ink-soft); font-size:0.92rem;">Your lesson's table of contents will appear here once generated.</p>
+        </div>
+        <div class="download-row">
+          <button class="btn btn-coral" id="downloadPptxBtn" style="display:none;" onclick="downloadPptx()">Download .pptx</button>
+          <button class="btn btn-outline" id="downloadPdfBtn" style="display:none; border-color:var(--ink-soft); color:var(--ink);" onclick="downloadPdf()">Build .pdf</button>
+          <a id="lsPdfLink" class="btn btn-coral" style="display:none;" target="_blank" rel="noopener">Open / save PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKSHEETS ================= -->
+<section class="view" id="view-worksheets" data-view="worksheets">
+  <div class="section">
+    <div class="section-head">
+      <p class="section-eyebrow">Worksheets</p>
+      <h2>Printable practice worksheets.</h2>
+      <p class="lead">Pick a course and topic, choose your question formats and style, and generate a printable black &amp; white PDF worksheet (up to 10 pages) with an answer key — math notation renders correctly.</p>
+    </div>
+
+    <div class="studio-grid">
+      <div>
+        <div class="field-row">
+          <div class="field">
+            <label for="wsCourse">Course</label>
+            <select id="wsCourse" onchange="populateChapters('wsCourse','wsChapter','wsTopicsBox')"></select>
+          </div>
+          <div class="field">
+            <label for="wsChapter">Chapter</label>
+            <select id="wsChapter" onchange="populateTopicCheckboxes('wsCourse','wsChapter','wsTopicsBox')"></select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Topics (choose one, several, or all)</label>
+          <div class="topics-box" id="wsTopicsBox"></div>
+        </div>
+
+        <div class="option-box">
+          <h4>Question format</h4>
+          <div class="checkbox-row">
+            <label><input type="checkbox" id="wsFmtMcq" checked> Multiple choice</label>
+            <label><input type="checkbox" id="wsFmtShort"> Short answer</label>
+            <label><input type="checkbox" id="wsFmtFree"> Free response</label>
+          </div>
+          <div class="field" style="margin-top:0.8rem; margin-bottom:0; max-width:220px;">
+            <label for="wsCount">Number of questions</label>
+            <select id="wsCount">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="option-box">
+          <h4>Question style</h4>
+          <select id="wsStyle">
+            <option value="mixed" selected>Mixed (recommended)</option>
+            <option value="conceptual">Conceptual — definitions &amp; reasoning</option>
+            <option value="computation">Computation — solving &amp; procedures</option>
+            <option value="word">Word problems &amp; applications</option>
+            <option value="visual">Graphs &amp; diagrams</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="wsPages">Worksheet length (target pages / work space)</label>
+          <select id="wsPages">
+            <option value="1">1 page</option>
+            <option value="2" selected>2 pages</option>
+            <option value="3">3 pages</option>
+            <option value="4">4 pages</option>
+            <option value="5">5 pages</option>
+            <option value="6">6 pages</option>
+            <option value="7">7 pages</option>
+            <option value="8">8 pages</option>
+            <option value="9">9 pages</option>
+            <option value="10">10 pages</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="wsNotes">Anything else? (optional)</label>
+          <textarea id="wsNotes" placeholder="e.g. focus on a specific formula, exam-style, include diagrams..."></textarea>
+        </div>
+
+        <button class="btn btn-primary" id="wsGenBtn" onclick="generateWorksheet()">Generate worksheet</button>
+        <div class="status-line" id="wsStatus"></div>
+      </div>
+
+      <div>
+        <div class="toc" id="wsTocBox">
+          <h3>Worksheet preview</h3>
+          <p style="color:var(--ink-soft); font-size:0.92rem;">Your worksheet questions will appear here once generated.</p>
+        </div>
+        <div class="download-row">
+          <button class="btn btn-coral" id="downloadWsBtn" style="display:none;" onclick="downloadWorksheetPdf()">Build .pdf</button>
+          <a id="wsPdfLink" class="btn btn-coral" style="display:none;" target="_blank" rel="noopener">Open / save PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRACTICE TOOLS ================= -->
+<section class="view" id="view-tools" data-view="tools">
+  <div class="section">
+    <div class="section-head">
+      <p class="section-eyebrow">Practice tools</p>
+      <h2>Practice that matches your course.</h2>
+      <p class="lead">Generate quizzes up to 30 questions with instant feedback and step-by-step solutions, or plot a function on the graphing calculator.</p>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-card wide">
+        <h3>Practice quiz</h3>
+        <p>Choose a course and topic for a multiple-choice quiz (up to 30 questions) with instant feedback and explanations.</p>
+        <div class="qz-tab-row" role="tablist">
+          <button type="button" class="qz-tab-btn active" id="qzTabCourses" onclick="qzSwitchTab('courses')">Courses</button>
+          <button type="button" class="qz-tab-btn" id="qzTabTestPrep" onclick="qzSwitchTab('testprep')">Test Prep</button>
+        </div>
+        <div class="field-row" style="margin-top:0.8rem;">
+          <div class="field" style="margin-bottom:0.5rem;">
+            <label for="qzCourse">Course</label>
+            <select id="qzCourse" onchange="populateChapters('qzCourse','qzChapter','qzTopicsBox')"></select>
+          </div>
+          <div class="field" style="margin-bottom:0.5rem;">
+            <label for="qzChapter">Chapter</label>
+            <select id="qzChapter" onchange="populateTopicCheckboxes('qzCourse','qzChapter','qzTopicsBox')"></select>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0.5rem;">
+          <label>Topics (choose one, several, or all)</label>
+          <div class="topics-box" id="qzTopicsBox"></div>
+        </div>
+        <div class="field" style="margin-bottom:0.5rem; max-width:340px;">
+          <label for="qzType">Question type</label>
+          <select id="qzType">
+            <option value="mixed" selected>Mixed (recommended)</option>
+            <option value="conceptual">Conceptual — definitions &amp; reasoning</option>
+            <option value="computation">Computation — solving &amp; procedures</option>
+            <option value="word">Word problems &amp; applications</option>
+            <option value="visual">Graphs &amp; diagrams</option>
+          </select>
+        </div>
+        <div class="row">
+          <label style="font-size:0.9rem; font-weight:600;">Questions:</label>
+          <select id="qzCount">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
+          <label style="font-size:0.9rem; font-weight:600;">Difficulty:</label>
+          <select id="qzDifficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+          <button class="btn btn-primary" onclick="generateQuiz()">Generate quiz</button>
+        </div>
+        <div class="status-line" id="qzStatus"></div>
+        <div id="qzBox" class="quiz-list"></div>
+      </div>
+
+      <div class="tool-card wide">
+        <h3>Graphing calculator</h3>
+        <p>Plot a function of x, e.g. <code>x^2 - 4</code>, <code>sin(x)</code>, <code>1/x</code>, <code>sqrt(x)</code>.</p>
+        <div class="row">
+          <input type="text" id="gcExpr" placeholder="e.g. x^2 - 4" value="x^2 - 4">
+        </div>
+        <div class="row">
+          <label style="font-size:0.85rem;">x min</label>
+          <input type="number" id="gcXmin" value="-10">
+          <label style="font-size:0.85rem;">x max</label>
+          <input type="number" id="gcXmax" value="10">
+          <button class="btn btn-primary" onclick="plotGraph()">Plot</button>
+        </div>
+        <div class="status-line" id="gcStatus"></div>
+        <canvas id="gcCanvas" class="graph-canvas" width="500" height="380"></canvas>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <svg class="brand-logo" width="30" height="30" viewBox="0 0 36 36" aria-hidden="true">
+      <circle cx="18" cy="18" r="17" fill="var(--yellow)" stroke="var(--chalk-dim)" stroke-width="2"/>
+      <text x="18" y="24" font-family="Fraunces, serif" font-size="17" font-weight="800" fill="var(--board-deep)" text-anchor="middle">M</text>
+    </svg>
+    <span class="footer-brand-name">Sabaq</span>
+    <span class="footer-brand-by">by Mathaversity LLC</span>
+  </div>
+  <nav class="footer-nav" aria-label="Footer">
+    <button onclick="showView('ask')">Ask &amp; Learn</button>
+    <button onclick="showView('studio')">Lesson Studio</button>
+    <button onclick="showView('worksheets')">Worksheets</button>
+    <button onclick="showView('tools')">Practice Tools</button>
+  </nav>
+  <p>Sabaq Math by Mathaversity LLC — AI-powered math tutoring, lesson plans, worksheets, and test prep for Kindergarten through College Algebra and Linear Algebra.</p>
+  <p class="footer-copyright">© 2026 Mathaversity LLC. All rights reserved. · Powered by Mathaversity LLC</p>
+</footer>
+
+<!-- Off-screen slide deck, used for PPTX capture and PDF printing -->
+<div id="deckContainer"></div>
+<!-- Off-screen worksheet, used for PDF printing -->
+<div id="worksheetContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/lib/supabaseClient.js"></script>
+<script src="/lib/sabaq-usage.js"></script>
+
+<script>
+/* ============ MATH CURRICULUM ============ */
+const COURSE_GROUPS = [
+  {
+    "label": "Elementary",
+    "courses": [
+      "Kindergarten Math",
+      "Grade 1 Math",
+      "Grade 2 Math",
+      "Grade 3 Math",
+      "Grade 4 Math",
+      "Grade 5 Math"
+    ]
+  },
+  {
+    "label": "Middle School",
+    "courses": [
+      "Grade 6 Math",
+      "Grade 7 Math",
+      "Grade 8 Math",
+      "Pre-Algebra"
+    ]
+  },
+  {
+    "label": "High School Math",
+    "courses": [
+      "Algebra 1",
+      "Geometry",
+      "Algebra 2",
+      "Trigonometry",
+      "Precalculus",
+      "Calculus",
+      "Statistics"
+    ]
+  },
+  {
+    "label": "College Math",
+    "courses": [
+      "College Algebra",
+      "Linear Algebra",
+      "Calculus 1",
+      "Calculus 2"
+    ]
+  },
+  {
+    "label": "Test Prep",
+    "courses": [
+      "SAT Math",
+      "ACT Math",
+      "AP Calculus AB",
+      "AP Calculus BC",
+      "AP Precalculus",
+      "AP Statistics",
+      "AMC 8",
+      "AMC 10",
+      "AMC 12",
+      "AIME",
+      "MATHCOUNTS",
+      "Math Kangaroo",
+      "PSAT/NMSQT",
+      "ACCUPLACER",
+      "ALEKS Placement Test"
+    ]
+  }
+];
+
+const COURSES = {
+  "Kindergarten Math": {
+    "Counting & Number Recognition (1-20)": [
+      "Counting Objects to 10",
+      "Recognizing Numbers 1-20",
+      "Number Order & Sequencing",
+      "Counting On by Ones"
+    ],
+    "Shapes & Spatial Sense": [
+      "Identifying 2D Shapes",
+      "Identifying 3D Shapes",
+      "Position Words",
+      "Comparing Shapes"
+    ],
+    "Comparing Sizes & Quantities": [
+      "More, Less & Equal",
+      "Comparing Length & Height",
+      "Comparing Weight",
+      "Ordering by Size"
+    ],
+    "Simple Addition & Subtraction (within 10)": [
+      "Adding with Objects",
+      "Subtracting with Objects",
+      "Addition Stories",
+      "Subtraction Stories"
+    ],
+    "Patterns & Sorting": [
+      "Sorting by Attribute",
+      "Simple Repeating Patterns",
+      "Extending Patterns",
+      "Classifying Objects"
+    ],
+    "Measurement Basics": [
+      "Long vs Short",
+      "Heavy vs Light",
+      "Comparing Capacity",
+      "Introducing the Calendar"
+    ]
+  },
+  "Grade 1 Math": {
+    "Addition & Subtraction (within 20)": [
+      "Adding within 20",
+      "Subtracting within 20",
+      "Fact Families",
+      "Word Problems"
+    ],
+    "Place Value: Tens & Ones": [
+      "Building Two-Digit Numbers",
+      "Comparing Two-Digit Numbers",
+      "Expanded Form",
+      "Regrouping Basics"
+    ],
+    "Counting to 120": [
+      "Counting Sequences",
+      "Skip Counting by 2s, 5s & 10s",
+      "Number Patterns",
+      "Number Line Basics"
+    ],
+    "Telling Time (hour & half-hour)": [
+      "Reading an Analog Clock",
+      "Hour & Half-Hour",
+      "Sequencing Daily Events",
+      "Digital vs Analog Time"
+    ],
+    "Shapes & Simple Fractions": [
+      "2D & 3D Shape Attributes",
+      "Halves & Fourths",
+      "Equal Shares",
+      "Composing Shapes"
+    ],
+    "Measuring Length": [
+      "Measuring with Nonstandard Units",
+      "Comparing Lengths",
+      "Ordering by Length",
+      "Using a Ruler"
+    ]
+  },
+  "Grade 2 Math": {
+    "Addition & Subtraction (within 100)": [
+      "Adding Two-Digit Numbers",
+      "Subtracting Two-Digit Numbers",
+      "Regrouping",
+      "Word Problems"
+    ],
+    "Place Value: Hundreds": [
+      "Building Three-Digit Numbers",
+      "Expanded & Standard Form",
+      "Comparing Three-Digit Numbers",
+      "Rounding to Nearest 10"
+    ],
+    "Skip Counting": [
+      "Skip Counting by 2s",
+      "Skip Counting by 5s & 10s",
+      "Even & Odd Numbers",
+      "Number Patterns"
+    ],
+    "Money & Time": [
+      "Counting Coins & Bills",
+      "Making Change",
+      "Telling Time to 5 Minutes",
+      "Elapsed Time Basics"
+    ],
+    "Measurement & Data (Graphs)": [
+      "Measuring in Inches & Centimeters",
+      "Bar Graphs",
+      "Picture Graphs",
+      "Line Plots"
+    ],
+    "Arrays & Equal Groups": [
+      "Building Arrays",
+      "Repeated Addition",
+      "Equal Groups",
+      "Intro to Multiplication"
+    ]
+  },
+  "Grade 3 Math": {
+    "Multiplication & Division Basics": [
+      "Multiplication as Groups",
+      "Multiplication Facts",
+      "Division as Sharing",
+      "Fact Families"
+    ],
+    "Fractions as Numbers": [
+      "Fractions on a Number Line",
+      "Comparing Fractions",
+      "Equivalent Fractions",
+      "Unit Fractions"
+    ],
+    "Area & Perimeter": [
+      "Finding Perimeter",
+      "Finding Area by Counting Squares",
+      "Area Formulas for Rectangles",
+      "Comparing Area & Perimeter"
+    ],
+    "Place Value & Rounding": [
+      "Place Value to 10,000",
+      "Rounding to Nearest 10 & 100",
+      "Comparing Multi-Digit Numbers",
+      "Adding & Subtracting Large Numbers"
+    ],
+    "Time, Money & Data": [
+      "Elapsed Time",
+      "Money Word Problems",
+      "Bar Graphs & Line Plots",
+      "Interpreting Data"
+    ],
+    "Two-Step Word Problems": [
+      "Identifying Operations Needed",
+      "Multi-Step Addition & Subtraction",
+      "Multi-Step Multiplication & Division",
+      "Checking Reasonableness"
+    ]
+  },
+  "Grade 4 Math": {
+    "Multi-Digit Multiplication & Division": [
+      "Multiplying Multi-Digit Numbers",
+      "Long Division",
+      "Estimating Products & Quotients",
+      "Word Problems"
+    ],
+    "Fraction Equivalence & Operations": [
+      "Equivalent Fractions",
+      "Comparing Fractions",
+      "Adding & Subtracting Fractions",
+      "Mixed Numbers"
+    ],
+    "Decimals": [
+      "Decimal Place Value",
+      "Comparing Decimals",
+      "Relating Fractions & Decimals",
+      "Adding Decimals"
+    ],
+    "Angles & Geometry": [
+      "Measuring Angles",
+      "Classifying Angles",
+      "Lines & Line Segments",
+      "Classifying 2D Shapes"
+    ],
+    "Factors & Multiples": [
+      "Finding Factors",
+      "Finding Multiples",
+      "Prime & Composite Numbers",
+      "Greatest Common Factor"
+    ],
+    "Multi-Step Word Problems": [
+      "Multi-Step Problems with Whole Numbers",
+      "Interpreting Remainders",
+      "Problems with Fractions",
+      "Checking Solutions"
+    ]
+  },
+  "Grade 5 Math": {
+    "Fraction Operations (All Four)": [
+      "Adding & Subtracting Fractions",
+      "Multiplying Fractions",
+      "Dividing Fractions",
+      "Mixed Number Operations"
+    ],
+    "Decimal Operations": [
+      "Adding & Subtracting Decimals",
+      "Multiplying Decimals",
+      "Dividing Decimals",
+      "Rounding Decimals"
+    ],
+    "Volume & 3D Shapes": [
+      "Understanding Volume",
+      "Volume of Rectangular Prisms",
+      "Nets of 3D Shapes",
+      "Surface Area Intro"
+    ],
+    "The Coordinate Plane (Intro)": [
+      "Plotting Points",
+      "Ordered Pairs",
+      "Graphing Patterns",
+      "Reading Coordinate Graphs"
+    ],
+    "Order of Operations": [
+      "Using Parentheses",
+      "PEMDAS Basics",
+      "Evaluating Expressions",
+      "Numerical Expressions"
+    ],
+    "Intro to Ratios": [
+      "Understanding Ratios",
+      "Ratio Language",
+      "Equivalent Ratios",
+      "Simple Ratio Problems"
+    ]
+  },
+  "Grade 6 Math": {
+    "Ratios & Rates": [
+      "Understanding Ratios",
+      "Rate & Unit Rate",
+      "Ratio Tables",
+      "Solving Ratio Problems"
+    ],
+    "Fractions, Decimals & Percents": [
+      "Dividing Fractions",
+      "Converting Between Forms",
+      "Percent of a Number",
+      "Fraction-Decimal-Percent Problems"
+    ],
+    "Negative Numbers & Integers": [
+      "Understanding Negative Numbers",
+      "Comparing & Ordering Integers",
+      "Absolute Value",
+      "Integers on a Number Line"
+    ],
+    "Expressions & Equations": [
+      "Writing Expressions",
+      "Evaluating Expressions",
+      "Solving One-Step Equations",
+      "Dependent & Independent Variables"
+    ],
+    "Area, Surface Area & Volume": [
+      "Area of Polygons",
+      "Surface Area of Prisms",
+      "Volume of Rectangular Prisms",
+      "Nets & 3D Figures"
+    ],
+    "Statistics & Data Displays": [
+      "Measures of Center",
+      "Measures of Variability",
+      "Box Plots & Histograms",
+      "Summarizing Data Distributions"
+    ],
+    "The Coordinate Plane": [
+      "Plotting Points in Four Quadrants",
+      "Reflecting Points",
+      "Distance on the Coordinate Plane",
+      "Graphing Relationships"
+    ]
+  },
+  "Grade 7 Math": {
+    "Ratios & Proportional Relationships": [
+      "Unit Rates with Fractions",
+      "Proportional Relationships",
+      "Constant of Proportionality",
+      "Graphing Proportions"
+    ],
+    "Operations with Rational Numbers": [
+      "Adding & Subtracting Rational Numbers",
+      "Multiplying & Dividing Rational Numbers",
+      "Order of Operations with Integers",
+      "Rational Number Word Problems"
+    ],
+    "Expressions, Equations & Inequalities": [
+      "Simplifying Expressions",
+      "Solving Two-Step Equations",
+      "Solving Inequalities",
+      "Writing Equations from Word Problems"
+    ],
+    "Angles, Area & Volume": [
+      "Angle Relationships",
+      "Circles: Circumference & Area",
+      "Area of Composite Figures",
+      "Volume of Prisms & Cylinders"
+    ],
+    "Probability & Statistics": [
+      "Theoretical vs Experimental Probability",
+      "Compound Events",
+      "Sampling & Populations",
+      "Comparing Data Sets"
+    ],
+    "Percent Applications": [
+      "Percent Increase & Decrease",
+      "Simple Interest",
+      "Tax, Tip & Discount",
+      "Markup & Markdown"
+    ]
+  },
+  "Grade 8 Math": {
+    "Linear Equations & Functions": [
+      "Solving Multi-Step Linear Equations",
+      "Slope & Rate of Change",
+      "Functions & Function Notation",
+      "Comparing Functions"
+    ],
+    "Systems of Linear Equations": [
+      "Solving by Graphing",
+      "Solving by Substitution",
+      "Solving by Elimination",
+      "Systems Word Problems"
+    ],
+    "Exponents & Scientific Notation": [
+      "Laws of Exponents",
+      "Negative Exponents",
+      "Scientific Notation",
+      "Operations in Scientific Notation"
+    ],
+    "The Pythagorean Theorem": [
+      "Understanding the Theorem",
+      "Finding Missing Side Lengths",
+      "Applications in the Real World",
+      "Distance on the Coordinate Plane"
+    ],
+    "Transformations & Congruence": [
+      "Translations",
+      "Reflections & Rotations",
+      "Dilations & Similarity",
+      "Congruence & Transformations"
+    ],
+    "Volume of Cylinders, Cones & Spheres": [
+      "Volume of Cylinders",
+      "Volume of Cones",
+      "Volume of Spheres",
+      "Composite Volume Problems"
+    ],
+    "Scatter Plots & Bivariate Data": [
+      "Constructing Scatter Plots",
+      "Line of Best Fit",
+      "Positive, Negative & No Correlation",
+      "Two-Way Tables"
+    ]
+  },
+  "Pre-Algebra": {
+    "Integers & Order of Operations": [
+      "Operations with Integers",
+      "Order of Operations",
+      "Absolute Value",
+      "Number Properties"
+    ],
+    "Fractions, Decimals & Percents": [
+      "Converting Between Forms",
+      "Operations with Fractions",
+      "Operations with Decimals",
+      "Percent Problems"
+    ],
+    "Ratios, Rates & Proportions": [
+      "Writing Ratios & Rates",
+      "Solving Proportions",
+      "Scale Drawings",
+      "Similar Figures"
+    ],
+    "Expressions & Equations": [
+      "Simplifying Expressions",
+      "Solving Multi-Step Equations",
+      "Equations with Variables on Both Sides",
+      "Literal Equations"
+    ],
+    "Inequalities": [
+      "Solving One-Step Inequalities",
+      "Solving Multi-Step Inequalities",
+      "Graphing Inequalities on a Number Line",
+      "Compound Inequalities"
+    ],
+    "Linear Equations & Graphing": [
+      "Slope of a Line",
+      "Slope-Intercept Form",
+      "Graphing Linear Equations",
+      "Writing Linear Equations"
+    ],
+    "Exponents & Square Roots": [
+      "Laws of Exponents",
+      "Square Roots & Cube Roots",
+      "Simplifying Radical Expressions",
+      "Estimating Roots"
+    ],
+    "Geometry: Area, Perimeter & Volume": [
+      "Area & Perimeter of Polygons",
+      "Circles",
+      "Surface Area",
+      "Volume of Solids"
+    ],
+    "Probability & Statistics": [
+      "Theoretical Probability",
+      "Measures of Center & Spread",
+      "Data Displays",
+      "Independent & Dependent Events"
+    ]
+  },
+  "Algebra 1": {
+    "Linear Equations & Inequalities": [
+      "Solving Multi-Step Equations",
+      "Equations with Variables on Both Sides",
+      "Solving & Graphing Inequalities",
+      "Compound Inequalities"
+    ],
+    "Linear Functions & Graphing": [
+      "Slope & Rate of Change",
+      "Slope-Intercept Form",
+      "Point-Slope & Standard Form",
+      "Writing Equations of Lines"
+    ],
+    "Systems of Linear Equations": [
+      "Solving by Graphing",
+      "Solving by Substitution",
+      "Solving by Elimination",
+      "Systems of Inequalities"
+    ],
+    "Exponents & Polynomials": [
+      "Laws of Exponents",
+      "Adding & Subtracting Polynomials",
+      "Multiplying Polynomials",
+      "Special Products"
+    ],
+    "Factoring Polynomials": [
+      "Factoring out the GCF",
+      "Factoring Trinomials",
+      "Difference of Squares",
+      "Factoring by Grouping"
+    ],
+    "Quadratic Equations & Functions": [
+      "Graphing Quadratic Functions",
+      "Solving by Factoring",
+      "The Quadratic Formula",
+      "Completing the Square"
+    ],
+    "Radical Expressions & Equations": [
+      "Simplifying Radicals",
+      "Operations with Radicals",
+      "Solving Radical Equations",
+      "Rational Exponents"
+    ],
+    "Rational Expressions & Equations": [
+      "Simplifying Rational Expressions",
+      "Multiplying & Dividing Rational Expressions",
+      "Adding & Subtracting Rational Expressions",
+      "Solving Rational Equations"
+    ],
+    "Functions & Function Notation": [
+      "Domain & Range",
+      "Evaluating Functions",
+      "Identifying Functions",
+      "Transformations of Functions"
+    ],
+    "Statistics & Data Analysis": [
+      "Measures of Center & Spread",
+      "Scatter Plots & Correlation",
+      "Line of Best Fit",
+      "Analyzing Data Distributions"
+    ]
+  },
+  "Geometry": {
+    "Lines, Angles & Triangle Basics": [
+      "Points, Lines & Planes",
+      "Angle Pairs & Relationships",
+      "Parallel Lines & Transversals",
+      "Triangle Angle Sum"
+    ],
+    "Triangle Congruence & Similarity": [
+      "Congruence Criteria (SSS, SAS, ASA)",
+      "Similarity Criteria (AA, SAS, SSS)",
+      "Proving Triangles Congruent",
+      "Proving Triangles Similar"
+    ],
+    "Right Triangle Trigonometry": [
+      "Pythagorean Theorem & Converse",
+      "Special Right Triangles",
+      "Sine, Cosine & Tangent",
+      "Solving Right Triangles"
+    ],
+    "Circles & Arcs": [
+      "Circle Vocabulary",
+      "Arc Measures & Central Angles",
+      "Inscribed Angles",
+      "Tangent & Secant Lines"
+    ],
+    "Area, Surface Area & Volume": [
+      "Area of Polygons & Circles",
+      "Surface Area of Prisms & Cylinders",
+      "Surface Area of Pyramids & Cones",
+      "Volume of Solids"
+    ],
+    "Coordinate Geometry": [
+      "Distance & Midpoint Formulas",
+      "Slopes of Parallel & Perpendicular Lines",
+      "Equations of Circles",
+      "Proving Figures on the Coordinate Plane"
+    ],
+    "Transformations": [
+      "Translations & Reflections",
+      "Rotations",
+      "Dilations",
+      "Compositions of Transformations"
+    ],
+    "Geometric Proofs": [
+      "Two-Column Proofs",
+      "Proving Angle Relationships",
+      "Proving Triangle Relationships",
+      "Coordinate Proofs"
+    ]
+  },
+  "Algebra 2": {
+    "Polynomial Functions & Equations": [
+      "Graphing Polynomial Functions",
+      "Adding, Subtracting & Multiplying Polynomials",
+      "Dividing Polynomials",
+      "Solving Polynomial Equations"
+    ],
+    "Rational Functions": [
+      "Graphing Rational Functions",
+      "Asymptotes & Discontinuities",
+      "Simplifying Rational Expressions",
+      "Solving Rational Equations"
+    ],
+    "Radical Functions & Complex Numbers": [
+      "Graphing Radical Functions",
+      "Operations with Complex Numbers",
+      "Solving Radical Equations",
+      "Rational Exponents"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Growth & Decay",
+      "Graphing Exponential Functions",
+      "Properties of Logarithms",
+      "Solving Exponential & Log Equations"
+    ],
+    "Sequences & Series": [
+      "Arithmetic Sequences & Series",
+      "Geometric Sequences & Series",
+      "Recursive & Explicit Formulas",
+      "Summation Notation"
+    ],
+    "Conic Sections": [
+      "Parabolas",
+      "Circles & Ellipses",
+      "Hyperbolas",
+      "Identifying Conics from Equations"
+    ],
+    "Matrices": [
+      "Matrix Operations",
+      "Matrix Multiplication",
+      "Determinants & Inverses",
+      "Solving Systems with Matrices"
+    ],
+    "Trigonometric Functions": [
+      "The Unit Circle",
+      "Graphing Sine & Cosine",
+      "Trigonometric Identities Intro",
+      "Solving Basic Trig Equations"
+    ],
+    "Probability & Statistics": [
+      "Permutations & Combinations",
+      "Probability Distributions",
+      "Normal Distribution",
+      "Statistical Inference Basics"
+    ]
+  },
+  "Trigonometry": {
+    "Right Triangle Trigonometry": [
+      "Sine, Cosine & Tangent Ratios",
+      "Solving Right Triangles",
+      "Angles of Elevation & Depression",
+      "Applications"
+    ],
+    "The Unit Circle": [
+      "Radian & Degree Measure",
+      "Unit Circle Coordinates",
+      "Reference Angles",
+      "Evaluating Trig Functions"
+    ],
+    "Graphing Trigonometric Functions": [
+      "Graphing Sine & Cosine",
+      "Amplitude, Period & Phase Shift",
+      "Graphing Tangent",
+      "Transformations of Trig Graphs"
+    ],
+    "Trigonometric Identities": [
+      "Reciprocal & Quotient Identities",
+      "Pythagorean Identities",
+      "Sum & Difference Identities",
+      "Double-Angle Identities"
+    ],
+    "Solving Trigonometric Equations": [
+      "Solving Basic Equations",
+      "Using Identities to Solve Equations",
+      "Multiple Solutions",
+      "Applications"
+    ],
+    "Law of Sines & Law of Cosines": [
+      "Law of Sines",
+      "Law of Cosines",
+      "The Ambiguous Case",
+      "Area of Oblique Triangles"
+    ],
+    "Inverse Trigonometric Functions": [
+      "Inverse Sine, Cosine & Tangent",
+      "Evaluating Inverse Trig Functions",
+      "Domain & Range Restrictions",
+      "Composite Trig Functions"
+    ],
+    "Polar Coordinates": [
+      "Polar Coordinate System",
+      "Converting Between Polar & Rectangular",
+      "Graphing Polar Equations",
+      "Polar Form of Complex Numbers"
+    ]
+  },
+  "Precalculus": {
+    "Functions, Graphs & Transformations": [
+      "Function Composition",
+      "Inverse Functions",
+      "Transformations of Graphs",
+      "Piecewise Functions"
+    ],
+    "Polynomial & Rational Functions": [
+      "End Behavior & Zeros",
+      "Graphing Polynomial Functions",
+      "Graphing Rational Functions",
+      "Asymptotes"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Growth & Decay Models",
+      "Properties of Logarithms",
+      "Solving Exponential & Log Equations",
+      "Applications"
+    ],
+    "Trigonometric Functions & Graphs": [
+      "Unit Circle Review",
+      "Graphing Sine, Cosine & Tangent",
+      "Amplitude, Period & Shifts",
+      "Modeling with Trig Functions"
+    ],
+    "Trigonometric Identities & Equations": [
+      "Fundamental Identities",
+      "Sum, Difference & Double-Angle Formulas",
+      "Solving Trig Equations",
+      "Verifying Identities"
+    ],
+    "Polar Coordinates & Complex Numbers": [
+      "Polar Graphs",
+      "Complex Numbers in Polar Form",
+      "De Moivre's Theorem",
+      "Roots of Complex Numbers"
+    ],
+    "Vectors": [
+      "Vector Basics & Operations",
+      "Component Form",
+      "Dot Product",
+      "Applications of Vectors"
+    ],
+    "Sequences, Series & Limits": [
+      "Arithmetic & Geometric Sequences",
+      "Series & Summation",
+      "Introduction to Limits",
+      "Limits at Infinity"
+    ]
+  },
+  "Calculus": {
+    "Limits & Continuity": [
+      "Estimating Limits Graphically",
+      "Evaluating Limits Algebraically",
+      "One-Sided Limits",
+      "Continuity"
+    ],
+    "Derivatives & Differentiation Rules": [
+      "Definition of the Derivative",
+      "Power, Product & Quotient Rules",
+      "Chain Rule",
+      "Derivatives of Trig, Exp & Log Functions"
+    ],
+    "Applications of Derivatives": [
+      "Related Rates",
+      "Optimization",
+      "Curve Sketching",
+      "Motion Problems"
+    ],
+    "Integrals & the Fundamental Theorem": [
+      "Antiderivatives",
+      "Definite & Indefinite Integrals",
+      "The Fundamental Theorem of Calculus",
+      "U-Substitution"
+    ],
+    "Applications of Integration": [
+      "Area Between Curves",
+      "Volumes of Revolution",
+      "Average Value of a Function",
+      "Accumulation Problems"
+    ],
+    "Sequences & Series (Intro)": [
+      "Sequences & Convergence",
+      "Introduction to Series",
+      "Geometric Series",
+      "Basic Convergence Tests"
+    ]
+  },
+  "Statistics": {
+    "Describing Data & Distributions": [
+      "Measures of Center",
+      "Measures of Spread",
+      "Shapes of Distributions",
+      "Boxplots & Histograms"
+    ],
+    "Probability": [
+      "Basic Probability Rules",
+      "Independent & Dependent Events",
+      "Conditional Probability",
+      "Probability Trees"
+    ],
+    "Probability Distributions": [
+      "Discrete Random Variables",
+      "The Normal Distribution",
+      "Binomial Distribution",
+      "Z-Scores"
+    ],
+    "Sampling & Experimental Design": [
+      "Sampling Methods",
+      "Bias in Sampling",
+      "Observational Studies vs Experiments",
+      "Experimental Design Principles"
+    ],
+    "Confidence Intervals": [
+      "Constructing Confidence Intervals",
+      "Margin of Error",
+      "Confidence Intervals for Means",
+      "Confidence Intervals for Proportions"
+    ],
+    "Hypothesis Testing": [
+      "Null & Alternative Hypotheses",
+      "p-Values",
+      "One-Sample t-Tests",
+      "Type I & Type II Errors"
+    ],
+    "Correlation & Regression": [
+      "Scatter Plots & Correlation",
+      "Correlation Coefficient",
+      "Linear Regression",
+      "Residuals"
+    ]
+  },
+  "AP Precalculus": {
+    "Polynomial & Rational Functions": [
+      "Polynomial Function Behavior",
+      "Rational Function Behavior",
+      "Zeros & End Behavior",
+      "Graphical Analysis"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Models",
+      "Logarithmic Models",
+      "Semi-Log & Log-Log Analysis",
+      "Solving Exponential & Log Equations"
+    ],
+    "Trigonometric & Polar Functions": [
+      "Sinusoidal Functions",
+      "Trigonometric Equations",
+      "Polar Function Graphs",
+      "Polar Function Analysis"
+    ],
+    "Function Composition & Transformations": [
+      "Composing Functions",
+      "Inverse Functions",
+      "Transformations of Functions",
+      "Combining Function Types"
+    ],
+    "Conics & Parametric Equations": [
+      "Parametric Equations Basics",
+      "Conic Sections",
+      "Parametrizing Curves",
+      "Applications"
+    ],
+    "Vectors & Matrices": [
+      "Vector Basics",
+      "Matrix Operations",
+      "Matrices as Transformations",
+      "Applications of Matrices"
+    ]
+  },
+  "AP Calculus AB": {
+    "Limits & Continuity": [
+      "Estimating Limits",
+      "Limit Laws",
+      "Limits Involving Infinity",
+      "Continuity & the IVT"
+    ],
+    "Definition of the Derivative": [
+      "Average vs Instantaneous Rate of Change",
+      "The Limit Definition of the Derivative",
+      "Differentiability",
+      "Tangent Lines"
+    ],
+    "Differentiation Rules": [
+      "Power, Product & Quotient Rules",
+      "Chain Rule",
+      "Implicit Differentiation",
+      "Derivatives of Trig, Exp & Log Functions"
+    ],
+    "Applications of Derivatives": [
+      "Related Rates",
+      "Extrema & Critical Points",
+      "Mean Value Theorem",
+      "Optimization"
+    ],
+    "Definite & Indefinite Integrals": [
+      "Riemann Sums",
+      "Definite Integrals",
+      "Antiderivatives",
+      "Properties of Integrals"
+    ],
+    "Fundamental Theorem of Calculus": [
+      "FTC Part 1",
+      "FTC Part 2",
+      "Average Value of a Function",
+      "Accumulation Functions"
+    ],
+    "Applications of Integration": [
+      "Area Between Curves",
+      "Volumes by Disks & Washers",
+      "Volumes by Cross-Sections",
+      "Motion Problems"
+    ],
+    "Differential Equations": [
+      "Slope Fields",
+      "Separable Differential Equations",
+      "Exponential Growth & Decay",
+      "Applications"
+    ]
+  },
+  "AP Calculus BC": {
+    "Limits & Continuity": [
+      "Limit Laws & Techniques",
+      "Limits Involving Infinity",
+      "Continuity",
+      "L'Hopital's Rule"
+    ],
+    "Differentiation & Applications": [
+      "Advanced Differentiation Rules",
+      "Implicit & Logarithmic Differentiation",
+      "Related Rates & Optimization",
+      "Curve Sketching"
+    ],
+    "Integration & Applications": [
+      "Integration Techniques",
+      "Improper Integrals",
+      "Area & Volume Applications",
+      "Arc Length"
+    ],
+    "Parametric & Polar Functions": [
+      "Parametric Equations & Derivatives",
+      "Arc Length of Parametric Curves",
+      "Polar Equations & Graphs",
+      "Area in Polar Coordinates"
+    ],
+    "Vector-Valued Functions": [
+      "Vector-Valued Function Basics",
+      "Derivatives & Integrals of Vector Functions",
+      "Velocity & Acceleration Vectors",
+      "Motion in the Plane"
+    ],
+    "Sequences & Series": [
+      "Convergence of Sequences",
+      "Convergence Tests for Series",
+      "Power Series",
+      "Interval of Convergence"
+    ],
+    "Taylor & Maclaurin Series": [
+      "Taylor Polynomials",
+      "Maclaurin Series",
+      "Error Bounds",
+      "Applications of Series"
+    ]
+  },
+  "AP Statistics": {
+    "Exploring One-Variable Data": [
+      "Describing Distributions",
+      "Measures of Center & Spread",
+      "Boxplots & Outliers",
+      "The Normal Distribution"
+    ],
+    "Exploring Two-Variable Data": [
+      "Scatter Plots & Association",
+      "Correlation",
+      "Least-Squares Regression",
+      "Residuals & Influential Points"
+    ],
+    "Collecting Data: Sampling & Experiments": [
+      "Sampling Methods",
+      "Surveys & Bias",
+      "Experimental Design",
+      "Random Assignment"
+    ],
+    "Probability & Random Variables": [
+      "Probability Rules",
+      "Discrete Random Variables",
+      "Binomial & Geometric Distributions",
+      "Expected Value"
+    ],
+    "Sampling Distributions": [
+      "Sampling Distribution of the Mean",
+      "Sampling Distribution of a Proportion",
+      "The Central Limit Theorem",
+      "Variability in Sampling"
+    ],
+    "Confidence Intervals": [
+      "Confidence Intervals for a Mean",
+      "Confidence Intervals for a Proportion",
+      "Interpreting Confidence Intervals",
+      "Sample Size Determination"
+    ],
+    "Significance Tests": [
+      "Setting Up Hypotheses",
+      "p-Values & Significance",
+      "Type I & Type II Errors",
+      "Tests for a Mean or Proportion"
+    ],
+    "Inference for Means": [
+      "One-Sample t-Tests",
+      "Two-Sample t-Tests",
+      "Paired t-Tests",
+      "Conditions for Inference"
+    ],
+    "Inference for Categorical Data & Regression": [
+      "Chi-Square Goodness of Fit",
+      "Chi-Square Tests for Association",
+      "Inference for Regression Slope",
+      "Interpreting Computer Output"
+    ]
+  },
+  "College Algebra": {
+    "Real Number System & Algebraic Expressions": [
+      "Properties of Real Numbers",
+      "Simplifying Expressions",
+      "Exponents & Radicals",
+      "Order of Operations"
+    ],
+    "Equations & Inequalities": [
+      "Linear Equations",
+      "Quadratic Equations",
+      "Absolute Value Equations & Inequalities",
+      "Compound Inequalities"
+    ],
+    "Functions & Graphs": [
+      "Function Notation & Evaluation",
+      "Domain & Range",
+      "Graphing Basic Functions",
+      "Transformations of Functions"
+    ],
+    "Polynomial & Rational Functions": [
+      "Graphing Polynomials",
+      "Polynomial Division",
+      "Rational Functions & Asymptotes",
+      "Solving Rational Equations"
+    ],
+    "Exponential & Logarithmic Functions": [
+      "Exponential Functions & Graphs",
+      "Logarithmic Functions & Graphs",
+      "Properties of Logarithms",
+      "Solving Exponential & Log Equations"
+    ],
+    "Systems of Equations": [
+      "Systems of Linear Equations",
+      "Solving by Substitution & Elimination",
+      "Systems of Inequalities",
+      "Applications"
+    ],
+    "Sequences & Series": [
+      "Arithmetic Sequences & Series",
+      "Geometric Sequences & Series",
+      "Summation Notation",
+      "Applications"
+    ],
+    "Conic Sections": [
+      "Parabolas",
+      "Circles",
+      "Ellipses",
+      "Hyperbolas"
+    ]
+  },
+  "Linear Algebra": {
+    "Systems of Linear Equations & Matrices": [
+      "Solving Linear Systems",
+      "Matrix Representation",
+      "Row Reduction",
+      "Gaussian Elimination"
+    ],
+    "Vector Spaces": [
+      "Definition & Examples",
+      "Subspaces",
+      "Span & Linear Independence",
+      "Basis & Dimension"
+    ],
+    "Matrix Operations & Inverses": [
+      "Matrix Addition & Multiplication",
+      "Identity & Inverse Matrices",
+      "Finding Inverses",
+      "Properties of Matrix Operations"
+    ],
+    "Determinants": [
+      "Computing Determinants",
+      "Properties of Determinants",
+      "Cofactor Expansion",
+      "Determinants & Invertibility"
+    ],
+    "Eigenvalues & Eigenvectors": [
+      "Characteristic Polynomial",
+      "Finding Eigenvalues",
+      "Finding Eigenvectors",
+      "Eigenspaces"
+    ],
+    "Linear Transformations": [
+      "Definition & Properties",
+      "Matrix Representation of Transformations",
+      "Kernel & Range",
+      "Composition of Transformations"
+    ],
+    "Orthogonality & Least Squares": [
+      "Dot Product & Orthogonality",
+      "Orthogonal Projections",
+      "Gram-Schmidt Process",
+      "Least Squares Approximation"
+    ],
+    "Applications: Diagonalization": [
+      "Diagonalizing a Matrix",
+      "Powers of Matrices",
+      "Applications to Systems",
+      "Symmetric Matrices"
+    ]
+  },
+  "SAT Math": {
+    "Heart of Algebra": [
+      "Linear Equations",
+      "Linear Inequalities",
+      "Systems of Linear Equations",
+      "Linear Word Problems"
+    ],
+    "Problem Solving & Data Analysis": [
+      "Ratios, Rates & Proportions",
+      "Percentages",
+      "Data Interpretation",
+      "Statistics & Probability"
+    ],
+    "Passport to Advanced Math": [
+      "Quadratic Equations",
+      "Exponential Functions",
+      "Polynomial Expressions",
+      "Function Notation"
+    ],
+    "Additional Topics: Geometry & Trig": [
+      "Area & Volume",
+      "Circle Theorems",
+      "Right Triangle Trigonometry",
+      "Coordinate Geometry"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Calculator Section Practice",
+      "No-Calculator Section Practice"
+    ]
+  },
+  "ACT Math": {
+    "Pre-Algebra & Elementary Algebra": [
+      "Operations & Number Properties",
+      "Ratios, Rates & Percents",
+      "Solving Basic Equations",
+      "Basic Word Problems"
+    ],
+    "Intermediate Algebra & Coordinate Geometry": [
+      "Quadratic Equations",
+      "Systems of Equations",
+      "Functions",
+      "Coordinate Geometry Basics"
+    ],
+    "Plane Geometry": [
+      "Angles & Lines",
+      "Triangles & Polygons",
+      "Circles",
+      "Area & Volume"
+    ],
+    "Trigonometry": [
+      "Right Triangle Trig",
+      "The Unit Circle",
+      "Trig Graphs",
+      "Trig Identities"
+    ],
+    "Word Problems & Data Analysis": [
+      "Multi-Step Word Problems",
+      "Reading Tables & Graphs",
+      "Probability",
+      "Statistics Basics"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Pacing Strategy Practice",
+      "Full-Length Practice Section"
+    ]
+  },
+  "Calculus 1": {
+    "Limits & Continuity": [
+      "Estimating Limits Graphically",
+      "Evaluating Limits Algebraically",
+      "One-Sided Limits",
+      "Continuity"
+    ],
+    "Derivatives & Differentiation Rules": [
+      "Definition of the Derivative",
+      "Power, Product & Quotient Rules",
+      "Chain Rule",
+      "Derivatives of Trig, Exp & Log Functions"
+    ],
+    "Applications of Derivatives": [
+      "Related Rates",
+      "Optimization",
+      "Curve Sketching",
+      "Motion Problems"
+    ],
+    "Integrals & the Fundamental Theorem": [
+      "Antiderivatives",
+      "Definite & Indefinite Integrals",
+      "The Fundamental Theorem of Calculus",
+      "U-Substitution"
+    ],
+    "Applications of Integration": [
+      "Area Between Curves",
+      "Volumes of Revolution",
+      "Average Value of a Function",
+      "Accumulation Problems"
+    ]
+  },
+  "Calculus 2": {
+    "Techniques of Integration": [
+      "Integration by Parts",
+      "Trigonometric Integrals",
+      "Trigonometric Substitution",
+      "Partial Fractions"
+    ],
+    "Applications of Integration": [
+      "Volumes by Disks & Washers",
+      "Volumes by Shells",
+      "Arc Length",
+      "Work & Average Value"
+    ],
+    "Sequences & Series": [
+      "Convergence of Sequences",
+      "Convergence Tests for Series",
+      "Alternating Series",
+      "Power Series"
+    ],
+    "Taylor & Maclaurin Series": [
+      "Taylor Polynomials",
+      "Maclaurin Series",
+      "Radius & Interval of Convergence",
+      "Applications of Series"
+    ],
+    "Parametric Equations & Polar Coordinates": [
+      "Parametric Curves & Derivatives",
+      "Arc Length of Parametric Curves",
+      "Polar Coordinates & Graphs",
+      "Area in Polar Coordinates"
+    ]
+  },
+  "AMC 8": {
+    "Arithmetic & Number Theory": [
+      "Divisibility & Factors",
+      "Prime Numbers",
+      "Fractions, Decimals & Percents",
+      "Number Patterns"
+    ],
+    "Algebra Fundamentals": [
+      "Solving Equations",
+      "Word Problems",
+      "Ratios & Proportions",
+      "Sequences"
+    ],
+    "Geometry": [
+      "Angles & Triangles",
+      "Area & Perimeter",
+      "Circles",
+      "Coordinate Geometry Basics"
+    ],
+    "Counting & Probability": [
+      "Basic Counting Principles",
+      "Permutations & Combinations",
+      "Simple Probability",
+      "Casework"
+    ],
+    "Problem-Solving Strategies": [
+      "Working Backwards",
+      "Logical Reasoning",
+      "Estimation Techniques",
+      "Competition Timing Practice"
+    ]
+  },
+  "AMC 10": {
+    "Algebra": [
+      "Quadratic Equations",
+      "Systems of Equations",
+      "Functions",
+      "Sequences & Series"
+    ],
+    "Geometry": [
+      "Triangle Properties",
+      "Circles & Angles",
+      "Area & Volume",
+      "Coordinate Geometry"
+    ],
+    "Number Theory": [
+      "Divisibility Rules",
+      "Modular Arithmetic",
+      "Prime Factorization",
+      "Diophantine Equations Intro"
+    ],
+    "Counting & Probability": [
+      "Permutations & Combinations",
+      "Probability",
+      "Pigeonhole Principle",
+      "Complementary Counting"
+    ],
+    "Advanced Problem Solving": [
+      "Competition Strategies",
+      "Timed Practice Sets",
+      "Proof Techniques Intro",
+      "Past Problem Review"
+    ]
+  },
+  "AMC 12": {
+    "Algebra & Functions": [
+      "Polynomial Equations",
+      "Exponential & Logarithmic Functions",
+      "Complex Numbers",
+      "Sequences & Series"
+    ],
+    "Geometry & Trigonometry": [
+      "Advanced Triangle Geometry",
+      "Circles & Polygons",
+      "Trigonometric Identities",
+      "3D Geometry"
+    ],
+    "Number Theory": [
+      "Modular Arithmetic",
+      "Diophantine Equations",
+      "Prime Factorization Techniques",
+      "Number Theory Proofs"
+    ],
+    "Counting & Probability": [
+      "Advanced Counting Techniques",
+      "Probability & Expected Value",
+      "Generating Functions Intro",
+      "Combinatorial Identities"
+    ],
+    "Advanced Problem Solving": [
+      "Competition Strategies",
+      "Timed Practice Sets",
+      "Proof-Based Problems",
+      "Past Problem Review"
+    ]
+  },
+  "AIME": {
+    "Algebra": [
+      "Advanced Equations & Systems",
+      "Polynomials & Roots",
+      "Sequences & Series",
+      "Functional Equations Intro"
+    ],
+    "Geometry": [
+      "Advanced Triangle & Circle Geometry",
+      "3D Geometry",
+      "Coordinate Geometry Techniques",
+      "Trigonometric Applications"
+    ],
+    "Number Theory": [
+      "Modular Arithmetic",
+      "Diophantine Equations",
+      "Base Number Systems",
+      "Number Theory Proof Techniques"
+    ],
+    "Combinatorics & Probability": [
+      "Advanced Counting",
+      "Probability & Expected Value",
+      "Recursion & Generating Functions",
+      "Combinatorial Proofs"
+    ],
+    "Problem-Solving Strategies": [
+      "Answer Verification Techniques",
+      "Timed Practice Sets",
+      "Past AIME Problem Review",
+      "Competition Strategy"
+    ]
+  },
+  "MATHCOUNTS": {
+    "Arithmetic & Number Sense": [
+      "Mental Math Techniques",
+      "Fractions, Decimals & Percents",
+      "Number Theory Basics",
+      "Estimation"
+    ],
+    "Algebra": [
+      "Solving Equations",
+      "Ratios & Proportions",
+      "Word Problems",
+      "Patterns & Sequences"
+    ],
+    "Geometry": [
+      "Angles & Triangles",
+      "Area & Perimeter",
+      "Circles",
+      "3D Shapes"
+    ],
+    "Counting & Probability": [
+      "Basic Counting",
+      "Permutations & Combinations",
+      "Probability",
+      "Logic Problems"
+    ],
+    "Sprint & Target Round Practice": [
+      "Speed Drills",
+      "Target Round Strategies",
+      "Team Round Collaboration Problems",
+      "Countdown Round Practice"
+    ]
+  },
+  "Math Kangaroo": {
+    "Logic & Puzzles": [
+      "Pattern Recognition",
+      "Logical Reasoning Puzzles",
+      "Visual & Spatial Puzzles",
+      "Sequences"
+    ],
+    "Arithmetic": [
+      "Number Operations",
+      "Fractions & Percents",
+      "Estimation",
+      "Word Problems"
+    ],
+    "Geometry & Measurement": [
+      "Shapes & Symmetry",
+      "Area & Perimeter",
+      "Measurement Problems",
+      "Coordinate Grids"
+    ],
+    "Combinatorics": [
+      "Counting Problems",
+      "Simple Probability",
+      "Combinatorial Puzzles",
+      "Strategy Games"
+    ]
+  },
+  "PSAT/NMSQT": {
+    "Heart of Algebra": [
+      "Linear Equations",
+      "Linear Inequalities",
+      "Systems of Linear Equations",
+      "Linear Word Problems"
+    ],
+    "Problem Solving & Data Analysis": [
+      "Ratios, Rates & Proportions",
+      "Percentages",
+      "Data Interpretation",
+      "Statistics & Probability"
+    ],
+    "Passport to Advanced Math": [
+      "Quadratic Equations",
+      "Exponential Functions",
+      "Polynomial Expressions",
+      "Function Notation"
+    ],
+    "Additional Topics: Geometry & Trig": [
+      "Area & Volume",
+      "Circle Theorems",
+      "Right Triangle Trigonometry",
+      "Coordinate Geometry"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Calculator Section Practice",
+      "No-Calculator Section Practice"
+    ]
+  },
+  "ACCUPLACER": {
+    "Arithmetic": [
+      "Whole Numbers & Integers",
+      "Fractions & Decimals",
+      "Percentages",
+      "Ratios & Proportions"
+    ],
+    "Quantitative Reasoning, Algebra & Statistics": [
+      "Linear Equations",
+      "Applications of Algebra",
+      "Probability & Statistics Basics",
+      "Geometry Concepts"
+    ],
+    "Advanced Algebra & Functions": [
+      "Quadratic Equations",
+      "Functions & Graphs",
+      "Exponential & Radical Expressions",
+      "Rational Expressions"
+    ]
+  },
+  "ALEKS Placement Test": {
+    "Pre-Algebra Review": [
+      "Integers & Order of Operations",
+      "Fractions, Decimals & Percents",
+      "Ratios & Proportions",
+      "Basic Equations"
+    ],
+    "Algebra Foundations": [
+      "Linear Equations & Inequalities",
+      "Graphing Lines",
+      "Systems of Equations",
+      "Polynomials & Factoring"
+    ],
+    "Intermediate & College Algebra": [
+      "Quadratic Equations",
+      "Functions & Graphs",
+      "Exponential & Logarithmic Functions",
+      "Rational Expressions"
+    ],
+    "Trigonometry & Precalculus Readiness": [
+      "Right Triangle Trigonometry",
+      "The Unit Circle",
+      "Trigonometric Graphs",
+      "Function Composition"
+    ]
+  }
+};
+
+function populateCourseSelect(selectId, chapterSelectId, topicsBoxId){
+  const sel = document.getElementById(selectId);
+  COURSE_GROUPS.forEach(group => {
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    group.courses.forEach(course => {
+      if(!COURSES[course]) return;
+      const opt = document.createElement('option');
+      opt.value = course; opt.textContent = course;
+      og.appendChild(opt);
+    });
+    sel.appendChild(og);
+  });
+  if(chapterSelectId){ populateChapters(selectId, chapterSelectId, topicsBoxId); }
+}
+
+/* Populates the "Course" dropdown for the Practice Quiz, filtered to either the
+   "Courses" tab (everything except Test Prep) or the "Test Prep" tab (Test Prep only). */
+function qzPopulateCourses(mode){
+  const sel = document.getElementById('qzCourse');
+  sel.innerHTML = '';
+  COURSE_GROUPS.forEach(group => {
+    const isTestPrep = group.label === 'Test Prep';
+    if(mode === 'testprep' && !isTestPrep) return;
+    if(mode === 'courses' && isTestPrep) return;
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    group.courses.forEach(course => {
+      if(!COURSES[course]) return;
+      const opt = document.createElement('option');
+      opt.value = course; opt.textContent = course;
+      og.appendChild(opt);
+    });
+    sel.appendChild(og);
+  });
+  populateChapters('qzCourse', 'qzChapter', 'qzTopicsBox');
+}
+
+function qzSwitchTab(mode){
+  document.getElementById('qzTabCourses').classList.toggle('active', mode === 'courses');
+  document.getElementById('qzTabTestPrep').classList.toggle('active', mode === 'testprep');
+  qzPopulateCourses(mode);
+}
+
+/* Same Courses / Test Prep tab filtering, for the Lesson Studio course selector. */
+function lsPopulateCourses(mode){
+  const sel = document.getElementById('lsCourse');
+  sel.innerHTML = '';
+  COURSE_GROUPS.forEach(group => {
+    const isTestPrep = group.label === 'Test Prep';
+    if(mode === 'testprep' && !isTestPrep) return;
+    if(mode === 'courses' && isTestPrep) return;
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    group.courses.forEach(course => {
+      if(!COURSES[course]) return;
+      const opt = document.createElement('option');
+      opt.value = course; opt.textContent = course;
+      og.appendChild(opt);
+    });
+    sel.appendChild(og);
+  });
+  populateChapters('lsCourse', 'lsChapter', 'lsTopicsBox');
+}
+
+function lsSwitchTab(mode){
+  document.getElementById('lsTabCourses').classList.toggle('active', mode === 'courses');
+  document.getElementById('lsTabTestPrep').classList.toggle('active', mode === 'testprep');
+  lsPopulateCourses(mode);
+}
+
+/* Populates the "Chapter" dropdown for the selected course, then the topics checklist. */
+function populateChapters(courseSelectId, chapterSelectId, topicsBoxId){
+  const course = document.getElementById(courseSelectId).value;
+  const chapterSel = document.getElementById(chapterSelectId);
+  chapterSel.innerHTML = '';
+  const chapters = COURSES[course] || {};
+  Object.keys(chapters).forEach(chapter => {
+    const opt = document.createElement('option');
+    opt.value = chapter; opt.textContent = chapter;
+    chapterSel.appendChild(opt);
+  });
+  if(topicsBoxId){ populateTopicCheckboxes(courseSelectId, chapterSelectId, topicsBoxId); }
+}
+
+/* Populates the scrollable "Topics" checklist (with an "All topics" master checkbox)
+   for the selected course + chapter. */
+function populateTopicCheckboxes(courseSelectId, chapterSelectId, topicsBoxId){
+  const course = document.getElementById(courseSelectId).value;
+  const chapter = document.getElementById(chapterSelectId).value;
+  const box = document.getElementById(topicsBoxId);
+  box.innerHTML = '';
+  const topics = (COURSES[course] && COURSES[course][chapter]) || [];
+
+  const allLabel = document.createElement('label');
+  allLabel.className = 'topic-check all-topics';
+  allLabel.innerHTML = '<input type="checkbox" class="topic-all-cb" checked> <span>All topics</span>';
+  box.appendChild(allLabel);
+
+  const topicCbs = [];
+  topics.forEach(topic => {
+    const label = document.createElement('label');
+    label.className = 'topic-check sub-topic';
+    label.innerHTML = '<input type="checkbox" class="topic-cb" value="' + escapeHtml(topic) + '" checked> <span>' + escapeHtml(topic) + '</span>';
+    box.appendChild(label);
+    topicCbs.push(label.querySelector('input'));
+  });
+
+  const allCb = allLabel.querySelector('input');
+  allCb.addEventListener('change', () => {
+    topicCbs.forEach(cb => { cb.checked = allCb.checked; });
+  });
+  topicCbs.forEach(cb => {
+    cb.addEventListener('change', () => {
+      allCb.checked = topicCbs.every(c => c.checked);
+    });
+  });
+}
+
+/* Returns the list of checked topic names from a topics-box (excludes the "All topics" master). */
+function getSelectedTopics(topicsBoxId){
+  const box = document.getElementById(topicsBoxId);
+  if(!box) return [];
+  return Array.from(box.querySelectorAll('.topic-cb:checked')).map(cb => cb.value);
+}
+
+/* "Any course" select for chat */
+function populateAskCourseSelect(){
+  const sel = document.getElementById('askCourse');
+  COURSE_GROUPS.forEach(group => {
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    group.courses.forEach(course => {
+      if(!COURSES[course]) return;
+      const opt = document.createElement('option');
+      opt.value = course; opt.textContent = course;
+      og.appendChild(opt);
+    });
+    sel.appendChild(og);
+  });
+}
+
+/* ============ VIEW SWITCHING ============ */
+function showView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.dataset.view===name));
+  document.querySelectorAll('.navlinks button').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ============ CLAUDE API HELPER ============ */
+async function callClaude(messages, system) {
+  const res = await fetch("/api/claude", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      messages: messages,
+      system: system
+    })
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || "Claude API request failed");
+  }
+
+  if (typeof sabaqStashUsage === "function") { sabaqStashUsage(data.usage); }
+
+  return data.text || "";
+}
+
+function extractJSON(text){
+  let t = (text || "").trim();
+  t = t.replace(/^```json/i, "").replace(/^```/, "").replace(/```$/, "").trim();
+  const start = t.indexOf("{");
+  if(start >= 0){ t = t.substring(start); }
+  t = fixLatexEscapes(t);
+
+  try{
+    const end = t.lastIndexOf("}");
+    if(end > 0){
+      return JSON.parse(t.substring(0, end+1));
+    }
+    return JSON.parse(t);
+  }catch(e){
+    return salvageJSON(t);
+  }
+}
+
+/* Many LaTeX commands (\frac, \int, \beta, \tan, \theta, \to, \nabla...) collide with
+   JSON's escape syntax. This walks the string and doubles backslashes that aren't
+   genuine JSON escapes, so \frac becomes \\frac (-> \frac after parsing), while
+   leaving already-correct \\frac untouched. */
+function fixLatexEscapes(str){
+  let out = '';
+  let inString = false;
+  const validEscapes = '"\\/bfnrtu';
+  let i = 0;
+  while(i < str.length){
+    const c = str[i];
+    if(c === '"' && str[i-1] !== '\\'){
+      inString = !inString;
+      out += c;
+      i++;
+      continue;
+    }
+    if(inString && c === '\\'){
+      const next = str[i+1];
+      const after = str[i+2];
+      if(next === '\\'){
+        // already an escaped backslash (\\) -> keep as-is
+        out += '\\\\';
+        i += 2;
+        continue;
+      }
+      if(next === undefined || validEscapes.indexOf(next) === -1){
+        // not a recognized JSON escape -> this backslash is literal, double it
+        out += '\\\\';
+        i += 1;
+        continue;
+      }
+      if('bfnrt'.indexOf(next) !== -1 && after && /[a-zA-Z]/.test(after)){
+        // \beta, \frac, \tan, \theta, \to, \nabla, \neq... -> double the backslash
+        out += '\\\\';
+        i += 1;
+        continue;
+      }
+      // genuine valid escape (\", \/, \n, \uXXXX, etc.) -> keep both characters
+      out += c + next;
+      i += 2;
+      continue;
+    }
+    out += c;
+    i++;
+  }
+  return out;
+}
+
+/* Find top-level JSON objects in `str` whose keys start matching `keyPattern`
+   (e.g. /\{\s*"heading"/), using brace-balance + string tracking so partial /
+   truncated responses still yield whatever complete objects exist. */
+function findBalancedObjects(str, keyPattern){
+  const results = [];
+  const re = new RegExp(keyPattern, 'g');
+  let m;
+  while((m = re.exec(str))){
+    const startIdx = m.index;
+    let depth = 0, inStr = false, endIdx = -1;
+    for(let i = startIdx; i < str.length; i++){
+      const c = str[i];
+      if(c === '"' && str[i-1] !== '\\') inStr = !inStr;
+      if(!inStr){
+        if(c === '{') depth++;
+        else if(c === '}'){ depth--; if(depth === 0){ endIdx = i; break; } }
+      }
+    }
+    if(endIdx === -1) break; // remaining object is cut off mid-way; stop here
+    try{ results.push(JSON.parse(str.substring(startIdx, endIdx+1))); }catch(e){ /* skip malformed object */ }
+    re.lastIndex = endIdx + 1;
+  }
+  return results;
+}
+
+function salvageString(str, key){
+  const m = str.match(new RegExp('"' + key + '"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"'));
+  if(!m) return null;
+  try{ return JSON.parse('"' + m[1] + '"'); }catch(e){ return m[1]; }
+}
+
+/* Best-effort recovery when JSON.parse fails outright (e.g. response was cut off
+   by the token limit, or contains a stray unescaped quote). */
+function salvageJSON(t){
+  const result = {};
+  const title = salvageString(t, 'title');
+  const subtitle = salvageString(t, 'subtitle');
+  if(title !== null) result.title = title;
+  if(subtitle !== null) result.subtitle = subtitle;
+  result.slides = findBalancedObjects(t, /\{\s*"heading"/g);
+  result.questions = findBalancedObjects(t, /\{\s*"q"\s*:/g);
+  result.cards = findBalancedObjects(t, /\{\s*"term"/g);
+  if(result.slides.length === 0 && result.questions.length === 0 && result.cards.length === 0
+     && title === null && subtitle === null){
+    throw new Error('Could not understand the response — please try again.');
+  }
+  return result;
+}
+
+function renderMath(el){
+  if(window.renderMathInElement){
+    renderMathInElement(el, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false}
+      ]
+    });
+  }
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+/* Clean up stray literal "\n" sequences or real newlines in short inline fields
+   (options, explanations, answers, headings) by turning them into spaces. */
+function cleanInlineText(str){
+  return (str || '').replace(/\\n/g, ' ').replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+/* Render a question/bullet's text as HTML, with a fallback parser that
+   converts any stray markdown-style "| a | b |" tables (and literal "\n"
+   line breaks) into a real <table>, in case the model puts one in the text
+   instead of using a structured "table" field. Math delimiters ($...$) are
+   left intact for KaTeX's auto-render pass afterward. */
+function renderQuestionContent(text, prefixHtml){
+  if(!text) return prefixHtml ? '<p class="q-para">' + prefixHtml + '</p>' : '';
+  const normalized = text.replace(/\\n/g, '\n');
+  const lines = normalized.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  if(lines.length === 0) return prefixHtml ? '<p class="q-para">' + prefixHtml + '</p>' : '';
+
+  const isTableRow = line => line.indexOf('|') !== -1;
+  const isSeparatorRow = cells => cells.every(c => /^:?-{2,}:?$/.test(c));
+
+  let html = '';
+  let i = 0;
+  let pendingPrefix = prefixHtml || '';
+  while(i < lines.length){
+    if(isTableRow(lines[i])){
+      if(pendingPrefix){ html += '<p class="q-para">' + pendingPrefix + '</p>'; pendingPrefix = ''; }
+      const tableLines = [];
+      while(i < lines.length && isTableRow(lines[i])){
+        tableLines.push(lines[i]);
+        i++;
+      }
+      const rows = tableLines.map(l => {
+        let cells = l.split('|').map(c => c.trim());
+        if(cells.length && cells[0] === ''){ cells.shift(); }
+        if(cells.length && cells[cells.length-1] === ''){ cells.pop(); }
+        return cells;
+      }).filter(cells => cells.length > 0 && !isSeparatorRow(cells));
+      if(rows.length > 0){
+        html += buildTableHtml({ headers: rows[0], rows: rows.slice(1) });
+      }
+    } else {
+      const para = (pendingPrefix ? pendingPrefix + ' ' : '') + escapeHtml(lines[i]);
+      pendingPrefix = '';
+      html += '<p class="q-para">' + para + '</p>';
+      i++;
+    }
+  }
+  if(pendingPrefix){ html += '<p class="q-para">' + pendingPrefix + '</p>'; }
+  return html;
+}
+
+/* Render a structured {headers:[...], rows:[[...],...]} table. */
+function buildTableHtml(table){
+  if(!table || !Array.isArray(table.headers)) return '';
+  let html = '<table class="q-table"><thead><tr>';
+  table.headers.forEach(h => { html += '<th>' + escapeHtml(h) + '</th>'; });
+  html += '</tr></thead><tbody>';
+  (table.rows || []).forEach(row => {
+    html += '<tr>';
+    row.forEach(cell => { html += '<td>' + escapeHtml(cell) + '</td>'; });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+/* Shared instructions so every math answer / JSON field uses correct, renderable LaTeX */
+const MATH_LATEX_RULES =
+  "Always use correct LaTeX for ALL mathematical notation. Wrap inline math in single dollar signs, e.g. $x^2+1$, " +
+  "and display equations in double dollar signs, e.g. $$\\int_0^1 x^2\\,dx$$. " +
+  "Use \\frac{a}{b} for fractions, \\sqrt{x} and \\sqrt[n]{x} for roots, \\lim_{x \\to a} for limits, " +
+  "\\int and \\int_{a}^{b} for integrals, \\sum_{i=1}^{n} for sums, \\frac{d}{dx} or f'(x) for derivatives, " +
+  "\\infty, \\pi, \\theta, \\sin, \\cos, \\tan, \\ln, \\log, and ^{...} / _{...} for exponents and subscripts. " +
+  "Never write integrals, limits, or exponents as plain text — always use real LaTeX commands.";
+
+const NO_MARKDOWN_RULES =
+  "Plain-text fields (the question/heading text, bullets, options, answers, and explanations) must be ONE clean line of prose " +
+  "(with inline $...$ math where needed) and must NEVER contain a markdown table, pipe characters '|', literal newline " +
+  "sequences, or '---' separator rows. If the question needs to present tabular data (e.g. \"the table below shows...\"), " +
+  "put that data in a separate \"table\" field shaped as {\"headers\":[\"Col A\",\"Col B\"],\"rows\":[[\"1\",\"2\"],[\"3\",\"4\"]]} " +
+  "— do not describe the table in the text at all beyond referring to \"the table\".";
+
+const CONTENT_QUALITY_RULES =
+  "Work out every calculation privately and check it before writing your final answer — never show that checking in the output. " +
+  "Output ONLY the clean, correct, final version of each step: never include visible self-correction, hedging, or scratch-work " +
+  "such as \"wait,\" \"let me reconsider,\" \"actually,\" or a crossed-out attempt followed by a fix. If you catch an error, " +
+  "silently redo the step and output only the corrected result. For Calculus, Calculus 1, Calculus 2, AP Calculus AB/BC, and " +
+  "Precalculus content, match the depth, notation, and worked-example style of OpenStax Calculus Volume 1-3 " +
+  "(the standard open-license calculus textbook) — precise definitions, standard notation, and fully justified steps.";
+
+const JSON_LATEX_RULES = MATH_LATEX_RULES + " " + NO_MARKDOWN_RULES + " " + CONTENT_QUALITY_RULES +
+  " IMPORTANT: this text will be placed inside JSON string values, so every backslash in a LaTeX command must be " +
+  "escaped as a double backslash so the JSON stays valid (write \\\\frac, \\\\int, \\\\lim, \\\\sqrt, \\\\sum, etc.).";
+
+/* ============ ASK & LEARN ============ */
+const chatHistory = [];
+
+const chatInput = document.getElementById('chatInput');
+chatInput.addEventListener('keydown', function(e){
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    sendChat();
+  }
+});
+
+/* ---- Voice: speech-to-text for asking, text-to-speech for answers ---- */
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+let isListening = false;
+
+async function toggleMic(){
+  const micBtn = document.getElementById('micBtn');
+  const hint = document.getElementById('chatHint');
+  if(!SpeechRecognitionAPI){
+    hint.textContent = 'Voice input is not supported in this browser — try Chrome or Edge.';
+    return;
+  }
+  if(isListening){
+    recognition.stop();
+    return;
+  }
+
+  // Pre-flight check: in some embedded/preview contexts the microphone is
+  // blocked by the page's permissions policy before SpeechRecognition even
+  // gets a chance to ask. Checking getUserMedia first gives a clearer reason.
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+    try{
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach(t => t.stop());
+    }catch(err){
+      if(err.name === 'NotAllowedError' || err.name === 'SecurityError'){
+        hint.textContent = 'Microphone is blocked here — if you\'re viewing this in an embedded preview, open this file directly in your browser (download it, then double-click to open) and allow microphone access when prompted.';
+      } else if(err.name === 'NotFoundError'){
+        hint.textContent = 'No microphone was found on this device.';
+      } else {
+        hint.textContent = 'Could not access the microphone: ' + err.message;
+      }
+      return;
+    }
+  } else {
+    hint.textContent = 'Microphone access isn\'t available in this preview. Download the file and open it directly in your browser to use voice input.';
+    return;
+  }
+
+  recognition = new SpeechRecognitionAPI();
+  recognition.lang = 'en-US';
+  recognition.interimResults = true;
+  recognition.continuous = false;
+
+  let finalTranscript = chatInput.value ? (chatInput.value.trim() + ' ') : '';
+
+  recognition.onstart = () => {
+    isListening = true;
+    micBtn.classList.add('listening');
+    hint.textContent = 'Listening... tap the mic again to stop.';
+  };
+  recognition.onresult = (e) => {
+    let interim = '';
+    for(let i = e.resultIndex; i < e.results.length; i++){
+      if(e.results[i].isFinal){ finalTranscript += e.results[i][0].transcript + ' '; }
+      else { interim += e.results[i][0].transcript; }
+    }
+    chatInput.value = (finalTranscript + interim).trim();
+  };
+  recognition.onerror = (e) => {
+    isListening = false;
+    micBtn.classList.remove('listening');
+    if(e.error === 'not-allowed' || e.error === 'service-not-allowed'){
+      hint.textContent = 'Microphone access was blocked — allow microphone permission in your browser and try again.';
+    } else if(e.error === 'no-speech'){
+      hint.textContent = 'Didn\'t catch that — tap the mic and try again.';
+    } else {
+      hint.textContent = 'Voice input error: ' + e.error + '.';
+    }
+  };
+  recognition.onend = () => {
+    isListening = false;
+    micBtn.classList.remove('listening');
+  };
+
+  try{
+    recognition.start();
+  }catch(err){
+    hint.textContent = 'Could not start voice input: ' + err.message;
+  }
+}
+
+/* Convert common LaTeX commands to spoken words so "Read aloud" sounds natural,
+   rather than reading raw $\frac{1}{2}$ syntax. Best-effort, not exhaustive. */
+function latexToSpeech(text){
+  let t = (text || '');
+  t = t.replace(/\$\$([\s\S]*?)\$\$/g, ' $1 ');
+  t = t.replace(/\$([\s\S]*?)\$/g, ' $1 ');
+  t = t.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, ' ($1) over ($2) ');
+  t = t.replace(/\\sqrt\[(\d+)\]\{([^{}]*)\}/g, ' the $1th root of ($2) ');
+  t = t.replace(/\\sqrt\{([^{}]*)\}/g, ' the square root of ($1) ');
+  t = t.replace(/\\int_\{([^{}]*)\}\^\{([^{}]*)\}/g, ' the integral from $1 to $2 of ');
+  t = t.replace(/\\int/g, ' the integral of ');
+  t = t.replace(/\\lim_\{([^{}]*)\\to ?([^{}]*)\}/g, ' the limit as $1 approaches $2 of ');
+  t = t.replace(/\\sum_\{([^{}]*)\}\^\{([^{}]*)\}/g, ' the sum from $1 to $2 of ');
+  t = t.replace(/\\left|\\right/g, '');
+  t = t.replace(/\\cdot|\\times/g, ' times ');
+  t = t.replace(/\\div/g, ' divided by ');
+  t = t.replace(/\\pm/g, ' plus or minus ');
+  t = t.replace(/\\le(q)?/g, ' less than or equal to ');
+  t = t.replace(/\\ge(q)?/g, ' greater than or equal to ');
+  t = t.replace(/\\neq/g, ' not equal to ');
+  t = t.replace(/\\approx/g, ' approximately ');
+  t = t.replace(/\\to/g, ' approaches ');
+  t = t.replace(/\\infty/g, ' infinity ');
+  t = t.replace(/\\pi/g, ' pi ');
+  t = t.replace(/\\theta/g, ' theta ');
+  t = t.replace(/\\alpha/g, ' alpha ');
+  t = t.replace(/\\beta/g, ' beta ');
+  t = t.replace(/\\sin/g, ' sine ');
+  t = t.replace(/\\cos/g, ' cosine ');
+  t = t.replace(/\\tan/g, ' tangent ');
+  t = t.replace(/\\ln/g, ' natural log ');
+  t = t.replace(/\\log/g, ' log ');
+  t = t.replace(/\^\{?-?2\}?/g, ' squared ');
+  t = t.replace(/\^\{?-?3\}?/g, ' cubed ');
+  t = t.replace(/\^\{([^{}]*)\}/g, ' to the power of $1 ');
+  t = t.replace(/\^(-?\w)/g, ' to the power of $1 ');
+  t = t.replace(/_\{([^{}]*)\}/g, ' sub $1 ');
+  t = t.replace(/_(\w)/g, ' sub $1 ');
+  t = t.replace(/[\\${}]/g, ' ');
+  t = t.replace(/\s+/g, ' ').trim();
+  return t;
+}
+
+let activeUtterance = null;
+
+function toggleSpeak(btn, text){
+  if(!('speechSynthesis' in window)) return;
+  if(btn.classList.contains('speaking')){
+    speechSynthesis.cancel();
+    btn.classList.remove('speaking');
+    btn.textContent = '\u25B6 Listen';
+    return;
+  }
+  speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn.speaking').forEach(b => {
+    b.classList.remove('speaking');
+    b.textContent = '\u25B6 Listen';
+  });
+  const utter = new SpeechSynthesisUtterance(latexToSpeech(text));
+  utter.rate = 0.95;
+  utter.onend = () => { btn.classList.remove('speaking'); btn.textContent = '\u25B6 Listen'; };
+  utter.onerror = () => { btn.classList.remove('speaking'); btn.textContent = '\u25B6 Listen'; };
+  activeUtterance = utter;
+  btn.classList.add('speaking');
+  btn.textContent = '\u25A0 Stop';
+  speechSynthesis.speak(utter);
+}
+
+function addSpeakButton(div, text){
+  if(!('speechSynthesis' in window)) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'speak-btn';
+  btn.textContent = '\u25B6 Listen';
+  btn.onclick = () => toggleSpeak(btn, text);
+  div.appendChild(btn);
+  return btn;
+}
+
+function appendMsg(role, text, imageDataUrl){
+  const log = document.getElementById('chatLog');
+  const div = document.createElement('div');
+  if(role === 'user'){
+    div.className = 'msg user';
+    let html = '';
+    if(imageDataUrl){ html += '<img class="msg-image" src="' + imageDataUrl + '">'; }
+    if(text){ html += escapeHtml(text).replace(/\n/g, '<br>'); }
+    div.innerHTML = html;
+  } else if(role === 'loading'){
+    div.className = 'msg assistant';
+    div.id = 'loadingMsg';
+    div.innerHTML = '<span class="tag">Sabaq</span><br><span class="loading-dots">thinking<span>.</span><span>.</span><span>.</span></span>';
+  } else {
+    div.className = 'msg assistant';
+    div.innerHTML = '<span class="tag">Sabaq</span><br>' + text.replace(/\n/g, '<br>');
+  }
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+  return div;
+}
+
+/* ---- Image attach / camera capture for "show me the question" ---- */
+let pendingImage = null; // { dataUrl, mediaType, base64 }
+
+function resizeImageFile(file, maxDim){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width, height = img.height;
+        if(width > maxDim || height > maxDim){
+          if(width > height){ height = Math.round(height * maxDim / width); width = maxDim; }
+          else { width = Math.round(width * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        resolve({ dataUrl: dataUrl, mediaType: 'image/jpeg', base64: dataUrl.split(',')[1] });
+      };
+      img.onerror = () => reject(new Error('Could not read that image.'));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error('Could not read that image.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleImageSelect(event){
+  const file = event.target.files[0];
+  event.target.value = ''; // allow selecting the same file again later
+  if(!file) return;
+  try{
+    pendingImage = await resizeImageFile(file, 1200);
+    document.getElementById('imagePreviewImg').src = pendingImage.dataUrl;
+    document.getElementById('imagePreviewRow').style.display = 'flex';
+  }catch(err){
+    pendingImage = null;
+  }
+}
+
+function removeImage(){
+  pendingImage = null;
+  document.getElementById('imagePreviewRow').style.display = 'none';
+  document.getElementById('imagePreviewImg').src = '';
+}
+
+async function sendChat(){
+  const text = chatInput.value.trim();
+  if(!text && !pendingImage) return;
+
+  if(typeof sabaqCheckCredits === 'function'){
+    const ok = await sabaqCheckCredits('ask_tutor');
+    if(!ok) return;
+  }
+
+  chatInput.value = '';
+
+  let userContent;
+  if(pendingImage){
+    userContent = [
+      { type: 'image', source: { type: 'base64', media_type: pendingImage.mediaType, data: pendingImage.base64 } },
+      { type: 'text', text: text || 'Please read the math question in this image and solve it step by step.' }
+    ];
+    appendMsg('user', text, pendingImage.dataUrl);
+  } else {
+    userContent = text;
+    appendMsg('user', text);
+  }
+  chatHistory.push({role:'user', content: userContent});
+  removeImage();
+
+  const loadingEl = appendMsg('loading', '');
+  document.getElementById('chatSend').disabled = true;
+
+  const course = document.getElementById('askCourse').value;
+  const tutorSystem = "You are Sabaq, a patient, encouraging math tutor covering US high-school and AP math: " +
+    "Grade 6 through Grade 8 Math, Pre-Algebra, Algebra 1, Geometry, Algebra 2, Trigonometry, Precalculus, Calculus, Statistics, " +
+    "AP Precalculus, AP Calculus AB/BC, AP Statistics, and SAT/ACT math prep. " +
+    (course ? ("The student is currently focused on: " + course + ". Tailor explanations to that course's level when relevant. ") : "") +
+    "Students may attach a photo or screenshot of a printed or handwritten problem — read it carefully (including any diagrams or graphs) before solving. " +
+    "Explain step by step in clear language appropriate for the student's level. " + MATH_LATEX_RULES +
+    " Keep answers focused and not overly long.";
+
+  try{
+    const reply = await callClaude(chatHistory, tutorSystem);
+    chatHistory.push({role:'assistant', content:reply});
+    loadingEl.innerHTML = '<span class="tag">Sabaq</span><br>' + reply.replace(/\n/g, '<br>');
+    renderMath(loadingEl);
+    const speakBtn = addSpeakButton(loadingEl, reply);
+    if(speakBtn && document.getElementById('readAloud').checked){
+      toggleSpeak(speakBtn, reply);
+    }
+    if(typeof sabaqTakeUsage === 'function'){
+      const usage = sabaqTakeUsage();
+      sabaqTrackUsage({ tool:'ask_tutor', title: text.slice(0,60) || 'Ask & Learn', inputTokens: usage.input_tokens, outputTokens: usage.output_tokens });
+    }
+  }catch(err){
+    loadingEl.innerHTML = '<span class="tag">Sabaq</span><br>Sorry, something went wrong: ' + err.message;
+  }finally{
+    document.getElementById('chatSend').disabled = false;
+    document.getElementById('chatLog').scrollTop = document.getElementById('chatLog').scrollHeight;
+  }
+}
+
+/* ============ LESSON STUDIO ============ */
+let logoData = null;
+let lessonData = null;
+let worksheetData = null;
+
+function handleLogo(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    logoData = e.target.result;
+    const drop = document.getElementById('logoDrop');
+    drop.innerHTML = '<img src="' + logoData + '" alt="School logo"><input type="file" id="logoInput" accept="image/*" onchange="handleLogo(event)">';
+  };
+  reader.readAsDataURL(file);
+}
+
+const LESSON_SYSTEM = "You are an API that returns only valid, minified JSON for math lesson outlines aimed at US high-school / AP students. Never include markdown formatting or commentary outside the JSON. " + JSON_LATEX_RULES;
+
+function buildLessonPrompt(course, topic, notes, batchStart, batchCount, totalSlides, title){
+  let p = "";
+  if(batchStart === 0){
+    p += "Create a math lesson outline for a slide presentation.\n" +
+      "Course: " + course + "\n" +
+      "Topic: " + topic + "\n" +
+      (notes ? ("Extra instructions: " + notes + "\n") : "") +
+      "Total content slides in the full lesson: " + totalSlides + ". This request covers slides 1 to " + batchCount + ".\n" +
+      "Respond with ONLY valid JSON in this exact shape, no markdown fences, no commentary:\n" +
+      '{"title":"...","subtitle":"...","slides":[{"heading":"...","bullets":["...","..."],"table":{...},"graph":{...},"shape":{...}}]}\n';
+  } else {
+    p += "Continue the same math lesson (do not repeat earlier slides).\n" +
+      "Course: " + course + "\n" +
+      "Topic: " + topic + "\n" +
+      "Lesson title so far: \"" + title + "\"\n" +
+      (notes ? ("Extra instructions: " + notes + "\n") : "") +
+      "Total content slides in the full lesson: " + totalSlides + ". This request covers slides " + (batchStart+1) + " to " + (batchStart+batchCount) + ".\n" +
+      "Respond with ONLY valid JSON in this exact shape, no markdown fences, no commentary:\n" +
+      '{"slides":[{"heading":"...","bullets":["...","..."],"table":{...},"graph":{...},"shape":{...}}]}\n';
+  }
+  p += "Each slide should have 3-4 short bullets (max ~12 words each), using correct LaTeX for any math. " +
+    "Each slide may have AT MOST ONE of \"table\", \"graph\", or \"shape\" — never more than one — and most slides should have one of them.\n" +
+    '"table" example: {"headers":["Employee","Hours Worked","Productivity Score"],"rows":[["A","40","88"],["B","32","76"]]}. ' +
+    "Use \"table\" to present a data set; never put a table inside \"bullets\" or \"heading\".\n" +
+    '"graph" example (single function): {"expression":"x^2 - 4","xmin":-10,"xmax":10,"shade":{"a":0,"b":2},"markX":1}. ' +
+    "\"expression\" is a math.js-compatible expression of x only (e.g. \"x^2 - 4\", \"sin(x)\", \"1/x\"), plotted over [xmin, xmax]. " +
+    "\"shade\":{\"a\":..,\"b\":..} shades the region between that curve and the x-axis from x=a to x=b — use this for area under a SINGLE curve, " +
+    "a definite integral of one function, a Riemann sum, or a volume of revolution (the shaded region being rotated).\n" +
+    "For TWO functions on the same axes — area between curves, comparing f(x) and g(x), a system of equations — use \"functions\" instead of " +
+    "\"expression\", e.g.: {\"functions\":[{\"expr\":\"4 - x^2\",\"label\":\"f(x)\"},{\"expr\":\"x\",\"label\":\"g(x)\"}],\"xmin\":-4,\"xmax\":4," +
+    "\"shadeBetween\":{\"a\":-3.5616,\"b\":1.5616}}. Each entry in \"functions\" is a math.js-compatible expression of x; they are automatically " +
+    "drawn in different colors so both curves are clearly visible — NEVER combine two functions into one expression like \"4 - x^2 - x\", since " +
+    "that only plots their difference, not the two original curves. \"shadeBetween\":{\"a\":..,\"b\":..} shades the area between the first two " +
+    "\"functions\" entries from x=a to x=b — compute the exact intersection x-values algebraically for a and b, don't approximate or guess. " +
+    "Use \"shadeBetween\" (with \"functions\") for area-between-two-curves problems instead of \"shade\". " +
+    "\"markX\" draws a dashed vertical line at that x value — use this for limit questions " +
+    "(mark the x-value the limit approaches) or for marking a point of tangency. Omit \"shade\"/\"shadeBetween\"/\"markX\" when not relevant. " +
+    "Use \"graph\" for Algebra, Precalculus, and Calculus topics: graphing functions, limits and continuity (mark the x-value), derivatives and tangent lines, " +
+    "definite integrals and area under a curve (shade the region), area between two curves (use \"functions\" + \"shadeBetween\"), and volumes of revolution (shade the cross-section).\n" +
+    '"shape" example: {"type":"triangle","points":[[0,0],[4,0],[0,3]],"labels":["A","B","C"],"sideLabels":["c","a","b"],"rightAngleAt":0,"angleLabels":[{"vertex":1,"label":"37°"}]}. ' +
+    "type can be \"triangle\", \"right_triangle\", \"polygon\", \"circle\", or \"rectangle\". \"points\" are [x,y] coordinates; \"labels\" names each vertex/point in order; " +
+    "\"sideLabels\" labels each side (side i runs from points[i] to points[i+1]) with a length or variable; \"rightAngleAt\" is the index of a vertex with a right angle; " +
+    "\"angleLabels\" is a list of {\"vertex\":index,\"label\":\"...\"}. For \"circle\" use \"center\":[x,y], \"radius\":number, \"labels\":{\"center\":\"O\",\"radius\":\"r=5\"}. " +
+    "For \"rectangle\" use \"width\", \"height\", \"labels\":{\"width\":\"6\",\"height\":\"4\"}. " +
+    "Use \"shape\" for Geometry topics: triangles, circles, polygons, angles, area/perimeter/volume, coordinate geometry, and right-triangle trig diagrams.\n" +
+    "Make exactly " + batchCount + " slides in the \"slides\" array.";
+  return p;
+}
+
+async function generateLesson(){
+  const course = document.getElementById('lsCourse').value;
+  const chapter = document.getElementById('lsChapter').value;
+  const selectedTopics = getSelectedTopics('lsTopicsBox');
+  const statusEl = document.getElementById('lsStatus');
+  if(selectedTopics.length === 0){
+    statusEl.textContent = 'Please select at least one topic.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const topic = chapter + ' — ' + selectedTopics.join(', ');
+  const totalSlides = parseInt(document.getElementById('lsSlides').value, 10);
+  const notes = document.getElementById('lsNotes').value.trim();
+
+  if(typeof sabaqCheckCredits === 'function'){
+    const ok = await sabaqCheckCredits('lesson', 'lsStatus');
+    if(!ok) return;
+  }
+
+  statusEl.classList.remove('error');
+  document.getElementById('genBtn').disabled = true;
+  document.getElementById('downloadPptxBtn').style.display = 'none';
+  document.getElementById('downloadPdfBtn').style.display = 'none';
+  document.getElementById('lsPdfLink').style.display = 'none';
+  lessonData = { title: '', subtitle: '', course: course, slides: [] };
+
+  const BATCH = 3;
+  let done = 0;
+  let usedInputTokens = 0, usedOutputTokens = 0;
+
+  try{
+    while(done < totalSlides){
+      const count = Math.min(BATCH, totalSlides - done);
+      statusEl.textContent = 'Generating slides ' + (done+1) + '-' + (done+count) + ' of ' + totalSlides + '...';
+      const prompt = buildLessonPrompt(course, topic, notes, done, count, totalSlides, lessonData.title);
+      const text = await callClaude([{role:'user', content:prompt}], LESSON_SYSTEM);
+      if(typeof sabaqTakeUsage === 'function'){
+        const u = sabaqTakeUsage();
+        usedInputTokens += u.input_tokens; usedOutputTokens += u.output_tokens;
+      }
+      const data = extractJSON(text);
+      if(done === 0){
+        lessonData.title = data.title || (course + ': ' + topic);
+        lessonData.subtitle = data.subtitle || '';
+      }
+      lessonData.slides = lessonData.slides.concat(data.slides || []);
+      done += count;
+    }
+    renderToc(lessonData);
+    statusEl.textContent = 'Outline ready (' + lessonData.slides.length + ' slides). Download below.';
+    document.getElementById('downloadPptxBtn').style.display = 'inline-block';
+    document.getElementById('downloadPdfBtn').style.display = 'inline-block';
+
+    if(typeof sabaqTrackUsage === 'function'){
+      const colorScheme = document.getElementById('lsColorScheme') ? document.getElementById('lsColorScheme').value : '';
+      sabaqTrackUsage({
+        tool: 'lesson', title: lessonData.title, course: course, chapter: chapter, topics: selectedTopics,
+        extra: { slide_count: lessonData.slides.length, color_scheme: colorScheme, prompt_used: topic },
+        inputTokens: usedInputTokens, outputTokens: usedOutputTokens
+      }).then(result => { if(result) window.__sabaqLastLessonId = result.resourceId; });
+    }
+  }catch(err){
+    statusEl.textContent = 'Could not generate outline: ' + err.message;
+    statusEl.classList.add('error');
+  }finally{
+    document.getElementById('genBtn').disabled = false;
+  }
+}
+
+function renderToc(data){
+  const box = document.getElementById('tocBox');
+  let html = '<h3>' + escapeHtml(data.title || 'Untitled lesson') + '</h3>';
+  if(data.subtitle){
+    html += '<p style="color:var(--ink-soft); font-size:0.92rem; margin-top:-0.5rem;">' + escapeHtml(data.subtitle) + '</p>';
+  }
+  (data.slides || []).forEach((s, i) => {
+    html += '<div class="toc-item"><span class="label">' + (i+1) + '. ' + escapeHtml(cleanInlineText(s.heading || '')) + '</span><span class="leader"></span><span class="num">slide ' + (i+2) + '</span></div>';
+    html += '<ul class="toc-bullets">';
+    (s.bullets || []).forEach(b => { html += '<li>' + escapeHtml(cleanInlineText(b)) + '</li>'; });
+    if(s.graph && s.graph.expression){
+      html += '<li><em>Graph: $' + escapeHtml(s.graph.expression) + '$</em></li>';
+    } else if(s.shape && s.shape.type){
+      html += '<li><em>Diagram: ' + escapeHtml(s.shape.type.replace('_',' ')) + '</em></li>';
+    } else if(s.table){
+      html += '<li><em>Table included</em></li>';
+    }
+    html += '</ul>';
+  });
+  box.innerHTML = html;
+  renderMath(box);
+}
+
+/* ---- Slide color schemes (used for PPTX/PDF export only) ---- */
+const COLOR_SCHEMES = {
+  chalkboard: { dark:'1F3D32', accent:'F4C95D', light:'F6F2E7', highlight:'E8857A', paper:'FBF8F1', ink:'232323' },
+  navy:       { dark:'1E3A5F', accent:'F2C14E', light:'EAF2FA', highlight:'EF6F6C', paper:'F7FAFC', ink:'1B2733' },
+  maroon:     { dark:'5C1A2B', accent:'F2C078', light:'FBF1E7', highlight:'D98E73', paper:'FFF8F2', ink:'2D1B1B' },
+  slate:      { dark:'37474F', accent:'FFB74D', light:'ECEFF1', highlight:'4FC3F7', paper:'FAFAFA', ink:'263238' },
+  purple:     { dark:'3B2F5E', accent:'F4C95D', light:'F3EFFB', highlight:'E8857A', paper:'FAF8FF', ink:'2A2438' },
+  mono:       { dark:'1A1A1A', accent:'FFFFFF', light:'E0E0E0', highlight:'999999', paper:'FFFFFF', ink:'1A1A1A' },
+  teal:       { dark:'128C93', accent:'FFFFFF', light:'FFFFFF', highlight:'FF6F59', paper:'FFFFFF', ink:'232323' },
+  crimson:    { dark:'7A1F2B', accent:'FFE066', light:'FBEAEA', highlight:'4ECDC4', paper:'FFF6F6', ink:'2B1414' },
+  amber:      { dark:'4E342E', accent:'FFC857', light:'FBE9E0', highlight:'81C784', paper:'FFF8F0', ink:'2E1F17' },
+  indigo:     { dark:'2C2A4A', accent:'F2C14E', light:'E8E6F7', highlight:'FF6B6B', paper:'F8F7FC', ink:'232142' }
+};
+
+function updateSchemePreview(){
+  const key = document.getElementById('lsColorScheme').value;
+  const scheme = COLOR_SCHEMES[key] || COLOR_SCHEMES.chalkboard;
+  const preview = document.getElementById('schemePreview');
+  preview.innerHTML = ['dark','accent','highlight','paper'].map(k =>
+    '<span style="background:#' + scheme[k] + ';" title="' + k + '"></span>'
+  ).join('');
+}
+
+/* ---- Build the off-screen slide deck (shared by PPTX export and PDF print) ---- */
+function buildDeck(data, logo, schemeKey){
+  const scheme = COLOR_SCHEMES[schemeKey] || COLOR_SCHEMES.chalkboard;
+  const graphTheme = { accent: '#' + scheme.highlight, ink: '#' + scheme.dark };
+  const container = document.getElementById('deckContainer');
+  container.innerHTML = '';
+  container.style.setProperty('--ds-dark', '#' + scheme.dark);
+  container.style.setProperty('--ds-accent', '#' + scheme.accent);
+  container.style.setProperty('--ds-light', '#' + scheme.light);
+  container.style.setProperty('--ds-highlight', '#' + scheme.highlight);
+  container.style.setProperty('--ds-paper', '#' + scheme.paper);
+  container.style.setProperty('--ds-ink', '#' + scheme.ink);
+
+  const title = document.createElement('div');
+  title.className = 'deck-slide title-slide';
+  title.innerHTML = (logo ? '<img class="ds-logo" src="' + logo + '">' : '') +
+    '<h1>' + escapeHtml(data.title || '') + '</h1>' +
+    (data.subtitle ? '<p>' + escapeHtml(data.subtitle) + '</p>' : '') +
+    '<p style="margin-top:60px;font-size:18px;opacity:0.7;">Made with Sabaq</p>';
+  container.appendChild(title);
+
+  const totalSlides = (data.slides || []).length;
+  (data.slides || []).forEach((s, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'deck-slide content-slide';
+    let bulletsHtml = '<ul class="ds-bullets">' + (s.bullets || []).map(b => '<li>' + escapeHtml(cleanInlineText(b)) + '</li>').join('') + '</ul>';
+    let tableHtml = s.table ? buildTableHtml(s.table) : '';
+    let graphHtml = '';
+    if(s.graph && (s.graph.expression || (s.graph.functions && s.graph.functions.length))){
+      graphHtml = '<div class="ds-graph-wrap">' +
+        '<canvas width="460" height="360" ' + graphCanvasAttrs(s.graph) + '></canvas>' +
+        '<div class="ds-graph-label">' + escapeHtml(graphLabelText(s.graph)) + '</div>' +
+        '</div>';
+    } else if(s.shape && s.shape.type){
+      const enc = encodeURIComponent(JSON.stringify(s.shape));
+      graphHtml = '<div class="ds-graph-wrap">' +
+        '<canvas width="460" height="360" data-shape="' + enc + '"></canvas>' +
+        '</div>';
+    }
+    const courseLabel = escapeHtml(data.course || '');
+    slide.innerHTML =
+      '<div class="ds-header"><span>' + escapeHtml(cleanInlineText(s.heading || '')) + '</span>' +
+      (logo ? '<img class="ds-header-logo" src="' + logo + '">' : '') + '</div>' +
+      '<div class="ds-body"><div class="ds-bullets-box">' + bulletsHtml + tableHtml + '</div>' + graphHtml + '</div>' +
+      '<div class="ds-footer">' +
+        '<span class="ds-footer-fill"></span>' +
+        '<span class="ds-footer-course">' + courseLabel + '</span>' +
+        '<span class="ds-footer-page">' + (idx+1) + ' / ' + totalSlides + '</span>' +
+      '</div>';
+    container.appendChild(slide);
+  });
+
+  const closing = document.createElement('div');
+  closing.className = 'deck-slide closing-slide';
+  closing.innerHTML = (logo ? '<img class="ds-logo" src="' + logo + '">' : '') +
+    '<h1>Questions?</h1><p style="font-size:24px;">' + escapeHtml(data.title || '') + '</p>';
+  container.appendChild(closing);
+
+  renderMath(container);
+
+  renderGraphCanvases(container, graphTheme);
+}
+
+async function downloadPptx(){
+  if(!lessonData) return;
+  const statusEl = document.getElementById('lsStatus');
+  statusEl.classList.remove('error');
+  if(typeof PptxGenJS === 'undefined'){
+    statusEl.textContent = 'PowerPoint library failed to load (check your network/connection) — try Download .pdf instead, or reload the page.';
+    statusEl.classList.add('error');
+    return;
+  }
+
+  if(typeof sabaqCheckCredits === 'function'){
+    const ok = await sabaqCheckCredits('ppt_lesson', 'lsStatus');
+    if(!ok) return;
+  }
+
+  statusEl.textContent = 'Building PowerPoint (rendering slides)...';
+  buildDeck(lessonData, logoData, document.getElementById('lsColorScheme').value);
+  await new Promise(r => setTimeout(r, 400)); // let fonts/KaTeX/canvas settle
+
+  try{
+    const pres = new PptxGenJS();
+    pres.defineLayout({ name: 'SABAQ', width: 13.33, height: 7.5 });
+    pres.layout = 'SABAQ';
+
+    const slideEls = document.querySelectorAll('#deckContainer .deck-slide');
+    let i = 0;
+    for(const el of slideEls){
+      i++;
+      statusEl.textContent = 'Rendering slide ' + i + ' of ' + slideEls.length + '...';
+      const canvas = await html2canvas(el, { scale: 2, backgroundColor: '#ffffff' });
+      const img = canvas.toDataURL('image/png');
+      const slide = pres.addSlide();
+      slide.addImage({ data: img, x: 0, y: 0, w: 13.33, h: 7.5 });
+    }
+    const safeName = (lessonData.title || 'lesson').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+    pres.writeFile({ fileName: safeName + '.pptx' });
+    statusEl.textContent = 'PowerPoint downloaded.';
+
+    if(typeof sabaqTrackUsage === 'function'){
+      sabaqTrackUsage({
+        tool: 'ppt_lesson', title: lessonData.title, course: lessonData.course || '',
+        lessonId: window.__sabaqLastLessonId || null,
+        inputTokens: 0, outputTokens: 0
+      });
+    }
+  }catch(err){
+    statusEl.textContent = 'Could not build PowerPoint: ' + err.message;
+    statusEl.classList.add('error');
+  }
+}
+
+/* Expose a generated jsPDF document as a link the user clicks themselves —
+   sandboxed previews can block programmatic doc.save() downloads, but a real
+   user click on an <a download> / <a target="_blank"> generally works. */
+function presentPdfBlob(doc, filename, linkId){
+  const blob = doc.output('blob');
+  const url = URL.createObjectURL(blob);
+  const link = document.getElementById(linkId);
+  if(link.dataset.prevUrl){ URL.revokeObjectURL(link.dataset.prevUrl); }
+  link.href = url;
+  link.dataset.prevUrl = url;
+  link.download = filename;
+  link.textContent = 'Open / save PDF';
+  link.style.display = 'inline-block';
+}
+
+async function downloadPdf(){
+  if(!lessonData) return;
+  const statusEl = document.getElementById('lsStatus');
+  statusEl.classList.remove('error');
+  if(typeof window.jspdf === 'undefined'){
+    statusEl.textContent = 'PDF library failed to load (check your network/connection) — try reloading the page.';
+    statusEl.classList.add('error');
+    return;
+  }
+  statusEl.textContent = 'Building PDF (rendering slides)...';
+  document.getElementById('lsPdfLink').style.display = 'none';
+  buildDeck(lessonData, logoData, document.getElementById('lsColorScheme').value);
+  await new Promise(r => setTimeout(r, 400)); // let fonts/KaTeX/canvas settle
+
+  try{
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'landscape', unit: 'in', format: [13.333, 7.5] });
+    const slideEls = document.querySelectorAll('#deckContainer .deck-slide');
+    let i = 0;
+    for(const el of slideEls){
+      i++;
+      statusEl.textContent = 'Rendering slide ' + i + ' of ' + slideEls.length + '...';
+      const canvas = await html2canvas(el, { scale: 2, backgroundColor: '#ffffff' });
+      const img = canvas.toDataURL('image/jpeg', 0.92);
+      if(i > 1){ doc.addPage([13.333, 7.5], 'landscape'); }
+      doc.addImage(img, 'JPEG', 0, 0, 13.333, 7.5);
+    }
+    const safeName = (lessonData.title || 'lesson').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+    presentPdfBlob(doc, safeName + '.pdf', 'lsPdfLink');
+    statusEl.textContent = 'PDF ready — click "Open / save PDF" below.';
+  }catch(err){
+    statusEl.textContent = 'Could not build PDF: ' + err.message;
+    statusEl.classList.add('error');
+  }
+}
+
+/* ============ GRAPHING (shared by deck + grapher tool + quiz) ============ */
+function drawGraph(canvas, exprStr, xmin, xmax, opts, theme){
+  opts = opts || {};
+  theme = theme || { accent: '#e8857a', ink: '#1f3d32' };
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const margin = 36;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+
+  if(!(xmax > xmin)){ xmax = xmin + 1; }
+
+  let compiled;
+  try{
+    compiled = math.compile(exprStr);
+  }catch(e){
+    ctx.fillStyle = '#b3402a';
+    ctx.font = '14px Inter, sans-serif';
+    ctx.fillText('Could not parse: ' + exprStr, 10, H/2);
+    return;
+  }
+
+  const samples = 400;
+  const pts = [];
+  for(let i = 0; i <= samples; i++){
+    const x = xmin + (xmax - xmin) * i / samples;
+    let y;
+    try{ y = compiled.evaluate({ x: x }); }catch(e){ y = NaN; }
+    if(typeof y !== 'number' || !isFinite(y)) y = NaN;
+    pts.push([x, y]);
+  }
+
+  let finiteYs = pts.map(p => p[1]).filter(y => isFinite(y));
+  let ymin, ymax;
+  if(finiteYs.length > 0){
+    finiteYs.sort((a,b)=>a-b);
+    const lo = finiteYs[Math.floor(finiteYs.length * 0.03)];
+    const hi = finiteYs[Math.ceil(finiteYs.length * 0.97) - 1];
+    ymin = lo; ymax = hi;
+    if(ymin === ymax){ ymin -= 1; ymax += 1; }
+    const pad = (ymax - ymin) * 0.12;
+    ymin -= pad; ymax += pad;
+  } else {
+    ymin = -10; ymax = 10;
+  }
+
+  const xToPx = x => margin + (x - xmin) / (xmax - xmin) * (W - 2*margin);
+  const yToPx = y => H - margin - (y - ymin) / (ymax - ymin) * (H - 2*margin);
+
+  // grid
+  ctx.strokeStyle = theme.grid || '#e3dccb';
+  ctx.lineWidth = 1;
+  const xStep = niceStep(xmax - xmin);
+  const yStep = niceStep(ymax - ymin);
+  for(let gx = Math.ceil(xmin/xStep)*xStep; gx <= xmax; gx += xStep){
+    const px = xToPx(gx);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+  }
+  for(let gy = Math.ceil(ymin/yStep)*yStep; gy <= ymax; gy += yStep){
+    const py = yToPx(gy);
+    ctx.beginPath(); ctx.moveTo(margin, py); ctx.lineTo(W-margin, py); ctx.stroke();
+  }
+
+  // shaded region (for area / definite integral / volume-of-revolution questions)
+  if(opts.shade && isFinite(opts.shade.a) && isFinite(opts.shade.b)){
+    const a = Math.max(Math.min(opts.shade.a, opts.shade.b), xmin);
+    const b = Math.min(Math.max(opts.shade.a, opts.shade.b), xmax);
+    if(b > a){
+      ctx.beginPath();
+      ctx.moveTo(xToPx(a), yToPx(0));
+      const shadeSamples = 60;
+      for(let i = 0; i <= shadeSamples; i++){
+        const x = a + (b - a) * i / shadeSamples;
+        let y;
+        try{ y = compiled.evaluate({ x: x }); }catch(e){ y = 0; }
+        if(!isFinite(y)) y = 0;
+        ctx.lineTo(xToPx(x), yToPx(y));
+      }
+      ctx.lineTo(xToPx(b), yToPx(0));
+      ctx.closePath();
+      ctx.fillStyle = theme.shadeFill || 'rgba(143,184,222,0.4)';
+      ctx.fill();
+      ctx.strokeStyle = theme.shadeStroke || '#9cc4dc';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  // axes
+  ctx.strokeStyle = theme.axis || '#6b665b';
+  ctx.lineWidth = 1.5;
+  if(ymin <= 0 && ymax >= 0){
+    const py = yToPx(0);
+    ctx.beginPath(); ctx.moveTo(margin, py); ctx.lineTo(W-margin, py); ctx.stroke();
+  }
+  if(xmin <= 0 && xmax >= 0){
+    const px = xToPx(0);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+  }
+
+  // axis labels
+  ctx.fillStyle = theme.axis || '#6b665b';
+  ctx.font = '11px JetBrains Mono, monospace';
+  for(let gx = Math.ceil(xmin/xStep)*xStep; gx <= xmax; gx += xStep){
+    if(Math.abs(gx) < xStep/1000) continue;
+    const px = xToPx(gx);
+    ctx.fillText(formatNum(gx), px - 8, yToPx(0) + (ymin<=0&&ymax>=0 ? 14 : 0) + (H-margin) * 0 + (yToPx(0) > H-margin-2 ? -4 : 14));
+  }
+  for(let gy = Math.ceil(ymin/yStep)*yStep; gy <= ymax; gy += yStep){
+    if(Math.abs(gy) < yStep/1000) continue;
+    const py = yToPx(gy);
+    ctx.fillText(formatNum(gy), 4, py + 4);
+  }
+
+  // curve
+  ctx.strokeStyle = theme.accent;
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  let started = false;
+  let lastPx = null, lastPy = null;
+  pts.forEach(([x,y]) => {
+    if(!isFinite(y) || y < ymin - (ymax-ymin)*0.5 || y > ymax + (ymax-ymin)*0.5){
+      started = false;
+      return;
+    }
+    const px = xToPx(x), py = yToPx(y);
+    if(!started){ ctx.moveTo(px, py); started = true; }
+    else { ctx.lineTo(px, py); }
+    lastPx = px; lastPy = py;
+  });
+  ctx.stroke();
+
+  // marked x value (for limit / point-of-interest questions)
+  if(typeof opts.markX === 'number' && isFinite(opts.markX) && opts.markX >= xmin && opts.markX <= xmax){
+    const px = xToPx(opts.markX);
+    ctx.save();
+    ctx.strokeStyle = theme.ink;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = theme.ink;
+    ctx.font = '12px JetBrains Mono, monospace';
+    ctx.fillText('x = ' + formatNum(opts.markX), px + 4, margin + 12);
+  }
+}
+
+/* Default palette used to color successive functions when a graph spec includes more than one. */
+const GRAPH_COLORS = ['#e8857a', '#4f7942', '#2f6fed', '#f4a340', '#9c5fc0'];
+
+/* Normalizes a graph spec into { functions:[{expr,color,label}], xmin, xmax, shade, shadeBetween, markX }.
+   Accepts the newer multi-function shape (graph.functions = [{expr,color,label}, ...]) as well as the
+   older single-expression shape (graph.expression) for backward compatibility. */
+function normalizeGraphSpec(graph){
+  const g = graph || {};
+  let functions = [];
+  if(Array.isArray(g.functions) && g.functions.length){
+    functions = g.functions.map((f, i) => ({
+      expr: (typeof f === 'string') ? f : (f.expr || ''),
+      color: (f && f.color) || GRAPH_COLORS[i % GRAPH_COLORS.length],
+      label: (f && f.label) || (typeof f === 'string' ? f : (f.expr || ''))
+    })).filter(f => f.expr);
+  } else if(g.expression){
+    functions = [{ expr: g.expression, color: GRAPH_COLORS[0], label: g.expression }];
+  }
+  return {
+    functions: functions,
+    xmin: (typeof g.xmin === 'number') ? g.xmin : -10,
+    xmax: (typeof g.xmax === 'number') ? g.xmax : 10,
+    shade: g.shade,
+    shadeBetween: g.shadeBetween,
+    markX: g.markX
+  };
+}
+
+/* ---- Multi-function graph renderer: draws one or more y=f(x) curves in distinct colors on the
+   same axes, with optional shading of the area between two curves (or one curve and the x-axis). ---- */
+function drawMultiGraph(canvas, graphSpecRaw, theme){
+  const spec = normalizeGraphSpec(graphSpecRaw);
+  theme = theme || { ink: '#1f3d32', grid: '#e3dccb', axis: '#6b665b' };
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const margin = 36;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+
+  let xmin = spec.xmin, xmax = spec.xmax;
+  if(!(xmax > xmin)){ xmax = xmin + 1; }
+
+  const compiled = [];
+  spec.functions.forEach(f => {
+    try{ compiled.push({ fn: math.compile(f.expr), color: f.color, label: f.label, expr: f.expr }); }
+    catch(e){ /* skip a function that fails to parse rather than aborting the whole graph */ }
+  });
+
+  if(compiled.length === 0){
+    ctx.fillStyle = '#b3402a';
+    ctx.font = '14px Inter, sans-serif';
+    ctx.fillText('Could not parse graph', 10, H/2);
+    return;
+  }
+
+  const samples = 400;
+  const allPtSets = compiled.map(c => {
+    const pts = [];
+    for(let i = 0; i <= samples; i++){
+      const x = xmin + (xmax - xmin) * i / samples;
+      let y;
+      try{ y = c.fn.evaluate({ x: x }); }catch(e){ y = NaN; }
+      if(typeof y !== 'number' || !isFinite(y)) y = NaN;
+      pts.push([x, y]);
+    }
+    return pts;
+  });
+
+  let finiteYs = [];
+  allPtSets.forEach(pts => pts.forEach(p => { if(isFinite(p[1])) finiteYs.push(p[1]); }));
+  let ymin, ymax;
+  if(finiteYs.length > 0){
+    finiteYs.sort((a,b)=>a-b);
+    const lo = finiteYs[Math.floor(finiteYs.length * 0.03)];
+    const hi = finiteYs[Math.ceil(finiteYs.length * 0.97) - 1];
+    ymin = lo; ymax = hi;
+    if(ymin === ymax){ ymin -= 1; ymax += 1; }
+    const pad = (ymax - ymin) * 0.12;
+    ymin -= pad; ymax += pad;
+  } else {
+    ymin = -10; ymax = 10;
+  }
+
+  const xToPx = x => margin + (x - xmin) / (xmax - xmin) * (W - 2*margin);
+  const yToPx = y => H - margin - (y - ymin) / (ymax - ymin) * (H - 2*margin);
+
+  // grid
+  ctx.strokeStyle = theme.grid || '#e3dccb';
+  ctx.lineWidth = 1;
+  const xStep = niceStep(xmax - xmin);
+  const yStep = niceStep(ymax - ymin);
+  for(let gx = Math.ceil(xmin/xStep)*xStep; gx <= xmax; gx += xStep){
+    const px = xToPx(gx);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+  }
+  for(let gy = Math.ceil(ymin/yStep)*yStep; gy <= ymax; gy += yStep){
+    const py = yToPx(gy);
+    ctx.beginPath(); ctx.moveTo(margin, py); ctx.lineTo(W-margin, py); ctx.stroke();
+  }
+
+  function evalExpr(compiledFn, x){
+    try{ const y = compiledFn.evaluate({ x: x }); return isFinite(y) ? y : 0; }catch(e){ return 0; }
+  }
+
+  // shaded region: between two curves if shadeBetween is given, else a single curve down to the x-axis
+  if(spec.shadeBetween && isFinite(spec.shadeBetween.a) && isFinite(spec.shadeBetween.b)){
+    const a = Math.max(Math.min(spec.shadeBetween.a, spec.shadeBetween.b), xmin);
+    const b = Math.min(Math.max(spec.shadeBetween.a, spec.shadeBetween.b), xmax);
+    let fnA = null, fnB = null;
+    try{ fnA = math.compile(spec.shadeBetween.exprA || (compiled[0] && compiled[0].expr) || '0'); }catch(e){}
+    try{ fnB = math.compile(spec.shadeBetween.exprB || (compiled[1] && compiled[1].expr) || '0'); }catch(e){}
+    if(b > a && fnA && fnB){
+      const shadeSamples = 60;
+      ctx.beginPath();
+      for(let i = 0; i <= shadeSamples; i++){
+        const x = a + (b - a) * i / shadeSamples;
+        const px = xToPx(x), py = yToPx(evalExpr(fnA, x));
+        if(i === 0){ ctx.moveTo(px, py); } else { ctx.lineTo(px, py); }
+      }
+      for(let i = shadeSamples; i >= 0; i--){
+        const x = a + (b - a) * i / shadeSamples;
+        ctx.lineTo(xToPx(x), yToPx(evalExpr(fnB, x)));
+      }
+      ctx.closePath();
+      ctx.fillStyle = theme.shadeFill || 'rgba(143,184,222,0.45)';
+      ctx.fill();
+      ctx.strokeStyle = theme.shadeStroke || '#9cc4dc';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  } else if(spec.shade && isFinite(spec.shade.a) && isFinite(spec.shade.b) && compiled[0]){
+    const a = Math.max(Math.min(spec.shade.a, spec.shade.b), xmin);
+    const b = Math.min(Math.max(spec.shade.a, spec.shade.b), xmax);
+    if(b > a){
+      ctx.beginPath();
+      ctx.moveTo(xToPx(a), yToPx(0));
+      const shadeSamples = 60;
+      for(let i = 0; i <= shadeSamples; i++){
+        const x = a + (b - a) * i / shadeSamples;
+        ctx.lineTo(xToPx(x), yToPx(evalExpr(compiled[0].fn, x)));
+      }
+      ctx.lineTo(xToPx(b), yToPx(0));
+      ctx.closePath();
+      ctx.fillStyle = theme.shadeFill || 'rgba(143,184,222,0.4)';
+      ctx.fill();
+      ctx.strokeStyle = theme.shadeStroke || '#9cc4dc';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  // axes
+  ctx.strokeStyle = theme.axis || '#6b665b';
+  ctx.lineWidth = 1.5;
+  if(ymin <= 0 && ymax >= 0){
+    const py = yToPx(0);
+    ctx.beginPath(); ctx.moveTo(margin, py); ctx.lineTo(W-margin, py); ctx.stroke();
+  }
+  if(xmin <= 0 && xmax >= 0){
+    const px = xToPx(0);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+  }
+
+  // axis labels
+  ctx.fillStyle = theme.axis || '#6b665b';
+  ctx.font = '11px JetBrains Mono, monospace';
+  for(let gx = Math.ceil(xmin/xStep)*xStep; gx <= xmax; gx += xStep){
+    if(Math.abs(gx) < xStep/1000) continue;
+    const px = xToPx(gx);
+    ctx.fillText(formatNum(gx), px - 8, yToPx(0) + (ymin<=0&&ymax>=0 ? 14 : 0) + (H-margin) * 0 + (yToPx(0) > H-margin-2 ? -4 : 14));
+  }
+  for(let gy = Math.ceil(ymin/yStep)*yStep; gy <= ymax; gy += yStep){
+    if(Math.abs(gy) < yStep/1000) continue;
+    const py = yToPx(gy);
+    ctx.fillText(formatNum(gy), 4, py + 4);
+  }
+
+  // curves — each function drawn in its own color (or, in mono/print mode, its own dash pattern)
+  const dashPatterns = [[], [8,5], [2,3], [8,3,2,3]];
+  compiled.forEach((c, ci) => {
+    ctx.strokeStyle = theme.mono ? (theme.ink || '#000000') : c.color;
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash(theme.mono ? dashPatterns[ci % dashPatterns.length] : []);
+    ctx.beginPath();
+    let started = false;
+    allPtSets[ci].forEach(([x,y]) => {
+      if(!isFinite(y) || y < ymin - (ymax-ymin)*0.5 || y > ymax + (ymax-ymin)*0.5){
+        started = false;
+        return;
+      }
+      const px = xToPx(x), py = yToPx(y);
+      if(!started){ ctx.moveTo(px, py); started = true; }
+      else { ctx.lineTo(px, py); }
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // marked x value (for limit / point-of-interest questions)
+  if(typeof spec.markX === 'number' && isFinite(spec.markX) && spec.markX >= xmin && spec.markX <= xmax){
+    const px = xToPx(spec.markX);
+    ctx.save();
+    ctx.strokeStyle = theme.ink;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = theme.ink;
+    ctx.font = '12px JetBrains Mono, monospace';
+    ctx.fillText('x = ' + formatNum(spec.markX), px + 4, margin + 12);
+  }
+
+  // legend — only needed once there's more than one curve to tell apart
+  if(compiled.length > 1){
+    let ly = margin + 6;
+    compiled.forEach((c, ci) => {
+      if(theme.mono){
+        ctx.strokeStyle = theme.ink || '#000000';
+        ctx.lineWidth = 2;
+        ctx.setLineDash(dashPatterns[ci % dashPatterns.length]);
+        ctx.beginPath(); ctx.moveTo(W - margin - 118, ly - 3); ctx.lineTo(W - margin - 106, ly - 3); ctx.stroke();
+        ctx.setLineDash([]);
+      } else {
+        ctx.fillStyle = c.color;
+        ctx.fillRect(W - margin - 118, ly - 8, 10, 10);
+      }
+      ctx.fillStyle = theme.ink;
+      ctx.font = '11px JetBrains Mono, monospace';
+      ctx.fillText((c.label || c.expr).slice(0, 15), W - margin - 104, ly);
+      ly += 15;
+    });
+  }
+}
+
+/* Builds a short caption under a graph, e.g. "y = x^2" for one function, or
+   "f(x) = x^2   g(x) = x" for multiple. */
+function graphLabelText(graph){
+  const g = graph || {};
+  if(Array.isArray(g.functions) && g.functions.length){
+    return g.functions.map((f, i) => {
+      const expr = (typeof f === 'string') ? f : (f.expr || '');
+      const label = (f && f.label) || (g.functions.length > 1 ? String.fromCharCode(102+i) + '(x)' : 'y');
+      return label + ' = ' + expr;
+    }).join('    ');
+  }
+  return g.expression ? ('y = ' + g.expression) : '';
+}
+
+/* Builds the data-graph="..." attribute (URL-encoded JSON of the full graph spec) used by
+   buildDeck / renderQuiz / the worksheet builder to hand a graph off to drawMultiGraph. */
+function graphCanvasAttrs(graph){
+  const g = graph || {};
+  const spec = {
+    functions: g.functions,
+    expression: g.expression,
+    xmin: (typeof g.xmin === 'number') ? g.xmin : -10,
+    xmax: (typeof g.xmax === 'number') ? g.xmax : 10,
+    shade: g.shade,
+    shadeBetween: g.shadeBetween,
+    markX: g.markX
+  };
+  return 'data-graph="' + encodeURIComponent(JSON.stringify(spec)) + '"';
+}
+
+/* Renders every canvas[data-graph] and canvas[data-shape] found under root. Shared by the
+   Lesson Studio deck, the quiz, and the worksheet PDF builder so all three stay in sync. */
+function renderGraphCanvases(root, theme){
+  root.querySelectorAll('canvas[data-graph]').forEach(cv => {
+    try{ drawMultiGraph(cv, JSON.parse(decodeURIComponent(cv.dataset.graph)), theme); }
+    catch(e){ /* skip bad graph data rather than breaking the rest of the slide/quiz/worksheet */ }
+  });
+  root.querySelectorAll('canvas[data-shape]').forEach(cv => {
+    try{ drawShape(cv, JSON.parse(decodeURIComponent(cv.dataset.shape)), theme); }
+    catch(e){ /* skip bad shape data */ }
+  });
+}
+
+/* ---- Geometry diagram renderer: triangles, circles, rectangles with labels ---- */
+function drawShape(canvas, shape, theme){
+  theme = theme || { accent: '#e8857a', ink: '#1f3d32' };
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const margin = 44;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+
+  let pts;
+  if(shape.type === 'triangle' || shape.type === 'right_triangle' || shape.type === 'polygon'){
+    pts = shape.points && shape.points.length ? shape.points : [[0,0],[4,0],[0,3]];
+  } else if(shape.type === 'circle'){
+    const c = shape.center || [0,0];
+    const r = (typeof shape.radius === 'number') ? shape.radius : 1;
+    pts = [[c[0]-r, c[1]-r], [c[0]+r, c[1]+r]];
+  } else if(shape.type === 'rectangle'){
+    const w = (typeof shape.width === 'number') ? shape.width : 4;
+    const h = (typeof shape.height === 'number') ? shape.height : 3;
+    pts = [[0,0],[w,h]];
+  } else {
+    pts = [[0,0],[1,1]];
+  }
+
+  let xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  let xmin = Math.min.apply(null, xs), xmax = Math.max.apply(null, xs);
+  let ymin = Math.min.apply(null, ys), ymax = Math.max.apply(null, ys);
+  if(xmax === xmin){ xmax += 1; xmin -= 1; }
+  if(ymax === ymin){ ymax += 1; ymin -= 1; }
+  const rangeX = xmax - xmin, rangeY = ymax - ymin;
+  const scale = Math.min((W - 2*margin) / rangeX, (H - 2*margin) / rangeY);
+  const midX = (xmin + xmax) / 2, midY = (ymin + ymax) / 2;
+  const toPx = (x, y) => [W/2 + (x - midX) * scale, H/2 - (y - midY) * scale];
+
+  ctx.strokeStyle = theme.ink;
+  ctx.fillStyle = theme.ink;
+  ctx.lineWidth = 2;
+  ctx.font = '14px Inter, sans-serif';
+
+  if(shape.type === 'triangle' || shape.type === 'right_triangle' || shape.type === 'polygon'){
+    const P = (shape.points || []).map(p => toPx(p[0], p[1]));
+    const cxp = P.reduce((s,p)=>s+p[0],0) / P.length;
+    const cyp = P.reduce((s,p)=>s+p[1],0) / P.length;
+
+    ctx.beginPath();
+    P.forEach((p,i) => { if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); });
+    ctx.closePath();
+    ctx.stroke();
+
+    // vertex labels, offset outward from the centroid
+    (shape.labels || []).forEach((lab, i) => {
+      const p = P[i];
+      if(!p || !lab) return;
+      const dx = p[0]-cxp, dy = p[1]-cyp, len = Math.hypot(dx,dy) || 1;
+      ctx.fillText(lab, p[0] + dx/len*18 - 5, p[1] + dy/len*18 + 5);
+    });
+
+    // side labels at midpoints, offset outward
+    (shape.sideLabels || []).forEach((lab, i) => {
+      if(!lab) return;
+      const a = P[i], b = P[(i+1) % P.length];
+      if(!a || !b) return;
+      const mx = (a[0]+b[0])/2, my = (a[1]+b[1])/2;
+      const dx = mx-cxp, dy = my-cyp, len = Math.hypot(dx,dy) || 1;
+      ctx.fillText(lab, mx + dx/len*14 - 10, my + dy/len*14 + 4);
+    });
+
+    // right-angle marker
+    if(typeof shape.rightAngleAt === 'number' && P[shape.rightAngleAt]){
+      const idx = shape.rightAngleAt;
+      const A = P[(idx-1+P.length) % P.length], B = P[idx], C = P[(idx+1) % P.length];
+      drawRightAngleMarker(ctx, A, B, C);
+    }
+
+    // angle labels near a vertex
+    (shape.angleLabels || []).forEach(al => {
+      const p = P[al.vertex];
+      if(!p || !al.label) return;
+      const dx = p[0]-cxp, dy = p[1]-cyp, len = Math.hypot(dx,dy) || 1;
+      ctx.fillStyle = theme.accent;
+      ctx.fillText(al.label, p[0] - dx/len*26 - 8, p[1] - dy/len*26 + 4);
+      ctx.fillStyle = theme.ink;
+    });
+
+  } else if(shape.type === 'circle'){
+    const c = shape.center || [0,0];
+    const r = (typeof shape.radius === 'number') ? shape.radius : 1;
+    const [px, py] = toPx(c[0], c[1]);
+    const pr = r * scale;
+    ctx.beginPath(); ctx.arc(px, py, pr, 0, 2*Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.arc(px, py, 2.5, 0, 2*Math.PI); ctx.fill();
+    const labels = shape.labels || {};
+    if(labels.center){ ctx.fillText(labels.center, px - 18, py - 8); }
+    if(labels.radius){
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px + pr, py); ctx.stroke();
+      ctx.fillText(labels.radius, px + pr/2 - 12, py - 8);
+    }
+
+  } else if(shape.type === 'rectangle'){
+    const w = (typeof shape.width === 'number') ? shape.width : 4;
+    const h = (typeof shape.height === 'number') ? shape.height : 3;
+    const [x0,y0] = toPx(0,h), [x1,y1] = toPx(w,0);
+    ctx.strokeRect(x0, y0, x1-x0, y1-y0);
+    const labels = shape.labels || {};
+    if(labels.width){ ctx.fillText(labels.width, (x0+x1)/2 - 10, y1 + 22); }
+    if(labels.height){ ctx.fillText(labels.height, x1 + 8, (y0+y1)/2 + 4); }
+  }
+}
+
+function drawRightAngleMarker(ctx, A, B, C){
+  const size = 14;
+  const ux = A[0]-B[0], uy = A[1]-B[1], ulen = Math.hypot(ux,uy) || 1;
+  const vx = C[0]-B[0], vy = C[1]-B[1], vlen = Math.hypot(vx,vy) || 1;
+  const p1 = [B[0] + ux/ulen*size, B[1] + uy/ulen*size];
+  const p2 = [B[0] + vx/vlen*size, B[1] + vy/vlen*size];
+  const p3 = [p1[0] + vx/vlen*size, p1[1] + vy/vlen*size];
+  ctx.beginPath();
+  ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p3[0], p3[1]); ctx.lineTo(p2[0], p2[1]);
+  ctx.stroke();
+}
+
+function niceStep(range){
+  if(!isFinite(range) || range <= 0) return 1;
+  const rough = range / 8;
+  const mag = Math.pow(10, Math.floor(Math.log10(rough)));
+  const norm = rough / mag;
+  let step;
+  if(norm < 1.5) step = 1;
+  else if(norm < 3) step = 2;
+  else if(norm < 7) step = 5;
+  else step = 10;
+  return step * mag;
+}
+
+function formatNum(n){
+  if(Math.abs(n) < 1e-9) return '0';
+  return (Math.round(n*100)/100).toString();
+}
+
+function plotGraph(){
+  const expr = document.getElementById('gcExpr').value.trim() || 'x';
+  const xmin = parseFloat(document.getElementById('gcXmin').value);
+  const xmax = parseFloat(document.getElementById('gcXmax').value);
+  const statusEl = document.getElementById('gcStatus');
+  const canvas = document.getElementById('gcCanvas');
+  if(!(xmax > xmin)){
+    statusEl.textContent = 'x max must be greater than x min.';
+    statusEl.classList.add('error');
+    return;
+  }
+  statusEl.classList.remove('error');
+  statusEl.textContent = 'y = ' + expr;
+  drawGraph(canvas, expr, xmin, xmax);
+}
+
+/* ============ QUIZ ============ */
+const QUIZ_TYPE_INSTRUCTIONS = {
+  mixed: "Use a healthy mix of question styles: some conceptual/reasoning questions, some computation/procedure questions, some word problems, and (where the topic supports it) some that involve a graph or diagram.",
+  conceptual: "Focus on CONCEPTUAL questions: definitions, properties, interpreting results, comparing methods, and reasoning about why something is true — keep heavy computation to a minimum.",
+  computation: "Focus on COMPUTATION/PROCEDURE questions: solving equations, simplifying expressions, evaluating, and carrying out the steps of an algorithm or formula.",
+  word: "Focus on WORD PROBLEMS and real-world applications that require translating a situation into math, setting up an equation or model, and solving it.",
+  visual: "Focus on questions that involve reading or analyzing a GRAPH OR DIAGRAM. Include a \"graph\" field (function graphs, limits, area, volumes of revolution) or a \"shape\" field (geometry figures) on EVERY question in this batch."
+};
+
+function normalizeQuestionText(s){
+  return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 60);
+}
+
+async function generateQuiz(){
+  const course = document.getElementById('qzCourse').value;
+  const chapter = document.getElementById('qzChapter').value;
+  const statusEl = document.getElementById('qzStatus');
+  const selectedTopics = getSelectedTopics('qzTopicsBox');
+  if(selectedTopics.length === 0){
+    statusEl.textContent = 'Please select at least one topic.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const topic = chapter + ' — ' + selectedTopics.join(', ');
+  const difficulty = document.getElementById('qzDifficulty').value;
+  const total = parseInt(document.getElementById('qzCount').value, 10);
+  const qType = document.getElementById('qzType').value;
+  const box = document.getElementById('qzBox');
+
+  if(typeof sabaqCheckCredits === 'function'){
+    const ok = await sabaqCheckCredits('quiz', 'qzStatus');
+    if(!ok) return;
+  }
+
+  statusEl.classList.remove('error');
+  box.innerHTML = '';
+
+  const BATCH = 3;
+  let all = [];
+  let seen = new Set();
+  let done = 0;
+  let attempts = 0;
+  let usedInputTokens = 0, usedOutputTokens = 0;
+  const maxAttempts = Math.ceil(total / BATCH) + 3; // allow a few retries if duplicates get filtered out
+
+  try{
+    while(all.length < total && attempts < maxAttempts){
+      attempts++;
+      const remaining = total - all.length;
+      const count = Math.min(BATCH, remaining);
+      statusEl.textContent = 'Generating questions ' + (all.length+1) + '-' + (all.length+count) + ' of ' + total + '...';
+
+      let avoidText = '';
+      if(all.length > 0){
+        avoidText = "Do NOT repeat or closely rephrase any of these already-used questions — cover different sub-skills or numbers instead:\n" +
+          all.map((q,idx) => (idx+1) + ". " + q.q).join("\n") + "\n";
+      }
+
+      const prompt = "Create " + count + " " + difficulty.toLowerCase() + " multiple-choice math questions " +
+        "for the course \"" + course + "\" on the topic \"" + topic + "\" (US curriculum). " +
+        avoidText +
+        QUIZ_TYPE_INSTRUCTIONS[qType] + "\n" +
+        'Respond with ONLY valid JSON: {"questions":[{"q":"...","options":["...","...","...","..."],"answer":0,"explanation":"...",' +
+        '"table":{"headers":["...","..."],"rows":[["...","..."],["...","..."]]},' +
+        '"graph":{"expression":"...","xmin":-10,"xmax":10,"shade":{"a":0,"b":2},"markX":1},' +
+        '"shape":{"type":"triangle","points":[[0,0],[4,0],[0,3]],"labels":["A","B","C"],"sideLabels":["c","a","b"],"rightAngleAt":0,"angleLabels":[{"vertex":1,"label":"37°"}]}}]}\n' +
+        "answer is the 0-based index of the correct option. Use correct LaTeX for any math in the question, options, or explanation. Keep explanations under 25 words.\n" +
+        "Each question should have AT MOST ONE of \"table\", \"graph\", or \"shape\" — never more than one, and omit all three if a picture/table wouldn't help.\n" +
+        "\"table\" presents tabular data (e.g. a data set, a table of values) as {\"headers\":[...],\"rows\":[[...],...]} — use this whenever the question " +
+        "refers to data \"in the table\"; never put a table inside the \"q\" text itself.\n" +
+        "\"graph\" plots a math.js-compatible expression of x over [xmin, xmax]. Add \"shade\":{\"a\":..,\"b\":..} to shade a region (area, definite integral, " +
+        "volume-of-revolution) and/or \"markX\" to mark an x-value with a dashed line (limit or tangent-point questions). " +
+        "For a question involving TWO functions (area between curves, comparing f and g), use \"functions\":[{\"expr\":\"...\",\"label\":\"f(x)\"},{\"expr\":\"...\",\"label\":\"g(x)\"}] " +
+        "instead of \"expression\" — they render in different colors — and use \"shadeBetween\":{\"a\":..,\"b\":..} (computing the exact intersection x-values) " +
+        "instead of \"shade\" to shade the area between them. Never combine two functions into a single \"expression\" like \"f - g\", since that only plots the difference. " +
+        "Use \"graph\" for: reading a graph, limits at a point, area under a curve, area between two curves, definite integrals, volumes of revolution, tangent lines, or function behavior — " +
+        "common for Algebra, Precalculus, and Calculus topics.\n" +
+        "\"shape\" draws a labeled geometry diagram with type \"triangle\", \"right_triangle\", \"polygon\", \"circle\", or \"rectangle\". " +
+        "\"points\" are [x,y] coordinates (any consistent units); \"labels\" names each vertex in the same order as \"points\"; \"sideLabels\" labels each side " +
+        "(side i runs from points[i] to points[i+1]) with its length or a variable like \"x\"; \"rightAngleAt\" is the index of a vertex with a right angle; " +
+        "\"angleLabels\" is a list of {\"vertex\":index,\"label\":\"...\"} for marked angle measures. For \"circle\", use \"center\":[x,y], \"radius\":number, " +
+        "and \"labels\":{\"center\":\"O\",\"radius\":\"r=5\"}. For \"rectangle\", use \"width\", \"height\", and \"labels\":{\"width\":\"6\",\"height\":\"4\"}. " +
+        "Use \"shape\" for ANY question describing or asking about a triangle, circle, rectangle, polygon, angle, or other figure — this should be common for " +
+        "Geometry topics (congruence, similarity, right-triangle trig, circles, area/perimeter/volume, coordinate geometry) and SAT geometry questions. " +
+        "When a shape is used, the question text should refer to the figure (e.g. \"In the triangle shown, find...\") rather than re-stating all the numbers.";
+      const text = await callClaude(
+        [{role:'user', content:prompt}],
+        "You are an API that returns only valid, minified JSON for math quizzes. Never include markdown or commentary. " + JSON_LATEX_RULES
+      );
+      if(typeof sabaqTakeUsage === 'function'){
+        const u = sabaqTakeUsage();
+        usedInputTokens += u.input_tokens; usedOutputTokens += u.output_tokens;
+      }
+      const data = extractJSON(text);
+      (data.questions || []).forEach(q => {
+        const key = normalizeQuestionText(q.q);
+        if(key && !seen.has(key) && all.length < total){
+          seen.add(key);
+          all.push(q);
+        }
+      });
+    }
+    renderQuiz(all);
+    statusEl.textContent = 'Pick an answer for each question, then check your score.' +
+      (all.length < total ? ' (Generated ' + all.length + ' unique questions.)' : '');
+
+    if(typeof sabaqTrackUsage === 'function'){
+      sabaqTrackUsage({
+        tool: 'quiz', title: course + ': ' + topic, course: course, chapter: chapter, topics: selectedTopics,
+        extra: { question_count: all.length, difficulty: difficulty, question_type: qType },
+        inputTokens: usedInputTokens, outputTokens: usedOutputTokens
+      });
+    }
+  }catch(err){
+    statusEl.textContent = 'Could not generate quiz: ' + err.message;
+    statusEl.classList.add('error');
+  }
+}
+
+let currentQuizQuestions = [];
+
+function renderQuiz(questions){
+  currentQuizQuestions = questions;
+  const box = document.getElementById('qzBox');
+  let html = '';
+  questions.forEach((q, qi) => {
+    html += '<div class="quiz-q" data-q="' + qi + '" data-answer="' + q.answer + '">';
+    html += '<div class="qtext">' + renderQuestionContent(q.q, '<span class="q-num">' + (qi+1) + '.</span>') + '</div>';
+    if(q.table){
+      html += buildTableHtml(q.table);
+    }
+    if(q.graph && (q.graph.expression || (q.graph.functions && q.graph.functions.length))){
+      html += '<div class="quiz-graph-wrap"><canvas class="quiz-graph" width="380" height="280" ' + graphCanvasAttrs(q.graph) + '></canvas></div>';
+    } else if(q.shape && q.shape.type){
+      const enc = encodeURIComponent(JSON.stringify(q.shape));
+      html += '<div class="quiz-graph-wrap"><canvas class="quiz-graph quiz-shape" width="380" height="280" data-shape="' + enc + '"></canvas></div>';
+    }
+    (q.options || []).forEach((opt, oi) => {
+      html += '<label class="quiz-opt" data-opt="' + oi + '">' +
+        '<input type="radio" name="q' + qi + '" value="' + oi + '"> <span>' + escapeHtml(cleanInlineText(opt)) + '</span></label>';
+    });
+    html += '<div class="quiz-explain" style="display:none;">' + escapeHtml(cleanInlineText(q.explanation)) + '</div>';
+    html += '<button class="btn btn-outline quiz-solution-btn" style="display:none;" onclick="showStepSolution(' + qi + ')">Check solution</button>';
+    html += '<div class="quiz-solution" id="qsol' + qi + '" style="display:none;"></div>';
+    html += '</div>';
+  });
+  html += '<button class="btn btn-coral" style="margin-top:1rem;" onclick="checkQuiz()">Check answers</button>';
+  html += '<div class="quiz-score" style="display:none;" id="quizScore"></div>';
+  box.innerHTML = html;
+  renderMath(box);
+  renderGraphCanvases(box);
+}
+
+function checkQuiz(){
+  const qDivs = document.querySelectorAll('.quiz-q');
+  let correct = 0;
+  qDivs.forEach(div => {
+    const answer = parseInt(div.dataset.answer, 10);
+    const selected = div.querySelector('input:checked');
+    const selectedVal = selected ? parseInt(selected.value, 10) : -1;
+    if(selectedVal === answer) correct++;
+    div.querySelectorAll('.quiz-opt').forEach(opt => {
+      const oi = parseInt(opt.dataset.opt, 10);
+      if(oi === answer) opt.classList.add('correct');
+      else if(oi === selectedVal) opt.classList.add('incorrect');
+    });
+    div.querySelector('.quiz-explain').style.display = 'block';
+    const solBtn = div.querySelector('.quiz-solution-btn');
+    if(solBtn) solBtn.style.display = 'inline-block';
+  });
+  const scoreEl = document.getElementById('quizScore');
+  scoreEl.style.display = 'block';
+  scoreEl.textContent = 'Score: ' + correct + ' / ' + qDivs.length;
+}
+
+async function showStepSolution(qi){
+  const container = document.getElementById('qsol' + qi);
+  const btn = document.querySelector('.quiz-q[data-q="' + qi + '"] .quiz-solution-btn');
+  if(!container || !btn) return;
+
+  if(container.dataset.loaded === '1'){
+    const showing = container.style.display !== 'none';
+    container.style.display = showing ? 'none' : 'block';
+    btn.textContent = showing ? 'Check solution' : 'Hide solution';
+    return;
+  }
+
+  const q = currentQuizQuestions[qi];
+  if(!q) return;
+  btn.disabled = true;
+  btn.textContent = 'Loading...';
+  container.style.display = 'block';
+  container.innerHTML = '<p class="q-para">Working through the solution...</p>';
+
+  try{
+    const correctLetter = String.fromCharCode(65 + q.answer);
+    const optionsText = (q.options || []).map((opt, oi) => String.fromCharCode(65 + oi) + ') ' + opt).join('   ');
+    const prompt = "Question: " + q.q + "\nOptions: " + optionsText +
+      "\nThe correct answer is " + correctLetter + ") " + (q.options ? q.options[q.answer] : '') + ".\n" +
+      "Write a clear, numbered step-by-step solution (at most 6 short steps) showing exactly how to reach the correct answer from the question. " +
+      "Use LaTeX for any math, with $...$ for inline expressions.";
+    const text = await callClaude(
+      [{role:'user', content: prompt}],
+      "You are a patient math tutor. Respond with plain text only — numbered steps, one per line, no markdown headers, no JSON. Use $...$ for inline LaTeX math."
+    );
+    container.innerHTML = renderQuestionContent(text, '');
+    renderMath(container);
+    container.dataset.loaded = '1';
+    btn.textContent = 'Hide solution';
+  }catch(err){
+    container.innerHTML = '<p class="q-para">Could not load solution: ' + escapeHtml(err.message) + '</p>';
+    btn.textContent = 'Check solution';
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+/* ============ WORKSHEETS ============ */
+const WS_BW_THEME = { accent:'#000000', ink:'#000000', axis:'#000000', grid:'#dddddd', shadeFill:'rgba(0,0,0,0.12)', shadeStroke:'#000000', mono:true };
+
+async function generateWorksheet(){
+  const course = document.getElementById('wsCourse').value;
+  const chapter = document.getElementById('wsChapter').value;
+  const statusEl = document.getElementById('wsStatus');
+  const selectedTopics = getSelectedTopics('wsTopicsBox');
+  if(selectedTopics.length === 0){
+    statusEl.textContent = 'Please select at least one topic.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const topic = chapter + ' — ' + selectedTopics.join(', ');
+  const total = parseInt(document.getElementById('wsCount').value, 10);
+  const style = document.getElementById('wsStyle').value;
+  const notes = document.getElementById('wsNotes').value.trim();
+  statusEl.classList.remove('error');
+
+  const formats = [];
+  if(document.getElementById('wsFmtMcq').checked) formats.push('Multiple Choice');
+  if(document.getElementById('wsFmtShort').checked) formats.push('Short Answer');
+  if(document.getElementById('wsFmtFree').checked) formats.push('Free Response');
+  if(formats.length === 0){
+    statusEl.textContent = 'Pick at least one question format.';
+    statusEl.classList.add('error');
+    return;
+  }
+  const formatText = formats.length === 1
+    ? ('Every question should be ' + formats[0] + ' format.')
+    : ('Use a mix of these formats across the questions: ' + formats.join(', ') + '.');
+
+  if(typeof sabaqCheckCredits === 'function'){
+    const ok = await sabaqCheckCredits('worksheet', 'wsStatus');
+    if(!ok) return;
+  }
+
+  document.getElementById('wsGenBtn').disabled = true;
+  document.getElementById('downloadWsBtn').style.display = 'none';
+  document.getElementById('wsPdfLink').style.display = 'none';
+  worksheetData = { title: '', subtitle: '', questions: [] };
+
+  const BATCH = 3;
+  let seen = new Set();
+  let attempts = 0;
+  let usedInputTokens = 0, usedOutputTokens = 0;
+  const maxAttempts = Math.ceil(total / BATCH) + 3;
+
+  try{
+    while(worksheetData.questions.length < total && attempts < maxAttempts){
+      attempts++;
+      const remaining = total - worksheetData.questions.length;
+      const count = Math.min(BATCH, remaining);
+      statusEl.textContent = 'Generating questions ' + (worksheetData.questions.length+1) + '-' + (worksheetData.questions.length+count) + ' of ' + total + '...';
+
+      let avoidText = '';
+      if(worksheetData.questions.length > 0){
+        avoidText = "Do NOT repeat or closely rephrase any of these already-used questions — cover different sub-skills or numbers instead:\n" +
+          worksheetData.questions.map((q,idx) => (idx+1) + ". " + q.q).join("\n") + "\n";
+      }
+
+      const prompt = "Create " + count + " practice worksheet questions for the course \"" + course + "\" on the topic \"" + topic + "\" (US curriculum). " +
+        formatText + " " + QUIZ_TYPE_INSTRUCTIONS[style] + " " +
+        (notes ? ("Extra instructions: " + notes + " ") : "") +
+        avoidText +
+        'Respond with ONLY valid JSON: {"title":"...","questions":[{"type":"mcq","q":"...","options":["...","...","...","..."],"answer":0,"explanation":"...",' +
+        '"table":{"headers":["...","..."],"rows":[["...","..."],["...","..."]]},' +
+        '"graph":{"expression":"...","xmin":-10,"xmax":10,"shade":{"a":0,"b":2},"markX":1},' +
+        '"shape":{"type":"triangle","points":[[0,0],[4,0],[0,3]],"labels":["A","B","C"],"sideLabels":["c","a","b"],"rightAngleAt":0,"angleLabels":[{"vertex":1,"label":"37°"}]}}]}\n' +
+        "\"type\" is \"mcq\" for multiple choice (include \"options\": a list of exactly 4 strings, and \"answer\" as the 0-based index of the correct option, a NUMBER), " +
+        "\"short\" for a short-answer question (omit \"options\"; \"answer\" is the final answer as a short string), or " +
+        "\"free\" for a free-response question needing multiple steps (omit \"options\"; \"answer\" is a full worked solution as a string). " +
+        "\"explanation\" is a brief (<=25 words) note on the method, shown in the answer key next to \"answer\". " +
+        "Include \"title\" only once (a short worksheet title for this topic). " +
+        "Use correct LaTeX for any math in the question, options, answer, or explanation.\n" +
+        "Each question should have AT MOST ONE of \"table\", \"graph\", or \"shape\" — never more than one, and omit all three if a picture/table wouldn't help. " +
+        "\"table\" presents a data set as {\"headers\":[...],\"rows\":[[...],...]} — use this whenever the question refers to data \"in the table\"; " +
+        "never put a table inside the \"q\" text itself. " +
+        "\"graph\" plots a math.js-compatible expression of x over [xmin, xmax]; add \"shade\":{\"a\":..,\"b\":..} to shade a region (area/integral/volume) " +
+        "and/or \"markX\" to mark an x-value with a dashed line (limit/tangent point). For TWO functions (area between curves, comparing f and g), use " +
+        "\"functions\":[{\"expr\":\"...\",\"label\":\"f(x)\"},{\"expr\":\"...\",\"label\":\"g(x)\"}] instead of \"expression\" (drawn as distinct dashed/solid lines for print) " +
+        "and \"shadeBetween\":{\"a\":..,\"b\":..} (using the exact intersection x-values) instead of \"shade\" — never combine two functions into a single \"expression\". " +
+        "\"shape\" draws a labeled geometry diagram with type \"triangle\", \"right_triangle\", \"polygon\", \"circle\", or \"rectangle\", using \"points\"/\"labels\"/\"sideLabels\"/\"rightAngleAt\"/\"angleLabels\", " +
+        "or for circle \"center\"/\"radius\"/\"labels\":{\"center\":..,\"radius\":..}, or for rectangle \"width\"/\"height\"/\"labels\":{\"width\":..,\"height\":..}. " +
+        "Use \"graph\" for function/limit/area/volume questions and \"shape\" for geometry figures, whenever it helps the student understand the problem.";
+
+      const text = await callClaude(
+        [{role:'user', content:prompt}],
+        "You are an API that returns only valid, minified JSON for math worksheets. Never include markdown or commentary. " + JSON_LATEX_RULES
+      );
+      if(typeof sabaqTakeUsage === 'function'){
+        const u = sabaqTakeUsage();
+        usedInputTokens += u.input_tokens; usedOutputTokens += u.output_tokens;
+      }
+      const data = extractJSON(text);
+      if(!worksheetData.title && data.title){ worksheetData.title = data.title; }
+      (data.questions || []).forEach(q => {
+        const key = normalizeQuestionText(q.q);
+        if(key && !seen.has(key) && worksheetData.questions.length < total){
+          seen.add(key);
+          worksheetData.questions.push(q);
+        }
+      });
+    }
+
+    worksheetData.subtitle = course + ' — ' + topic;
+    if(!worksheetData.title){ worksheetData.title = topic + ' Practice Worksheet'; }
+    renderWorksheetOutline(worksheetData);
+    statusEl.textContent = 'Worksheet ready (' + worksheetData.questions.length + ' questions). Download below.' +
+      (worksheetData.questions.length < total ? ' (Generated ' + worksheetData.questions.length + ' unique questions.)' : '');
+    document.getElementById('downloadWsBtn').style.display = 'inline-block';
+
+    if(typeof sabaqTrackUsage === 'function'){
+      sabaqTrackUsage({
+        tool: 'worksheet', title: worksheetData.title, course: course, chapter: chapter, topics: selectedTopics,
+        extra: { question_count: worksheetData.questions.length, style: style, prompt_used: topic },
+        inputTokens: usedInputTokens, outputTokens: usedOutputTokens
+      });
+    }
+  }catch(err){
+    statusEl.textContent = 'Could not generate worksheet: ' + err.message;
+    statusEl.classList.add('error');
+  }finally{
+    document.getElementById('wsGenBtn').disabled = false;
+  }
+}
+
+function renderWorksheetOutline(data){
+  const box = document.getElementById('wsTocBox');
+  let html = '<h3>' + escapeHtml(data.title || 'Worksheet') + '</h3>';
+  if(data.subtitle){
+    html += '<p style="color:var(--ink-soft); font-size:0.92rem; margin-top:-0.5rem;">' + escapeHtml(data.subtitle) + '</p>';
+  }
+  const typeLabels = { mcq: 'MCQ', short: 'Short answer', free: 'Free response' };
+  (data.questions || []).forEach((q, i) => {
+    const label = typeLabels[q.type] || 'Question';
+    let snippet = cleanInlineText(q.q || '');
+    if(snippet.length > 70){ snippet = snippet.slice(0, 70) + '…'; }
+    let tag = '';
+    if(q.graph && q.graph.expression){ tag = ' [graph]'; }
+    else if(q.shape && q.shape.type){ tag = ' [diagram]'; }
+    else if(q.table){ tag = ' [table]'; }
+    html += '<div class="toc-item"><span class="label">' + (i+1) + '. [' + label + ']' + tag + ' ' + escapeHtml(snippet) + '</span><span class="leader"></span></div>';
+  });
+  box.innerHTML = html;
+  renderMath(box);
+}
+
+/* ---- Build the off-screen worksheet, paginated into fixed-size .ws-page divs (for PDF export) ---- */
+const WS_PAGE_W = 816, WS_PAGE_H = 1056, WS_PAGE_PAD = 72;
+const WS_CONTENT_H = WS_PAGE_H - WS_PAGE_PAD * 2;
+
+function buildWorksheetDeck(data, pagesTarget){
+  const container = document.getElementById('worksheetContainer');
+  container.innerHTML = '';
+
+  // Off-screen "measure" area, same content width as a printed page, used to
+  // build every block once, render KaTeX/canvases, then measure real heights.
+  const measure = document.createElement('div');
+  measure.style.position = 'absolute';
+  measure.style.left = '-100000px';
+  measure.style.top = '0';
+  measure.style.width = (WS_PAGE_W - WS_PAGE_PAD * 2) + 'px';
+  measure.style.fontFamily = "'Inter',sans-serif";
+  measure.style.fontSize = '12pt';
+  measure.style.lineHeight = '1.45';
+  measure.style.color = '#000';
+  measure.style.background = '#fff';
+  document.body.appendChild(measure);
+
+  const blocks = []; // { el, breakBefore }
+
+  const header = document.createElement('div');
+  header.className = 'ws-header';
+  header.innerHTML =
+    '<div class="ws-header-row"><strong>Mathaversity \u00B7 Sabaq</strong>' +
+    '<span>Name: ______________________&nbsp;&nbsp;&nbsp; Date: ____________</span></div>' +
+    '<h1>' + escapeHtml(data.title || 'Practice Worksheet') + '</h1>' +
+    '<p>' + escapeHtml(data.subtitle || '') + '</p>';
+  measure.appendChild(header);
+  blocks.push({ el: header, breakBefore: false });
+
+  // Work-space heights scale with the requested page length.
+  const shortHeight = Math.max(24, Math.min(80, 16 + pagesTarget * 6));
+  const freeHeight = Math.max(60, Math.min(260, 50 + pagesTarget * 22));
+
+  (data.questions || []).forEach((q, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'ws-question';
+    let bodyHtml = '<div class="ws-qtext">' + renderQuestionContent(q.q || '') + '</div>';
+    if(q.table){
+      bodyHtml += buildTableHtml(q.table);
+    }
+
+    if(q.type === 'mcq' && Array.isArray(q.options)){
+      bodyHtml += '<div class="ws-options">' + q.options.map((opt, oi) =>
+        '<span>(' + String.fromCharCode(65 + oi) + ') ' + escapeHtml(cleanInlineText(opt)) + '</span>'
+      ).join('') + '</div>';
+    }
+
+    if(q.graph && (q.graph.expression || (q.graph.functions && q.graph.functions.length))){
+      bodyHtml += '<div class="ws-graph-wrap"><canvas width="360" height="270" ' + graphCanvasAttrs(q.graph) + '></canvas></div>';
+    } else if(q.shape && q.shape.type){
+      const enc = encodeURIComponent(JSON.stringify(q.shape));
+      bodyHtml += '<div class="ws-graph-wrap"><canvas width="360" height="270" data-shape="' + enc + '"></canvas></div>';
+    }
+
+    if(q.type === 'short'){
+      bodyHtml += '<div class="ws-blank" style="height:' + shortHeight + 'px;"></div>';
+    } else if(q.type === 'free'){
+      bodyHtml += '<div class="ws-blank" style="height:' + freeHeight + 'px;"></div>' +
+                  '<div class="ws-blank" style="height:' + freeHeight + 'px;"></div>';
+    }
+
+    wrap.innerHTML = '<div class="ws-qnum">' + (i+1) + '.</div><div class="ws-qbody">' + bodyHtml + '</div>';
+    measure.appendChild(wrap);
+    blocks.push({ el: wrap, breakBefore: false });
+  });
+
+  const akHead = document.createElement('h2');
+  akHead.className = 'ws-akhead';
+  akHead.textContent = 'Answer Key';
+  measure.appendChild(akHead);
+  blocks.push({ el: akHead, breakBefore: true });
+
+  (data.questions || []).forEach((q, i) => {
+    let ans;
+    if(q.type === 'mcq' && Array.isArray(q.options) && typeof q.answer === 'number' && q.options[q.answer] !== undefined){
+      ans = '(' + String.fromCharCode(65 + q.answer) + ') ' + cleanInlineText(q.options[q.answer]);
+    } else {
+      ans = (q.answer !== undefined && q.answer !== null) ? cleanInlineText(String(q.answer)) : '';
+    }
+    const item = document.createElement('div');
+    item.className = 'ws-akitem';
+    item.innerHTML = '<strong>' + (i+1) + '.</strong> ' + escapeHtml(ans) +
+      (q.explanation ? ' <em>(' + escapeHtml(cleanInlineText(q.explanation)) + ')</em>' : '');
+    measure.appendChild(item);
+    blocks.push({ el: item, breakBefore: false });
+  });
+
+  // Render math and draw any graph/shape canvases before measuring sizes.
+  renderMath(measure);
+  renderGraphCanvases(measure, WS_BW_THEME);
+
+  // Measure each block's footprint (including its own margins).
+  blocks.forEach(b => {
+    const rect = b.el.getBoundingClientRect();
+    const cs = getComputedStyle(b.el);
+    b.height = rect.height + parseFloat(cs.marginTop || 0) + parseFloat(cs.marginBottom || 0);
+  });
+
+  // Greedily pack blocks into pages.
+  const pages = [];
+  let current = [];
+  let used = 0;
+  blocks.forEach(b => {
+    const startNew = current.length > 0 && (b.breakBefore || used + b.height > WS_CONTENT_H);
+    if(startNew){
+      pages.push(current);
+      current = [];
+      used = 0;
+    }
+    current.push(b.el);
+    used += b.height;
+  });
+  if(current.length > 0){ pages.push(current); }
+
+  pages.forEach(pageBlocks => {
+    const pageDiv = document.createElement('div');
+    pageDiv.className = 'ws-page';
+    pageBlocks.forEach(el => pageDiv.appendChild(el)); // moves the node (canvases keep their drawn content)
+    container.appendChild(pageDiv);
+  });
+
+  document.body.removeChild(measure);
+}
+
+async function downloadWorksheetPdf(){
+  if(!worksheetData) return;
+  const statusEl = document.getElementById('wsStatus');
+  statusEl.classList.remove('error');
+  if(typeof window.jspdf === 'undefined'){
+    statusEl.textContent = 'PDF library failed to load (check your network/connection) — try reloading the page.';
+    statusEl.classList.add('error');
+    return;
+  }
+  statusEl.textContent = 'Building PDF (laying out pages)...';
+  document.getElementById('wsPdfLink').style.display = 'none';
+  const pagesTarget = parseInt(document.getElementById('wsPages').value, 10);
+  buildWorksheetDeck(worksheetData, pagesTarget);
+  await new Promise(r => setTimeout(r, 300)); // let fonts/KaTeX settle
+
+  try{
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'in', format: [8.5, 11] });
+    const pageEls = document.querySelectorAll('#worksheetContainer .ws-page');
+    let i = 0;
+    for(const el of pageEls){
+      i++;
+      statusEl.textContent = 'Rendering page ' + i + ' of ' + pageEls.length + '...';
+      const canvas = await html2canvas(el, { scale: 2, backgroundColor: '#ffffff' });
+      const img = canvas.toDataURL('image/jpeg', 0.92);
+      if(i > 1){ doc.addPage([8.5, 11], 'portrait'); }
+      doc.addImage(img, 'JPEG', 0, 0, 8.5, 11);
+    }
+    const safeName = (worksheetData.title || 'worksheet').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+    presentPdfBlob(doc, safeName + '.pdf', 'wsPdfLink');
+    statusEl.textContent = 'PDF ready (' + pageEls.length + ' page' + (pageEls.length === 1 ? '' : 's') + ') — click "Open / save PDF" below.';
+  }catch(err){
+    statusEl.textContent = 'Could not build PDF: ' + err.message;
+    statusEl.classList.add('error');
+  }
+}
+
+/* ============ INIT ============ */
+lsSwitchTab('courses');
+qzSwitchTab('courses');
+populateCourseSelect('wsCourse', 'wsChapter', 'wsTopicsBox');
+populateAskCourseSelect();
+plotGraph();
+updateSchemePreview();
+
+if(!SpeechRecognitionAPI){
+  const micBtn = document.getElementById('micBtn');
+  micBtn.classList.add('unsupported');
+  micBtn.title = 'Voice input not supported in this browser';
+}
+if(!('speechSynthesis' in window)){
+  document.getElementById('readAloud').closest('.field').style.display = 'none';
+}
+</script>
+</body>
+</html>

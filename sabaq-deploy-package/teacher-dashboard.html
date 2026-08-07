@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard — Sabaq Math</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/auth-theme.css">
+<style>
+  .search-row{ display:flex; gap:0.6rem; margin-bottom:1rem; }
+  .search-row input{
+    flex:1; padding:0.6rem 0.8rem; border:1px solid var(--paper-line);
+    border-radius:8px; font-family:'Inter',sans-serif; font-size:0.9rem;
+  }
+  .type-badge{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; padding:0.2rem 0.5rem;
+    border-radius:6px; background:var(--paper); border:1px solid var(--paper-line); color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="sabaq-topbar">
+  <a class="sabaq-brand" href="/index.html"><span class="badge">M</span> Sabaq</a>
+  <div class="sabaq-topbar-right">
+    <span id="creditsBadge">— credits</span>
+    <button onclick="location.href='/index.html'">Open App</button>
+    <button onclick="sabaqLogout()">Log out</button>
+  </div>
+</div>
+
+<div class="sabaq-dash">
+  <div class="sabaq-dash-header">
+    <h1 id="welcomeHeading">Welcome back</h1>
+    <p id="welcomeSub">Loading your dashboard...</p>
+  </div>
+
+  <div class="sabaq-stat-grid" id="statGrid">
+    <div class="sabaq-stat-card"><div class="label">Plan</div><div class="value" id="statPlan">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Credits Remaining</div><div class="value" id="statCredits">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Tokens Used</div><div class="value" id="statTokens">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Lessons</div><div class="value" id="statLessons">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">PPT Lessons</div><div class="value" id="statPptLessons">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Worksheets</div><div class="value" id="statWorksheets">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Quizzes</div><div class="value" id="statQuizzes">—</div></div>
+  </div>
+
+  <div class="sabaq-panel">
+    <h2>Recent Activity</h2>
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Search your history by title...">
+    </div>
+    <div id="historyContainer"><div class="sabaq-loading">Loading history...</div></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/lib/supabaseClient.js"></script>
+<script src="/lib/auth-guard.js"></script>
+<script>
+let currentProfile = null;
+let allHistory = [];
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+function formatDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+}
+
+async function loadCounts(teacherId){
+  const tables = [
+    ['lessons', 'statLessons'],
+    ['ppt_lessons', 'statPptLessons'],
+    ['worksheets', 'statWorksheets'],
+    ['quizzes', 'statQuizzes'],
+  ];
+  for(const [table, elId] of tables){
+    const { count } = await sabaqSupabase
+      .from(table)
+      .select('*', { count: 'exact', head: true })
+      .eq('teacher_id', teacherId);
+    document.getElementById(elId).textContent = (count ?? 0).toLocaleString();
+  }
+}
+
+async function loadHistory(userId){
+  const container = document.getElementById('historyContainer');
+  const { data, error } = await sabaqSupabase
+    .from('history')
+    .select('*')
+    .eq('user_id', userId)
+    .is('deleted_at', null)
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  if(error){
+    container.innerHTML = '<div class="sabaq-empty">Could not load history: ' + escapeHtml(error.message) + '</div>';
+    return;
+  }
+
+  allHistory = data || [];
+  renderHistory(allHistory);
+}
+
+function renderHistory(rows){
+  const container = document.getElementById('historyContainer');
+  if(!rows.length){
+    container.innerHTML = '<div class="sabaq-empty">Nothing generated yet — resources you create in the app will show up here.</div>';
+    return;
+  }
+
+  let html = '<table class="sabaq-table"><thead><tr><th>Title</th><th>Type</th><th>Date</th><th></th></tr></thead><tbody>';
+  rows.forEach(row => {
+    html += '<tr data-id="' + row.id + '">' +
+      '<td>' + escapeHtml(row.title || 'Untitled') + '</td>' +
+      '<td><span class="type-badge">' + escapeHtml(row.resource_type) + '</span></td>' +
+      '<td>' + formatDate(row.created_at) + '</td>' +
+      '<td class="row-actions">' +
+        '<button class="fav' + (row.is_favourite ? ' active' : '') + '" onclick="toggleFavourite(\'' + row.id + '\', ' + !row.is_favourite + ')">' + (row.is_favourite ? '★ Favourited' : '☆ Favourite') + '</button>' +
+        '<button onclick="deleteHistoryRow(\'' + row.id + '\')">Delete</button>' +
+      '</td>' +
+    '</tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+}
+
+async function toggleFavourite(id, newValue){
+  await sabaqSupabase.from('history').update({ is_favourite: newValue }).eq('id', id);
+  const row = allHistory.find(r => r.id === id);
+  if(row) row.is_favourite = newValue;
+  renderHistory(filteredHistory());
+}
+
+async function deleteHistoryRow(id){
+  await sabaqSupabase.from('history').update({ deleted_at: new Date().toISOString() }).eq('id', id);
+  allHistory = allHistory.filter(r => r.id !== id);
+  renderHistory(filteredHistory());
+}
+
+function filteredHistory(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  if(!q) return allHistory;
+  return allHistory.filter(r => (r.title || '').toLowerCase().includes(q));
+}
+
+document.getElementById('searchInput').addEventListener('input', () => {
+  renderHistory(filteredHistory());
+});
+
+(async () => {
+  const result = await sabaqRequireAuth(['teacher']);
+  if(!result) return;
+  currentProfile = result.profile;
+
+  document.getElementById('welcomeHeading').textContent = 'Welcome back, ' + (currentProfile.full_name || currentProfile.email);
+  document.getElementById('welcomeSub').textContent = currentProfile.email;
+  document.getElementById('creditsBadge').textContent = currentProfile.credits + ' credits';
+  document.getElementById('statPlan').textContent = currentProfile.plan;
+  document.getElementById('statCredits').textContent = currentProfile.credits;
+  document.getElementById('statTokens').textContent = (currentProfile.tokens_used || 0).toLocaleString();
+
+  await loadCounts(currentProfile.id);
+  await loadHistory(currentProfile.id);
+})();
+</script>
+</body>
+</html>

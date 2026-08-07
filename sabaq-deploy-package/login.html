@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — Sabaq Math</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/auth-theme.css">
+</head>
+<body>
+
+<div class="sabaq-topbar">
+  <a class="sabaq-brand" href="/index.html">
+    <span class="badge">M</span> Sabaq
+  </a>
+</div>
+
+<div class="sabaq-auth-wrap">
+  <div class="sabaq-auth-card">
+    <h1>Welcome back</h1>
+    <p class="sub">Log in to continue.</p>
+
+    <form id="loginForm">
+      <div class="sabaq-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="email" required>
+      </div>
+      <div class="sabaq-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="sabaq-btn" id="loginBtn">Log in</button>
+      <div class="sabaq-status" id="statusEl"></div>
+    </form>
+
+    <p class="sabaq-alt-link"><a href="/forgot-password.html">Forgot your password?</a></p>
+    <p class="sabaq-alt-link">New here? <a href="/signup.html">Create an account</a></p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/lib/supabaseClient.js"></script>
+<script>
+function showStatus(msg, type){
+  const el = document.getElementById('statusEl');
+  el.textContent = msg;
+  el.className = 'sabaq-status show ' + type;
+}
+
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const btn = document.getElementById('loginBtn');
+
+  btn.disabled = true;
+  btn.textContent = 'Logging in...';
+
+  const { data, error } = await sabaqSupabase.auth.signInWithPassword({ email, password });
+
+  if(error){
+    showStatus(error.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Log in';
+    return;
+  }
+
+  const { data: profile, error: profileError } = await sabaqSupabase
+    .from('profiles')
+    .select('role')
+    .eq('id', data.user.id)
+    .single();
+
+  if(profileError || !profile){
+    showStatus('Logged in, but no profile was found for this account yet. Please try again shortly.', 'error');
+    btn.disabled = false;
+    btn.textContent = 'Log in';
+    return;
+  }
+
+  window.location.href = profile.role === 'teacher' ? '/teacher-dashboard.html' : '/student-dashboard.html';
+});
+
+// If already logged in, skip straight to the right dashboard.
+(async () => {
+  const { data: { session } } = await sabaqSupabase.auth.getSession();
+  if(!session) return;
+  const { data: profile } = await sabaqSupabase.from('profiles').select('role').eq('id', session.user.id).single();
+  if(profile){
+    window.location.href = profile.role === 'teacher' ? '/teacher-dashboard.html' : '/student-dashboard.html';
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard — Sabaq Math</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/auth-theme.css">
+<style>
+  .week-chart{ display:flex; align-items:flex-end; gap:0.6rem; height:110px; padding-top:1rem; }
+  .week-bar-wrap{ flex:1; display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+  .week-bar{ width:100%; background:var(--yellow); border-radius:4px 4px 0 0; min-height:3px; }
+  .week-bar-label{ font-size:0.72rem; color:var(--ink-soft); font-family:'JetBrains Mono',monospace; }
+  .recommend-box{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    background:var(--board); color:var(--chalk); border-radius:var(--radius); padding:1.2rem 1.4rem;
+  }
+  .recommend-box h3{ font-family:'Fraunces',serif; margin:0 0 0.3rem; color:var(--yellow); font-size:1.1rem; }
+  .recommend-box p{ margin:0; font-size:0.88rem; color:var(--chalk-dim); }
+  .recommend-box button{
+    flex-shrink:0; background:var(--yellow); color:var(--board-deep); border:none; border-radius:8px;
+    padding:0.6rem 1.1rem; font-family:'Inter',sans-serif; font-weight:700; font-size:0.85rem; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="sabaq-topbar">
+  <a class="sabaq-brand" href="/index.html"><span class="badge">M</span> Sabaq</a>
+  <div class="sabaq-topbar-right">
+    <span id="creditsBadge">— credits</span>
+    <button onclick="location.href='/index.html'">Open App</button>
+    <button onclick="sabaqLogout()">Log out</button>
+  </div>
+</div>
+
+<div class="sabaq-dash">
+  <div class="sabaq-dash-header">
+    <h1 id="welcomeHeading">Welcome back</h1>
+    <p id="welcomeSub">Loading your dashboard...</p>
+  </div>
+
+  <div class="sabaq-stat-grid" id="statGrid">
+    <div class="sabaq-stat-card"><div class="label">Credits Remaining</div><div class="value" id="statCredits">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Study Streak</div><div class="value" id="statStreak">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Questions Solved</div><div class="value" id="statQuestions">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Average Accuracy</div><div class="value" id="statAccuracy">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Time Studied</div><div class="value" id="statTime">—</div></div>
+    <div class="sabaq-stat-card"><div class="label">Tokens Used</div><div class="value" id="statTokens">—</div></div>
+  </div>
+
+  <div class="sabaq-panel" id="recommendPanel" style="display:none;">
+    <div class="recommend-box">
+      <div>
+        <h3 id="recommendTitle">Recommended next topic</h3>
+        <p id="recommendText"></p>
+      </div>
+      <button onclick="location.href='/index.html'">Start practicing</button>
+    </div>
+  </div>
+
+  <div class="sabaq-panel">
+    <h2>Overall Progress</h2>
+    <p style="color:var(--ink-soft); font-size:0.85rem; margin-top:-0.6rem;" id="overallProgressLabel">—</p>
+    <div class="sabaq-progress-bar"><div id="overallProgressBar" style="width:0%;"></div></div>
+  </div>
+
+  <div class="sabaq-panel">
+    <h2>This Week</h2>
+    <div class="week-chart" id="weekChart"></div>
+  </div>
+
+  <div class="sabaq-panel">
+    <h2>Weak Topics</h2>
+    <div class="sabaq-tag-row" id="weakTopics"><div class="sabaq-empty">Not enough practice data yet.</div></div>
+  </div>
+
+  <div class="sabaq-panel">
+    <h2>Strong Topics</h2>
+    <div class="sabaq-tag-row" id="strongTopics"><div class="sabaq-empty">Not enough practice data yet.</div></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/lib/supabaseClient.js"></script>
+<script src="/lib/auth-guard.js"></script>
+<script>
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+function formatDuration(totalSeconds){
+  const s = totalSeconds || 0;
+  const hrs = Math.floor(s / 3600);
+  const mins = Math.round((s % 3600) / 60);
+  if(hrs > 0) return hrs + 'h ' + mins + 'm';
+  return mins + 'm';
+}
+
+async function loadStudyStats(studentId){
+  const { data: attempts } = await sabaqSupabase
+    .from('practice_attempts')
+    .select('is_correct, time_taken_seconds, created_at')
+    .eq('student_id', studentId);
+
+  const list = attempts || [];
+  document.getElementById('statQuestions').textContent = list.length.toLocaleString();
+
+  const correctCount = list.filter(a => a.is_correct).length;
+  const accuracy = list.length ? Math.round((correctCount / list.length) * 100) : 0;
+  document.getElementById('statAccuracy').textContent = list.length ? accuracy + '%' : '—';
+
+  const totalSeconds = list.reduce((sum, a) => sum + (a.time_taken_seconds || 0), 0);
+  document.getElementById('statTime').textContent = formatDuration(totalSeconds);
+
+  // Study streak: consecutive days (ending today or yesterday) with at least one attempt.
+  const daysWithActivity = new Set(list.map(a => new Date(a.created_at).toDateString()));
+  let streak = 0;
+  let cursor = new Date();
+  while(true){
+    if(daysWithActivity.has(cursor.toDateString())){
+      streak++;
+      cursor.setDate(cursor.getDate() - 1);
+    } else if(streak === 0 && cursor.toDateString() === new Date().toDateString()){
+      // today has no activity yet — still check yesterday onward before giving up
+      cursor.setDate(cursor.getDate() - 1);
+      if(!daysWithActivity.has(cursor.toDateString())) break;
+    } else {
+      break;
+    }
+  }
+  document.getElementById('statStreak').textContent = streak + (streak === 1 ? ' day' : ' days');
+
+  // Last 7 days activity chart
+  const today = new Date();
+  const counts = [];
+  for(let i = 6; i >= 0; i--){
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const dayStr = d.toDateString();
+    const count = list.filter(a => new Date(a.created_at).toDateString() === dayStr).length;
+    counts.push({ label: d.toLocaleDateString(undefined, { weekday: 'short' })[0], count });
+  }
+  const maxCount = Math.max(1, ...counts.map(c => c.count));
+  const chart = document.getElementById('weekChart');
+  chart.innerHTML = counts.map(c =>
+    '<div class="week-bar-wrap"><div class="week-bar" style="height:' + Math.max(3, (c.count / maxCount) * 90) + 'px;" title="' + c.count + ' questions"></div><div class="week-bar-label">' + c.label + '</div></div>'
+  ).join('');
+}
+
+async function loadMastery(studentId){
+  const { data } = await sabaqSupabase
+    .from('topic_mastery')
+    .select('course, topic, mastery_percentage')
+    .eq('student_id', studentId)
+    .order('mastery_percentage', { ascending: true });
+
+  const rows = data || [];
+
+  if(rows.length){
+    const avg = rows.reduce((sum, r) => sum + Number(r.mastery_percentage || 0), 0) / rows.length;
+    document.getElementById('overallProgressBar').style.width = Math.round(avg) + '%';
+    document.getElementById('overallProgressLabel').textContent = Math.round(avg) + '% average mastery across ' + rows.length + ' topic' + (rows.length === 1 ? '' : 's');
+  } else {
+    document.getElementById('overallProgressLabel').textContent = 'No topics practiced yet.';
+  }
+
+  const weak = rows.filter(r => Number(r.mastery_percentage) < 50).slice(0, 6);
+  const strong = rows.filter(r => Number(r.mastery_percentage) >= 80).slice(-6).reverse();
+
+  const weakEl = document.getElementById('weakTopics');
+  weakEl.innerHTML = weak.length
+    ? weak.map(r => '<span class="sabaq-tag weak">' + escapeHtml(r.topic) + '</span>').join('')
+    : '<div class="sabaq-empty">No weak topics identified yet — keep practicing.</div>';
+
+  const strongEl = document.getElementById('strongTopics');
+  strongEl.innerHTML = strong.length
+    ? strong.map(r => '<span class="sabaq-tag strong">' + escapeHtml(r.topic) + '</span>').join('')
+    : '<div class="sabaq-empty">No strong topics identified yet — keep practicing.</div>';
+
+  if(weak.length){
+    const next = weak[0];
+    document.getElementById('recommendPanel').style.display = 'block';
+    document.getElementById('recommendText').textContent =
+      next.topic + ' (' + next.course + ') is your lowest-mastery topic right now — a good place to focus next.';
+  }
+}
+
+(async () => {
+  const result = await sabaqRequireAuth(['student']);
+  if(!result) return;
+  const profile = result.profile;
+
+  document.getElementById('welcomeHeading').textContent = 'Welcome back, ' + (profile.full_name || profile.email);
+  document.getElementById('welcomeSub').textContent = profile.email;
+  document.getElementById('creditsBadge').textContent = profile.credits + ' credits';
+  document.getElementById('statCredits').textContent = profile.credits;
+  document.getElementById('statTokens').textContent = (profile.tokens_used || 0).toLocaleString();
+
+  await loadStudyStats(profile.id);
+  await loadMastery(profile.id);
+})();
+</script>
+</body>
+</html>
