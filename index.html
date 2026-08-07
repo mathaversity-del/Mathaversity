@@ -231,6 +231,18 @@ img{max-width:100%;}
 .field-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
 @media (max-width:600px){ .field-row{grid-template-columns:1fr;} }
 
+/* ---------- QUIZ COURSE / TEST PREP TABS ---------- */
+.qz-tab-row{display:flex; gap:0.5rem; margin-top:0.9rem;}
+.qz-tab-btn{
+  font-family:'Inter',sans-serif; font-weight:700; font-size:0.92rem;
+  padding:0.55rem 1.3rem; border-radius:999px; border:2px solid var(--paper-line);
+  background:#fff; color:var(--ink-soft); cursor:pointer; transition:all .12s ease;
+}
+.qz-tab-btn:hover{border-color:var(--ink-soft); color:var(--ink);}
+.qz-tab-btn.active{
+  background:var(--board); border-color:var(--board); color:var(--chalk);
+}
+
 /* ---------- TOPICS CHECKLIST BOX ---------- */
 .topics-box{
   border:1px solid var(--paper-line); border-radius:8px; background:#fff;
@@ -715,7 +727,11 @@ footer p{margin:0.5rem 0;}
 
     <div class="studio-grid">
       <div>
-        <div class="field-row">
+        <div class="qz-tab-row" role="tablist">
+          <button type="button" class="qz-tab-btn active" id="lsTabCourses" onclick="lsSwitchTab('courses')">Courses</button>
+          <button type="button" class="qz-tab-btn" id="lsTabTestPrep" onclick="lsSwitchTab('testprep')">Test Prep</button>
+        </div>
+        <div class="field-row" style="margin-top:0.8rem;">
           <div class="field">
             <label for="lsCourse">Course</label>
             <select id="lsCourse" onchange="populateChapters('lsCourse','lsChapter','lsTopicsBox')"></select>
@@ -895,6 +911,10 @@ footer p{margin:0.5rem 0;}
       <div class="tool-card wide">
         <h3>Practice quiz</h3>
         <p>Choose a course and topic for a multiple-choice quiz (up to 30 questions) with instant feedback and explanations.</p>
+        <div class="qz-tab-row" role="tablist">
+          <button type="button" class="qz-tab-btn active" id="qzTabCourses" onclick="qzSwitchTab('courses')">Courses</button>
+          <button type="button" class="qz-tab-btn" id="qzTabTestPrep" onclick="qzSwitchTab('testprep')">Test Prep</button>
+        </div>
         <div class="field-row" style="margin-top:0.8rem;">
           <div class="field" style="margin-bottom:0.5rem;">
             <label for="qzCourse">Course</label>
@@ -986,8 +1006,8 @@ footer p{margin:0.5rem 0;}
 /* ============ MATH CURRICULUM ============ */
 const COURSE_GROUPS = [
   {
-    label: "Elementary",
-    courses: [
+    "label": "Elementary",
+    "courses": [
       "Kindergarten Math",
       "Grade 1 Math",
       "Grade 2 Math",
@@ -997,8 +1017,8 @@ const COURSE_GROUPS = [
     ]
   },
   {
-    label: "Middle School",
-    courses: [
+    "label": "Middle School",
+    "courses": [
       "Grade 6 Math",
       "Grade 7 Math",
       "Grade 8 Math",
@@ -1006,8 +1026,8 @@ const COURSE_GROUPS = [
     ]
   },
   {
-    label: "High School Math",
-    courses: [
+    "label": "High School Math",
+    "courses": [
       "Algebra 1",
       "Geometry",
       "Algebra 2",
@@ -1018,26 +1038,32 @@ const COURSE_GROUPS = [
     ]
   },
   {
-    label: "AP Courses",
-    courses: [
-      "AP Precalculus",
+    "label": "College Math",
+    "courses": [
+      "College Algebra",
+      "Linear Algebra",
+      "Calculus 1",
+      "Calculus 2"
+    ]
+  },
+  {
+    "label": "Test Prep",
+    "courses": [
+      "SAT Math",
+      "ACT Math",
       "AP Calculus AB",
       "AP Calculus BC",
-      "AP Statistics"
-    ]
-  },
-  {
-    label: "Test Prep",
-    courses: [
-      "SAT",
-      "ACT"
-    ]
-  },
-  {
-    label: "College Math",
-    courses: [
-      "College Algebra",
-      "Linear Algebra"
+      "AP Precalculus",
+      "AP Statistics",
+      "AMC 8",
+      "AMC 10",
+      "AMC 12",
+      "AIME",
+      "MATHCOUNTS",
+      "Math Kangaroo",
+      "PSAT/NMSQT",
+      "ACCUPLACER",
+      "ALEKS Placement Test"
     ]
   }
 ];
@@ -1991,76 +2017,6 @@ const COURSES = {
       "Interpreting Computer Output"
     ]
   },
-  "SAT": {
-    "Heart of Algebra": [
-      "Linear Equations",
-      "Linear Inequalities",
-      "Systems of Linear Equations",
-      "Linear Word Problems"
-    ],
-    "Problem Solving & Data Analysis": [
-      "Ratios, Rates & Proportions",
-      "Percentages",
-      "Data Interpretation",
-      "Statistics & Probability"
-    ],
-    "Passport to Advanced Math": [
-      "Quadratic Equations",
-      "Exponential Functions",
-      "Polynomial Expressions",
-      "Function Notation"
-    ],
-    "Additional Topics: Geometry & Trig": [
-      "Area & Volume",
-      "Circle Theorems",
-      "Right Triangle Trigonometry",
-      "Coordinate Geometry"
-    ],
-    "Mixed Full Practice": [
-      "Timed Mixed Practice Set A",
-      "Timed Mixed Practice Set B",
-      "Calculator Section Practice",
-      "No-Calculator Section Practice"
-    ]
-  },
-  "ACT": {
-    "Pre-Algebra & Elementary Algebra": [
-      "Operations & Number Properties",
-      "Ratios, Rates & Percents",
-      "Solving Basic Equations",
-      "Basic Word Problems"
-    ],
-    "Intermediate Algebra & Coordinate Geometry": [
-      "Quadratic Equations",
-      "Systems of Equations",
-      "Functions",
-      "Coordinate Geometry Basics"
-    ],
-    "Plane Geometry": [
-      "Angles & Lines",
-      "Triangles & Polygons",
-      "Circles",
-      "Area & Volume"
-    ],
-    "Trigonometry": [
-      "Right Triangle Trig",
-      "The Unit Circle",
-      "Trig Graphs",
-      "Trig Identities"
-    ],
-    "Word Problems & Data Analysis": [
-      "Multi-Step Word Problems",
-      "Reading Tables & Graphs",
-      "Probability",
-      "Statistics Basics"
-    ],
-    "Mixed Full Practice": [
-      "Timed Mixed Practice Set A",
-      "Timed Mixed Practice Set B",
-      "Pacing Strategy Practice",
-      "Full-Length Practice Section"
-    ]
-  },
   "College Algebra": {
     "Real Number System & Algebraic Expressions": [
       "Properties of Real Numbers",
@@ -2160,6 +2116,404 @@ const COURSES = {
       "Applications to Systems",
       "Symmetric Matrices"
     ]
+  },
+  "SAT Math": {
+    "Heart of Algebra": [
+      "Linear Equations",
+      "Linear Inequalities",
+      "Systems of Linear Equations",
+      "Linear Word Problems"
+    ],
+    "Problem Solving & Data Analysis": [
+      "Ratios, Rates & Proportions",
+      "Percentages",
+      "Data Interpretation",
+      "Statistics & Probability"
+    ],
+    "Passport to Advanced Math": [
+      "Quadratic Equations",
+      "Exponential Functions",
+      "Polynomial Expressions",
+      "Function Notation"
+    ],
+    "Additional Topics: Geometry & Trig": [
+      "Area & Volume",
+      "Circle Theorems",
+      "Right Triangle Trigonometry",
+      "Coordinate Geometry"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Calculator Section Practice",
+      "No-Calculator Section Practice"
+    ]
+  },
+  "ACT Math": {
+    "Pre-Algebra & Elementary Algebra": [
+      "Operations & Number Properties",
+      "Ratios, Rates & Percents",
+      "Solving Basic Equations",
+      "Basic Word Problems"
+    ],
+    "Intermediate Algebra & Coordinate Geometry": [
+      "Quadratic Equations",
+      "Systems of Equations",
+      "Functions",
+      "Coordinate Geometry Basics"
+    ],
+    "Plane Geometry": [
+      "Angles & Lines",
+      "Triangles & Polygons",
+      "Circles",
+      "Area & Volume"
+    ],
+    "Trigonometry": [
+      "Right Triangle Trig",
+      "The Unit Circle",
+      "Trig Graphs",
+      "Trig Identities"
+    ],
+    "Word Problems & Data Analysis": [
+      "Multi-Step Word Problems",
+      "Reading Tables & Graphs",
+      "Probability",
+      "Statistics Basics"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Pacing Strategy Practice",
+      "Full-Length Practice Section"
+    ]
+  },
+  "Calculus 1": {
+    "Limits & Continuity": [
+      "Estimating Limits Graphically",
+      "Evaluating Limits Algebraically",
+      "One-Sided Limits",
+      "Continuity"
+    ],
+    "Derivatives & Differentiation Rules": [
+      "Definition of the Derivative",
+      "Power, Product & Quotient Rules",
+      "Chain Rule",
+      "Derivatives of Trig, Exp & Log Functions"
+    ],
+    "Applications of Derivatives": [
+      "Related Rates",
+      "Optimization",
+      "Curve Sketching",
+      "Motion Problems"
+    ],
+    "Integrals & the Fundamental Theorem": [
+      "Antiderivatives",
+      "Definite & Indefinite Integrals",
+      "The Fundamental Theorem of Calculus",
+      "U-Substitution"
+    ],
+    "Applications of Integration": [
+      "Area Between Curves",
+      "Volumes of Revolution",
+      "Average Value of a Function",
+      "Accumulation Problems"
+    ]
+  },
+  "Calculus 2": {
+    "Techniques of Integration": [
+      "Integration by Parts",
+      "Trigonometric Integrals",
+      "Trigonometric Substitution",
+      "Partial Fractions"
+    ],
+    "Applications of Integration": [
+      "Volumes by Disks & Washers",
+      "Volumes by Shells",
+      "Arc Length",
+      "Work & Average Value"
+    ],
+    "Sequences & Series": [
+      "Convergence of Sequences",
+      "Convergence Tests for Series",
+      "Alternating Series",
+      "Power Series"
+    ],
+    "Taylor & Maclaurin Series": [
+      "Taylor Polynomials",
+      "Maclaurin Series",
+      "Radius & Interval of Convergence",
+      "Applications of Series"
+    ],
+    "Parametric Equations & Polar Coordinates": [
+      "Parametric Curves & Derivatives",
+      "Arc Length of Parametric Curves",
+      "Polar Coordinates & Graphs",
+      "Area in Polar Coordinates"
+    ]
+  },
+  "AMC 8": {
+    "Arithmetic & Number Theory": [
+      "Divisibility & Factors",
+      "Prime Numbers",
+      "Fractions, Decimals & Percents",
+      "Number Patterns"
+    ],
+    "Algebra Fundamentals": [
+      "Solving Equations",
+      "Word Problems",
+      "Ratios & Proportions",
+      "Sequences"
+    ],
+    "Geometry": [
+      "Angles & Triangles",
+      "Area & Perimeter",
+      "Circles",
+      "Coordinate Geometry Basics"
+    ],
+    "Counting & Probability": [
+      "Basic Counting Principles",
+      "Permutations & Combinations",
+      "Simple Probability",
+      "Casework"
+    ],
+    "Problem-Solving Strategies": [
+      "Working Backwards",
+      "Logical Reasoning",
+      "Estimation Techniques",
+      "Competition Timing Practice"
+    ]
+  },
+  "AMC 10": {
+    "Algebra": [
+      "Quadratic Equations",
+      "Systems of Equations",
+      "Functions",
+      "Sequences & Series"
+    ],
+    "Geometry": [
+      "Triangle Properties",
+      "Circles & Angles",
+      "Area & Volume",
+      "Coordinate Geometry"
+    ],
+    "Number Theory": [
+      "Divisibility Rules",
+      "Modular Arithmetic",
+      "Prime Factorization",
+      "Diophantine Equations Intro"
+    ],
+    "Counting & Probability": [
+      "Permutations & Combinations",
+      "Probability",
+      "Pigeonhole Principle",
+      "Complementary Counting"
+    ],
+    "Advanced Problem Solving": [
+      "Competition Strategies",
+      "Timed Practice Sets",
+      "Proof Techniques Intro",
+      "Past Problem Review"
+    ]
+  },
+  "AMC 12": {
+    "Algebra & Functions": [
+      "Polynomial Equations",
+      "Exponential & Logarithmic Functions",
+      "Complex Numbers",
+      "Sequences & Series"
+    ],
+    "Geometry & Trigonometry": [
+      "Advanced Triangle Geometry",
+      "Circles & Polygons",
+      "Trigonometric Identities",
+      "3D Geometry"
+    ],
+    "Number Theory": [
+      "Modular Arithmetic",
+      "Diophantine Equations",
+      "Prime Factorization Techniques",
+      "Number Theory Proofs"
+    ],
+    "Counting & Probability": [
+      "Advanced Counting Techniques",
+      "Probability & Expected Value",
+      "Generating Functions Intro",
+      "Combinatorial Identities"
+    ],
+    "Advanced Problem Solving": [
+      "Competition Strategies",
+      "Timed Practice Sets",
+      "Proof-Based Problems",
+      "Past Problem Review"
+    ]
+  },
+  "AIME": {
+    "Algebra": [
+      "Advanced Equations & Systems",
+      "Polynomials & Roots",
+      "Sequences & Series",
+      "Functional Equations Intro"
+    ],
+    "Geometry": [
+      "Advanced Triangle & Circle Geometry",
+      "3D Geometry",
+      "Coordinate Geometry Techniques",
+      "Trigonometric Applications"
+    ],
+    "Number Theory": [
+      "Modular Arithmetic",
+      "Diophantine Equations",
+      "Base Number Systems",
+      "Number Theory Proof Techniques"
+    ],
+    "Combinatorics & Probability": [
+      "Advanced Counting",
+      "Probability & Expected Value",
+      "Recursion & Generating Functions",
+      "Combinatorial Proofs"
+    ],
+    "Problem-Solving Strategies": [
+      "Answer Verification Techniques",
+      "Timed Practice Sets",
+      "Past AIME Problem Review",
+      "Competition Strategy"
+    ]
+  },
+  "MATHCOUNTS": {
+    "Arithmetic & Number Sense": [
+      "Mental Math Techniques",
+      "Fractions, Decimals & Percents",
+      "Number Theory Basics",
+      "Estimation"
+    ],
+    "Algebra": [
+      "Solving Equations",
+      "Ratios & Proportions",
+      "Word Problems",
+      "Patterns & Sequences"
+    ],
+    "Geometry": [
+      "Angles & Triangles",
+      "Area & Perimeter",
+      "Circles",
+      "3D Shapes"
+    ],
+    "Counting & Probability": [
+      "Basic Counting",
+      "Permutations & Combinations",
+      "Probability",
+      "Logic Problems"
+    ],
+    "Sprint & Target Round Practice": [
+      "Speed Drills",
+      "Target Round Strategies",
+      "Team Round Collaboration Problems",
+      "Countdown Round Practice"
+    ]
+  },
+  "Math Kangaroo": {
+    "Logic & Puzzles": [
+      "Pattern Recognition",
+      "Logical Reasoning Puzzles",
+      "Visual & Spatial Puzzles",
+      "Sequences"
+    ],
+    "Arithmetic": [
+      "Number Operations",
+      "Fractions & Percents",
+      "Estimation",
+      "Word Problems"
+    ],
+    "Geometry & Measurement": [
+      "Shapes & Symmetry",
+      "Area & Perimeter",
+      "Measurement Problems",
+      "Coordinate Grids"
+    ],
+    "Combinatorics": [
+      "Counting Problems",
+      "Simple Probability",
+      "Combinatorial Puzzles",
+      "Strategy Games"
+    ]
+  },
+  "PSAT/NMSQT": {
+    "Heart of Algebra": [
+      "Linear Equations",
+      "Linear Inequalities",
+      "Systems of Linear Equations",
+      "Linear Word Problems"
+    ],
+    "Problem Solving & Data Analysis": [
+      "Ratios, Rates & Proportions",
+      "Percentages",
+      "Data Interpretation",
+      "Statistics & Probability"
+    ],
+    "Passport to Advanced Math": [
+      "Quadratic Equations",
+      "Exponential Functions",
+      "Polynomial Expressions",
+      "Function Notation"
+    ],
+    "Additional Topics: Geometry & Trig": [
+      "Area & Volume",
+      "Circle Theorems",
+      "Right Triangle Trigonometry",
+      "Coordinate Geometry"
+    ],
+    "Mixed Full Practice": [
+      "Timed Mixed Practice Set A",
+      "Timed Mixed Practice Set B",
+      "Calculator Section Practice",
+      "No-Calculator Section Practice"
+    ]
+  },
+  "ACCUPLACER": {
+    "Arithmetic": [
+      "Whole Numbers & Integers",
+      "Fractions & Decimals",
+      "Percentages",
+      "Ratios & Proportions"
+    ],
+    "Quantitative Reasoning, Algebra & Statistics": [
+      "Linear Equations",
+      "Applications of Algebra",
+      "Probability & Statistics Basics",
+      "Geometry Concepts"
+    ],
+    "Advanced Algebra & Functions": [
+      "Quadratic Equations",
+      "Functions & Graphs",
+      "Exponential & Radical Expressions",
+      "Rational Expressions"
+    ]
+  },
+  "ALEKS Placement Test": {
+    "Pre-Algebra Review": [
+      "Integers & Order of Operations",
+      "Fractions, Decimals & Percents",
+      "Ratios & Proportions",
+      "Basic Equations"
+    ],
+    "Algebra Foundations": [
+      "Linear Equations & Inequalities",
+      "Graphing Lines",
+      "Systems of Equations",
+      "Polynomials & Factoring"
+    ],
+    "Intermediate & College Algebra": [
+      "Quadratic Equations",
+      "Functions & Graphs",
+      "Exponential & Logarithmic Functions",
+      "Rational Expressions"
+    ],
+    "Trigonometry & Precalculus Readiness": [
+      "Right Triangle Trigonometry",
+      "The Unit Circle",
+      "Trigonometric Graphs",
+      "Function Composition"
+    ]
   }
 };
 
@@ -2177,6 +2531,61 @@ function populateCourseSelect(selectId, chapterSelectId, topicsBoxId){
     sel.appendChild(og);
   });
   if(chapterSelectId){ populateChapters(selectId, chapterSelectId, topicsBoxId); }
+}
+
+/* Populates the "Course" dropdown for the Practice Quiz, filtered to either the
+   "Courses" tab (everything except Test Prep) or the "Test Prep" tab (Test Prep only). */
+function qzPopulateCourses(mode){
+  const sel = document.getElementById('qzCourse');
+  sel.innerHTML = '';
+  COURSE_GROUPS.forEach(group => {
+    const isTestPrep = group.label === 'Test Prep';
+    if(mode === 'testprep' && !isTestPrep) return;
+    if(mode === 'courses' && isTestPrep) return;
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    group.courses.forEach(course => {
+      if(!COURSES[course]) return;
+      const opt = document.createElement('option');
+      opt.value = course; opt.textContent = course;
+      og.appendChild(opt);
+    });
+    sel.appendChild(og);
+  });
+  populateChapters('qzCourse', 'qzChapter', 'qzTopicsBox');
+}
+
+function qzSwitchTab(mode){
+  document.getElementById('qzTabCourses').classList.toggle('active', mode === 'courses');
+  document.getElementById('qzTabTestPrep').classList.toggle('active', mode === 'testprep');
+  qzPopulateCourses(mode);
+}
+
+/* Same Courses / Test Prep tab filtering, for the Lesson Studio course selector. */
+function lsPopulateCourses(mode){
+  const sel = document.getElementById('lsCourse');
+  sel.innerHTML = '';
+  COURSE_GROUPS.forEach(group => {
+    const isTestPrep = group.label === 'Test Prep';
+    if(mode === 'testprep' && !isTestPrep) return;
+    if(mode === 'courses' && isTestPrep) return;
+    const og = document.createElement('optgroup');
+    og.label = group.label;
+    group.courses.forEach(course => {
+      if(!COURSES[course]) return;
+      const opt = document.createElement('option');
+      opt.value = course; opt.textContent = course;
+      og.appendChild(opt);
+    });
+    sel.appendChild(og);
+  });
+  populateChapters('lsCourse', 'lsChapter', 'lsTopicsBox');
+}
+
+function lsSwitchTab(mode){
+  document.getElementById('lsTabCourses').classList.toggle('active', mode === 'courses');
+  document.getElementById('lsTabTestPrep').classList.toggle('active', mode === 'testprep');
+  lsPopulateCourses(mode);
 }
 
 /* Populates the "Chapter" dropdown for the selected course, then the topics checklist. */
@@ -3948,8 +4357,8 @@ async function downloadWorksheetPdf(){
 }
 
 /* ============ INIT ============ */
-populateCourseSelect('lsCourse', 'lsChapter', 'lsTopicsBox');
-populateCourseSelect('qzCourse', 'qzChapter', 'qzTopicsBox');
+lsSwitchTab('courses');
+qzSwitchTab('courses');
 populateCourseSelect('wsCourse', 'wsChapter', 'wsTopicsBox');
 populateAskCourseSelect();
 plotGraph();
