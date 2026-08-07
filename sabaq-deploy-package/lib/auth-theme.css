@@ -1,0 +1,153 @@
+/* ============================================================================
+   SABAQ — Shared theme for auth pages & dashboards.
+   Same design tokens as index.html, so these pages don't feel like a
+   different product. Include after the Google Fonts link:
+   <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="/lib/auth-theme.css">
+   ============================================================================ */
+
+:root{
+  --board:#1f3d32;
+  --board-deep:#142a21;
+  --chalk:#f6f2e7;
+  --chalk-dim:#c9d3cc;
+  --yellow:#f4c95d;
+  --coral:#e8857a;
+  --sky:#9cc4dc;
+  --paper:#fbf8f1;
+  --paper-line:#e3dccb;
+  --ink:#232323;
+  --ink-soft:#6b665b;
+  --radius:10px;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0; font-family:'Inter',sans-serif; color:var(--ink); background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+}
+a{ color:inherit; }
+
+/* ---------- Shared top bar ---------- */
+.sabaq-topbar{
+  background:var(--board); color:var(--chalk);
+  padding:0.9rem 1.5rem; display:flex; align-items:center; justify-content:space-between;
+  border-bottom:3px solid var(--yellow);
+}
+.sabaq-brand{
+  display:flex; align-items:center; gap:0.5rem;
+  font-family:'Kalam',cursive; font-size:1.2rem; text-decoration:none; color:var(--chalk);
+}
+.sabaq-brand .badge{
+  width:28px; height:28px; border-radius:50%; background:var(--yellow);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif; font-weight:800; color:var(--board-deep); font-size:0.95rem;
+}
+.sabaq-topbar-right{ display:flex; align-items:center; gap:1rem; font-size:0.9rem; }
+.sabaq-topbar-right button{
+  background:none; border:1px solid var(--chalk-dim); color:var(--chalk);
+  padding:0.45rem 1rem; border-radius:999px; font-family:'Inter',sans-serif;
+  font-size:0.85rem; font-weight:600; cursor:pointer;
+}
+.sabaq-topbar-right button:hover{ border-color:var(--chalk); background:rgba(246,242,231,0.08); }
+
+/* ---------- Centered auth card (login/signup/forgot/reset) ---------- */
+.sabaq-auth-wrap{
+  min-height:calc(100vh - 68px);
+  display:flex; align-items:center; justify-content:center; padding:2rem 1rem;
+}
+.sabaq-auth-card{
+  width:100%; max-width:420px; background:#fff; border:1px solid var(--paper-line);
+  border-radius:var(--radius); padding:2.2rem 2rem; box-shadow:0 2px 0 0 var(--paper-line);
+}
+.sabaq-auth-card h1{
+  font-family:'Fraunces',serif; font-size:1.6rem; margin:0 0 0.4rem;
+}
+.sabaq-auth-card .sub{ color:var(--ink-soft); font-size:0.92rem; margin:0 0 1.6rem; }
+
+.sabaq-field{ margin-bottom:1rem; }
+.sabaq-field label{
+  display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.35rem; color:var(--ink);
+}
+.sabaq-field input, .sabaq-field select{
+  width:100%; padding:0.65rem 0.8rem; border:1px solid var(--paper-line);
+  border-radius:8px; font-family:'Inter',sans-serif; font-size:0.95rem; background:var(--paper);
+}
+.sabaq-field input:focus, .sabaq-field select:focus{ outline:2px solid var(--sky); outline-offset:1px; }
+
+.sabaq-role-toggle{ display:flex; gap:0.6rem; margin-bottom:1.2rem; }
+.sabaq-role-toggle button{
+  flex:1; padding:0.65rem; border-radius:8px; border:2px solid var(--paper-line);
+  background:#fff; font-family:'Inter',sans-serif; font-weight:700; font-size:0.9rem;
+  color:var(--ink-soft); cursor:pointer;
+}
+.sabaq-role-toggle button.active{ border-color:var(--board); background:var(--board); color:var(--chalk); }
+
+.sabaq-btn{
+  width:100%; padding:0.8rem; border-radius:8px; border:none; cursor:pointer;
+  font-family:'Inter',sans-serif; font-weight:700; font-size:0.95rem;
+  background:var(--yellow); color:var(--board-deep); margin-top:0.4rem;
+}
+.sabaq-btn:hover{ box-shadow:0 3px 0 0 rgba(31,61,50,0.18); }
+.sabaq-btn:disabled{ opacity:0.6; cursor:default; box-shadow:none; }
+
+.sabaq-alt-link{ text-align:center; margin-top:1.3rem; font-size:0.88rem; color:var(--ink-soft); }
+.sabaq-alt-link a{ color:var(--board); font-weight:700; text-decoration:none; cursor:pointer; }
+.sabaq-alt-link a:hover{ text-decoration:underline; }
+
+.sabaq-status{
+  font-size:0.85rem; margin-top:0.9rem; padding:0.6rem 0.8rem; border-radius:8px;
+  display:none;
+}
+.sabaq-status.show{ display:block; }
+.sabaq-status.error{ background:rgba(232,133,122,0.15); color:#8a3226; }
+.sabaq-status.success{ background:rgba(79,121,66,0.14); color:#2f4a26; }
+
+/* ---------- Dashboard layout ---------- */
+.sabaq-dash{ max-width:1100px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+.sabaq-dash-header{ margin-bottom:1.8rem; }
+.sabaq-dash-header h1{ font-family:'Fraunces',serif; font-size:1.9rem; margin:0 0 0.3rem; }
+.sabaq-dash-header p{ color:var(--ink-soft); margin:0; }
+
+.sabaq-stat-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1rem; margin-bottom:2.2rem;
+}
+.sabaq-stat-card{
+  background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius);
+  padding:1.1rem 1.2rem;
+}
+.sabaq-stat-card .label{ font-size:0.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.3rem; }
+.sabaq-stat-card .value{ font-family:'Fraunces',serif; font-size:1.7rem; color:var(--ink); }
+
+.sabaq-panel{
+  background:#fff; border:1px solid var(--paper-line); border-radius:var(--radius);
+  padding:1.4rem 1.5rem; margin-bottom:1.5rem;
+}
+.sabaq-panel h2{ font-family:'Fraunces',serif; font-size:1.2rem; margin:0 0 1rem; }
+
+.sabaq-table{ width:100%; border-collapse:collapse; font-size:0.9rem; }
+.sabaq-table th{ text-align:left; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-soft); padding:0.5rem 0.6rem; border-bottom:1px solid var(--paper-line); }
+.sabaq-table td{ padding:0.6rem; border-bottom:1px solid var(--paper-line); }
+.sabaq-table tr:last-child td{ border-bottom:none; }
+.sabaq-table .row-actions{ display:flex; gap:0.5rem; }
+.sabaq-table .row-actions button{
+  background:none; border:1px solid var(--paper-line); border-radius:6px;
+  padding:0.25rem 0.6rem; font-size:0.78rem; cursor:pointer; color:var(--ink-soft);
+}
+.sabaq-table .row-actions button:hover{ border-color:var(--ink-soft); color:var(--ink); }
+.sabaq-table .row-actions button.fav.active{ color:var(--yellow); border-color:var(--yellow); background:rgba(244,201,93,0.12); }
+
+.sabaq-empty{ color:var(--ink-soft); font-size:0.9rem; padding:1rem 0; text-align:center; }
+.sabaq-loading{ color:var(--ink-soft); font-size:0.9rem; padding:1rem 0; }
+
+.sabaq-progress-bar{ height:10px; background:var(--paper); border-radius:999px; overflow:hidden; border:1px solid var(--paper-line); }
+.sabaq-progress-bar > div{ height:100%; background:var(--yellow); }
+
+.sabaq-tag-row{ display:flex; flex-wrap:wrap; gap:0.5rem; }
+.sabaq-tag{
+  font-family:'JetBrains Mono',monospace; font-size:0.78rem; padding:0.3rem 0.7rem;
+  border-radius:999px; border:1px solid var(--paper-line); background:var(--paper); color:var(--ink-soft);
+}
+.sabaq-tag.weak{ border-color:#e8857a; color:#8a3226; background:rgba(232,133,122,0.1); }
+.sabaq-tag.strong{ border-color:#4f7942; color:#2f4a26; background:rgba(79,121,66,0.1); }
