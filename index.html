@@ -2903,7 +2903,15 @@ const NO_MARKDOWN_RULES =
   "put that data in a separate \"table\" field shaped as {\"headers\":[\"Col A\",\"Col B\"],\"rows\":[[\"1\",\"2\"],[\"3\",\"4\"]]} " +
   "— do not describe the table in the text at all beyond referring to \"the table\".";
 
-const JSON_LATEX_RULES = MATH_LATEX_RULES + " " + NO_MARKDOWN_RULES +
+const CONTENT_QUALITY_RULES =
+  "Work out every calculation privately and check it before writing your final answer — never show that checking in the output. " +
+  "Output ONLY the clean, correct, final version of each step: never include visible self-correction, hedging, or scratch-work " +
+  "such as \"wait,\" \"let me reconsider,\" \"actually,\" or a crossed-out attempt followed by a fix. If you catch an error, " +
+  "silently redo the step and output only the corrected result. For Calculus, Calculus 1, Calculus 2, AP Calculus AB/BC, and " +
+  "Precalculus content, match the depth, notation, and worked-example style of OpenStax Calculus Volume 1-3 " +
+  "(the standard open-license calculus textbook) — precise definitions, standard notation, and fully justified steps.";
+
+const JSON_LATEX_RULES = MATH_LATEX_RULES + " " + NO_MARKDOWN_RULES + " " + CONTENT_QUALITY_RULES +
   " IMPORTANT: this text will be placed inside JSON string values, so every backslash in a LaTeX command must be " +
   "escaped as a double backslash so the JSON stays valid (write \\\\frac, \\\\int, \\\\lim, \\\\sqrt, \\\\sum, etc.).";
 
@@ -3239,13 +3247,21 @@ function buildLessonPrompt(course, topic, notes, batchStart, batchCount, totalSl
     "Each slide may have AT MOST ONE of \"table\", \"graph\", or \"shape\" — never more than one — and most slides should have one of them.\n" +
     '"table" example: {"headers":["Employee","Hours Worked","Productivity Score"],"rows":[["A","40","88"],["B","32","76"]]}. ' +
     "Use \"table\" to present a data set; never put a table inside \"bullets\" or \"heading\".\n" +
-    '"graph" example: {"expression":"x^2 - 4","xmin":-10,"xmax":10,"shade":{"a":0,"b":2},"markX":1}. ' +
+    '"graph" example (single function): {"expression":"x^2 - 4","xmin":-10,"xmax":10,"shade":{"a":0,"b":2},"markX":1}. ' +
     "\"expression\" is a math.js-compatible expression of x only (e.g. \"x^2 - 4\", \"sin(x)\", \"1/x\"), plotted over [xmin, xmax]. " +
-    "\"shade\":{\"a\":..,\"b\":..} shades the region between the curve and the x-axis from x=a to x=b — use this for area under a curve, definite integrals, " +
-    "Riemann sums, or volumes of revolution (the shaded region being rotated). \"markX\" draws a dashed vertical line at that x value — use this for limit questions " +
-    "(mark the x-value the limit approaches) or for marking a point of tangency. Omit \"shade\"/\"markX\" when not relevant. " +
+    "\"shade\":{\"a\":..,\"b\":..} shades the region between that curve and the x-axis from x=a to x=b — use this for area under a SINGLE curve, " +
+    "a definite integral of one function, a Riemann sum, or a volume of revolution (the shaded region being rotated).\n" +
+    "For TWO functions on the same axes — area between curves, comparing f(x) and g(x), a system of equations — use \"functions\" instead of " +
+    "\"expression\", e.g.: {\"functions\":[{\"expr\":\"4 - x^2\",\"label\":\"f(x)\"},{\"expr\":\"x\",\"label\":\"g(x)\"}],\"xmin\":-4,\"xmax\":4," +
+    "\"shadeBetween\":{\"a\":-3.5616,\"b\":1.5616}}. Each entry in \"functions\" is a math.js-compatible expression of x; they are automatically " +
+    "drawn in different colors so both curves are clearly visible — NEVER combine two functions into one expression like \"4 - x^2 - x\", since " +
+    "that only plots their difference, not the two original curves. \"shadeBetween\":{\"a\":..,\"b\":..} shades the area between the first two " +
+    "\"functions\" entries from x=a to x=b — compute the exact intersection x-values algebraically for a and b, don't approximate or guess. " +
+    "Use \"shadeBetween\" (with \"functions\") for area-between-two-curves problems instead of \"shade\". " +
+    "\"markX\" draws a dashed vertical line at that x value — use this for limit questions " +
+    "(mark the x-value the limit approaches) or for marking a point of tangency. Omit \"shade\"/\"shadeBetween\"/\"markX\" when not relevant. " +
     "Use \"graph\" for Algebra, Precalculus, and Calculus topics: graphing functions, limits and continuity (mark the x-value), derivatives and tangent lines, " +
-    "definite integrals and area under a curve (shade the region), and volumes of revolution (shade the cross-section).\n" +
+    "definite integrals and area under a curve (shade the region), area between two curves (use \"functions\" + \"shadeBetween\"), and volumes of revolution (shade the cross-section).\n" +
     '"shape" example: {"type":"triangle","points":[[0,0],[4,0],[0,3]],"labels":["A","B","C"],"sideLabels":["c","a","b"],"rightAngleAt":0,"angleLabels":[{"vertex":1,"label":"37°"}]}. ' +
     "type can be \"triangle\", \"right_triangle\", \"polygon\", \"circle\", or \"rectangle\". \"points\" are [x,y] coordinates; \"labels\" names each vertex/point in order; " +
     "\"sideLabels\" labels each side (side i runs from points[i] to points[i+1]) with a length or variable; \"rightAngleAt\" is the index of a vertex with a right angle; " +
@@ -3380,19 +3396,10 @@ function buildDeck(data, logo, schemeKey){
     let bulletsHtml = '<ul class="ds-bullets">' + (s.bullets || []).map(b => '<li>' + escapeHtml(cleanInlineText(b)) + '</li>').join('') + '</ul>';
     let tableHtml = s.table ? buildTableHtml(s.table) : '';
     let graphHtml = '';
-    if(s.graph && s.graph.expression){
-      const xmin = (typeof s.graph.xmin === 'number') ? s.graph.xmin : -10;
-      const xmax = (typeof s.graph.xmax === 'number') ? s.graph.xmax : 10;
-      let attrs = 'data-expr="' + escapeHtml(s.graph.expression) + '" data-xmin="' + xmin + '" data-xmax="' + xmax + '"';
-      if(s.graph.shade && isFinite(s.graph.shade.a) && isFinite(s.graph.shade.b)){
-        attrs += ' data-shade-a="' + s.graph.shade.a + '" data-shade-b="' + s.graph.shade.b + '"';
-      }
-      if(typeof s.graph.markX === 'number'){
-        attrs += ' data-markx="' + s.graph.markX + '"';
-      }
+    if(s.graph && (s.graph.expression || (s.graph.functions && s.graph.functions.length))){
       graphHtml = '<div class="ds-graph-wrap">' +
-        '<canvas width="460" height="360" ' + attrs + '></canvas>' +
-        '<div class="ds-graph-label">y = ' + escapeHtml(s.graph.expression) + '</div>' +
+        '<canvas width="460" height="360" ' + graphCanvasAttrs(s.graph) + '></canvas>' +
+        '<div class="ds-graph-label">' + escapeHtml(graphLabelText(s.graph)) + '</div>' +
         '</div>';
     } else if(s.shape && s.shape.type){
       const enc = encodeURIComponent(JSON.stringify(s.shape));
@@ -3421,19 +3428,7 @@ function buildDeck(data, logo, schemeKey){
 
   renderMath(container);
 
-  container.querySelectorAll('canvas[data-expr]').forEach(cv => {
-    const opts = {};
-    if(cv.dataset.shadeA !== undefined && cv.dataset.shadeB !== undefined){
-      opts.shade = { a: parseFloat(cv.dataset.shadeA), b: parseFloat(cv.dataset.shadeB) };
-    }
-    if(cv.dataset.markx !== undefined){
-      opts.markX = parseFloat(cv.dataset.markx);
-    }
-    drawGraph(cv, cv.dataset.expr, parseFloat(cv.dataset.xmin), parseFloat(cv.dataset.xmax), opts, graphTheme);
-  });
-  container.querySelectorAll('canvas[data-shape]').forEach(cv => {
-    try{ drawShape(cv, JSON.parse(decodeURIComponent(cv.dataset.shape)), graphTheme); }catch(e){ /* skip bad shape data */ }
-  });
+  renderGraphCanvases(container, graphTheme);
 }
 
 async function downloadPptx(){
@@ -3672,6 +3667,284 @@ function drawGraph(canvas, exprStr, xmin, xmax, opts, theme){
   }
 }
 
+/* Default palette used to color successive functions when a graph spec includes more than one. */
+const GRAPH_COLORS = ['#e8857a', '#4f7942', '#2f6fed', '#f4a340', '#9c5fc0'];
+
+/* Normalizes a graph spec into { functions:[{expr,color,label}], xmin, xmax, shade, shadeBetween, markX }.
+   Accepts the newer multi-function shape (graph.functions = [{expr,color,label}, ...]) as well as the
+   older single-expression shape (graph.expression) for backward compatibility. */
+function normalizeGraphSpec(graph){
+  const g = graph || {};
+  let functions = [];
+  if(Array.isArray(g.functions) && g.functions.length){
+    functions = g.functions.map((f, i) => ({
+      expr: (typeof f === 'string') ? f : (f.expr || ''),
+      color: (f && f.color) || GRAPH_COLORS[i % GRAPH_COLORS.length],
+      label: (f && f.label) || (typeof f === 'string' ? f : (f.expr || ''))
+    })).filter(f => f.expr);
+  } else if(g.expression){
+    functions = [{ expr: g.expression, color: GRAPH_COLORS[0], label: g.expression }];
+  }
+  return {
+    functions: functions,
+    xmin: (typeof g.xmin === 'number') ? g.xmin : -10,
+    xmax: (typeof g.xmax === 'number') ? g.xmax : 10,
+    shade: g.shade,
+    shadeBetween: g.shadeBetween,
+    markX: g.markX
+  };
+}
+
+/* ---- Multi-function graph renderer: draws one or more y=f(x) curves in distinct colors on the
+   same axes, with optional shading of the area between two curves (or one curve and the x-axis). ---- */
+function drawMultiGraph(canvas, graphSpecRaw, theme){
+  const spec = normalizeGraphSpec(graphSpecRaw);
+  theme = theme || { ink: '#1f3d32', grid: '#e3dccb', axis: '#6b665b' };
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const margin = 36;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+
+  let xmin = spec.xmin, xmax = spec.xmax;
+  if(!(xmax > xmin)){ xmax = xmin + 1; }
+
+  const compiled = [];
+  spec.functions.forEach(f => {
+    try{ compiled.push({ fn: math.compile(f.expr), color: f.color, label: f.label, expr: f.expr }); }
+    catch(e){ /* skip a function that fails to parse rather than aborting the whole graph */ }
+  });
+
+  if(compiled.length === 0){
+    ctx.fillStyle = '#b3402a';
+    ctx.font = '14px Inter, sans-serif';
+    ctx.fillText('Could not parse graph', 10, H/2);
+    return;
+  }
+
+  const samples = 400;
+  const allPtSets = compiled.map(c => {
+    const pts = [];
+    for(let i = 0; i <= samples; i++){
+      const x = xmin + (xmax - xmin) * i / samples;
+      let y;
+      try{ y = c.fn.evaluate({ x: x }); }catch(e){ y = NaN; }
+      if(typeof y !== 'number' || !isFinite(y)) y = NaN;
+      pts.push([x, y]);
+    }
+    return pts;
+  });
+
+  let finiteYs = [];
+  allPtSets.forEach(pts => pts.forEach(p => { if(isFinite(p[1])) finiteYs.push(p[1]); }));
+  let ymin, ymax;
+  if(finiteYs.length > 0){
+    finiteYs.sort((a,b)=>a-b);
+    const lo = finiteYs[Math.floor(finiteYs.length * 0.03)];
+    const hi = finiteYs[Math.ceil(finiteYs.length * 0.97) - 1];
+    ymin = lo; ymax = hi;
+    if(ymin === ymax){ ymin -= 1; ymax += 1; }
+    const pad = (ymax - ymin) * 0.12;
+    ymin -= pad; ymax += pad;
+  } else {
+    ymin = -10; ymax = 10;
+  }
+
+  const xToPx = x => margin + (x - xmin) / (xmax - xmin) * (W - 2*margin);
+  const yToPx = y => H - margin - (y - ymin) / (ymax - ymin) * (H - 2*margin);
+
+  // grid
+  ctx.strokeStyle = theme.grid || '#e3dccb';
+  ctx.lineWidth = 1;
+  const xStep = niceStep(xmax - xmin);
+  const yStep = niceStep(ymax - ymin);
+  for(let gx = Math.ceil(xmin/xStep)*xStep; gx <= xmax; gx += xStep){
+    const px = xToPx(gx);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+  }
+  for(let gy = Math.ceil(ymin/yStep)*yStep; gy <= ymax; gy += yStep){
+    const py = yToPx(gy);
+    ctx.beginPath(); ctx.moveTo(margin, py); ctx.lineTo(W-margin, py); ctx.stroke();
+  }
+
+  function evalExpr(compiledFn, x){
+    try{ const y = compiledFn.evaluate({ x: x }); return isFinite(y) ? y : 0; }catch(e){ return 0; }
+  }
+
+  // shaded region: between two curves if shadeBetween is given, else a single curve down to the x-axis
+  if(spec.shadeBetween && isFinite(spec.shadeBetween.a) && isFinite(spec.shadeBetween.b)){
+    const a = Math.max(Math.min(spec.shadeBetween.a, spec.shadeBetween.b), xmin);
+    const b = Math.min(Math.max(spec.shadeBetween.a, spec.shadeBetween.b), xmax);
+    let fnA = null, fnB = null;
+    try{ fnA = math.compile(spec.shadeBetween.exprA || (compiled[0] && compiled[0].expr) || '0'); }catch(e){}
+    try{ fnB = math.compile(spec.shadeBetween.exprB || (compiled[1] && compiled[1].expr) || '0'); }catch(e){}
+    if(b > a && fnA && fnB){
+      const shadeSamples = 60;
+      ctx.beginPath();
+      for(let i = 0; i <= shadeSamples; i++){
+        const x = a + (b - a) * i / shadeSamples;
+        const px = xToPx(x), py = yToPx(evalExpr(fnA, x));
+        if(i === 0){ ctx.moveTo(px, py); } else { ctx.lineTo(px, py); }
+      }
+      for(let i = shadeSamples; i >= 0; i--){
+        const x = a + (b - a) * i / shadeSamples;
+        ctx.lineTo(xToPx(x), yToPx(evalExpr(fnB, x)));
+      }
+      ctx.closePath();
+      ctx.fillStyle = theme.shadeFill || 'rgba(143,184,222,0.45)';
+      ctx.fill();
+      ctx.strokeStyle = theme.shadeStroke || '#9cc4dc';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  } else if(spec.shade && isFinite(spec.shade.a) && isFinite(spec.shade.b) && compiled[0]){
+    const a = Math.max(Math.min(spec.shade.a, spec.shade.b), xmin);
+    const b = Math.min(Math.max(spec.shade.a, spec.shade.b), xmax);
+    if(b > a){
+      ctx.beginPath();
+      ctx.moveTo(xToPx(a), yToPx(0));
+      const shadeSamples = 60;
+      for(let i = 0; i <= shadeSamples; i++){
+        const x = a + (b - a) * i / shadeSamples;
+        ctx.lineTo(xToPx(x), yToPx(evalExpr(compiled[0].fn, x)));
+      }
+      ctx.lineTo(xToPx(b), yToPx(0));
+      ctx.closePath();
+      ctx.fillStyle = theme.shadeFill || 'rgba(143,184,222,0.4)';
+      ctx.fill();
+      ctx.strokeStyle = theme.shadeStroke || '#9cc4dc';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  // axes
+  ctx.strokeStyle = theme.axis || '#6b665b';
+  ctx.lineWidth = 1.5;
+  if(ymin <= 0 && ymax >= 0){
+    const py = yToPx(0);
+    ctx.beginPath(); ctx.moveTo(margin, py); ctx.lineTo(W-margin, py); ctx.stroke();
+  }
+  if(xmin <= 0 && xmax >= 0){
+    const px = xToPx(0);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+  }
+
+  // axis labels
+  ctx.fillStyle = theme.axis || '#6b665b';
+  ctx.font = '11px JetBrains Mono, monospace';
+  for(let gx = Math.ceil(xmin/xStep)*xStep; gx <= xmax; gx += xStep){
+    if(Math.abs(gx) < xStep/1000) continue;
+    const px = xToPx(gx);
+    ctx.fillText(formatNum(gx), px - 8, yToPx(0) + (ymin<=0&&ymax>=0 ? 14 : 0) + (H-margin) * 0 + (yToPx(0) > H-margin-2 ? -4 : 14));
+  }
+  for(let gy = Math.ceil(ymin/yStep)*yStep; gy <= ymax; gy += yStep){
+    if(Math.abs(gy) < yStep/1000) continue;
+    const py = yToPx(gy);
+    ctx.fillText(formatNum(gy), 4, py + 4);
+  }
+
+  // curves — each function drawn in its own color (or, in mono/print mode, its own dash pattern)
+  const dashPatterns = [[], [8,5], [2,3], [8,3,2,3]];
+  compiled.forEach((c, ci) => {
+    ctx.strokeStyle = theme.mono ? (theme.ink || '#000000') : c.color;
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash(theme.mono ? dashPatterns[ci % dashPatterns.length] : []);
+    ctx.beginPath();
+    let started = false;
+    allPtSets[ci].forEach(([x,y]) => {
+      if(!isFinite(y) || y < ymin - (ymax-ymin)*0.5 || y > ymax + (ymax-ymin)*0.5){
+        started = false;
+        return;
+      }
+      const px = xToPx(x), py = yToPx(y);
+      if(!started){ ctx.moveTo(px, py); started = true; }
+      else { ctx.lineTo(px, py); }
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // marked x value (for limit / point-of-interest questions)
+  if(typeof spec.markX === 'number' && isFinite(spec.markX) && spec.markX >= xmin && spec.markX <= xmax){
+    const px = xToPx(spec.markX);
+    ctx.save();
+    ctx.strokeStyle = theme.ink;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5,4]);
+    ctx.beginPath(); ctx.moveTo(px, margin); ctx.lineTo(px, H-margin); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = theme.ink;
+    ctx.font = '12px JetBrains Mono, monospace';
+    ctx.fillText('x = ' + formatNum(spec.markX), px + 4, margin + 12);
+  }
+
+  // legend — only needed once there's more than one curve to tell apart
+  if(compiled.length > 1){
+    let ly = margin + 6;
+    compiled.forEach((c, ci) => {
+      if(theme.mono){
+        ctx.strokeStyle = theme.ink || '#000000';
+        ctx.lineWidth = 2;
+        ctx.setLineDash(dashPatterns[ci % dashPatterns.length]);
+        ctx.beginPath(); ctx.moveTo(W - margin - 118, ly - 3); ctx.lineTo(W - margin - 106, ly - 3); ctx.stroke();
+        ctx.setLineDash([]);
+      } else {
+        ctx.fillStyle = c.color;
+        ctx.fillRect(W - margin - 118, ly - 8, 10, 10);
+      }
+      ctx.fillStyle = theme.ink;
+      ctx.font = '11px JetBrains Mono, monospace';
+      ctx.fillText((c.label || c.expr).slice(0, 15), W - margin - 104, ly);
+      ly += 15;
+    });
+  }
+}
+
+/* Builds a short caption under a graph, e.g. "y = x^2" for one function, or
+   "f(x) = x^2   g(x) = x" for multiple. */
+function graphLabelText(graph){
+  const g = graph || {};
+  if(Array.isArray(g.functions) && g.functions.length){
+    return g.functions.map((f, i) => {
+      const expr = (typeof f === 'string') ? f : (f.expr || '');
+      const label = (f && f.label) || (g.functions.length > 1 ? String.fromCharCode(102+i) + '(x)' : 'y');
+      return label + ' = ' + expr;
+    }).join('    ');
+  }
+  return g.expression ? ('y = ' + g.expression) : '';
+}
+
+/* Builds the data-graph="..." attribute (URL-encoded JSON of the full graph spec) used by
+   buildDeck / renderQuiz / the worksheet builder to hand a graph off to drawMultiGraph. */
+function graphCanvasAttrs(graph){
+  const g = graph || {};
+  const spec = {
+    functions: g.functions,
+    expression: g.expression,
+    xmin: (typeof g.xmin === 'number') ? g.xmin : -10,
+    xmax: (typeof g.xmax === 'number') ? g.xmax : 10,
+    shade: g.shade,
+    shadeBetween: g.shadeBetween,
+    markX: g.markX
+  };
+  return 'data-graph="' + encodeURIComponent(JSON.stringify(spec)) + '"';
+}
+
+/* Renders every canvas[data-graph] and canvas[data-shape] found under root. Shared by the
+   Lesson Studio deck, the quiz, and the worksheet PDF builder so all three stay in sync. */
+function renderGraphCanvases(root, theme){
+  root.querySelectorAll('canvas[data-graph]').forEach(cv => {
+    try{ drawMultiGraph(cv, JSON.parse(decodeURIComponent(cv.dataset.graph)), theme); }
+    catch(e){ /* skip bad graph data rather than breaking the rest of the slide/quiz/worksheet */ }
+  });
+  root.querySelectorAll('canvas[data-shape]').forEach(cv => {
+    try{ drawShape(cv, JSON.parse(decodeURIComponent(cv.dataset.shape)), theme); }
+    catch(e){ /* skip bad shape data */ }
+  });
+}
+
 /* ---- Geometry diagram renderer: triangles, circles, rectangles with labels ---- */
 function drawShape(canvas, shape, theme){
   theme = theme || { accent: '#e8857a', ink: '#1f3d32' };
@@ -3893,7 +4166,10 @@ async function generateQuiz(){
         "refers to data \"in the table\"; never put a table inside the \"q\" text itself.\n" +
         "\"graph\" plots a math.js-compatible expression of x over [xmin, xmax]. Add \"shade\":{\"a\":..,\"b\":..} to shade a region (area, definite integral, " +
         "volume-of-revolution) and/or \"markX\" to mark an x-value with a dashed line (limit or tangent-point questions). " +
-        "Use \"graph\" for: reading a graph, limits at a point, area under a curve, definite integrals, volumes of revolution, tangent lines, or function behavior — " +
+        "For a question involving TWO functions (area between curves, comparing f and g), use \"functions\":[{\"expr\":\"...\",\"label\":\"f(x)\"},{\"expr\":\"...\",\"label\":\"g(x)\"}] " +
+        "instead of \"expression\" — they render in different colors — and use \"shadeBetween\":{\"a\":..,\"b\":..} (computing the exact intersection x-values) " +
+        "instead of \"shade\" to shade the area between them. Never combine two functions into a single \"expression\" like \"f - g\", since that only plots the difference. " +
+        "Use \"graph\" for: reading a graph, limits at a point, area under a curve, area between two curves, definite integrals, volumes of revolution, tangent lines, or function behavior — " +
         "common for Algebra, Precalculus, and Calculus topics.\n" +
         "\"shape\" draws a labeled geometry diagram with type \"triangle\", \"right_triangle\", \"polygon\", \"circle\", or \"rectangle\". " +
         "\"points\" are [x,y] coordinates (any consistent units); \"labels\" names each vertex in the same order as \"points\"; \"sideLabels\" labels each side " +
@@ -3937,17 +4213,8 @@ function renderQuiz(questions){
     if(q.table){
       html += buildTableHtml(q.table);
     }
-    if(q.graph && q.graph.expression){
-      const xmin = (typeof q.graph.xmin === 'number') ? q.graph.xmin : -10;
-      const xmax = (typeof q.graph.xmax === 'number') ? q.graph.xmax : 10;
-      let attrs = 'data-expr="' + escapeHtml(q.graph.expression) + '" data-xmin="' + xmin + '" data-xmax="' + xmax + '"';
-      if(q.graph.shade && isFinite(q.graph.shade.a) && isFinite(q.graph.shade.b)){
-        attrs += ' data-shade-a="' + q.graph.shade.a + '" data-shade-b="' + q.graph.shade.b + '"';
-      }
-      if(typeof q.graph.markX === 'number'){
-        attrs += ' data-markx="' + q.graph.markX + '"';
-      }
-      html += '<div class="quiz-graph-wrap"><canvas class="quiz-graph" width="380" height="280" ' + attrs + '></canvas></div>';
+    if(q.graph && (q.graph.expression || (q.graph.functions && q.graph.functions.length))){
+      html += '<div class="quiz-graph-wrap"><canvas class="quiz-graph" width="380" height="280" ' + graphCanvasAttrs(q.graph) + '></canvas></div>';
     } else if(q.shape && q.shape.type){
       const enc = encodeURIComponent(JSON.stringify(q.shape));
       html += '<div class="quiz-graph-wrap"><canvas class="quiz-graph quiz-shape" width="380" height="280" data-shape="' + enc + '"></canvas></div>';
@@ -3965,20 +4232,7 @@ function renderQuiz(questions){
   html += '<div class="quiz-score" style="display:none;" id="quizScore"></div>';
   box.innerHTML = html;
   renderMath(box);
-  box.querySelectorAll('canvas.quiz-graph').forEach(cv => {
-    if(cv.dataset.shape !== undefined){
-      try{ drawShape(cv, JSON.parse(decodeURIComponent(cv.dataset.shape))); }catch(e){ /* skip bad shape data */ }
-      return;
-    }
-    const opts = {};
-    if(cv.dataset.shadeA !== undefined && cv.dataset.shadeB !== undefined){
-      opts.shade = { a: parseFloat(cv.dataset.shadeA), b: parseFloat(cv.dataset.shadeB) };
-    }
-    if(cv.dataset.markx !== undefined){
-      opts.markX = parseFloat(cv.dataset.markx);
-    }
-    drawGraph(cv, cv.dataset.expr, parseFloat(cv.dataset.xmin), parseFloat(cv.dataset.xmax), opts);
-  });
+  renderGraphCanvases(box);
 }
 
 function checkQuiz(){
@@ -4046,7 +4300,7 @@ async function showStepSolution(qi){
 }
 
 /* ============ WORKSHEETS ============ */
-const WS_BW_THEME = { accent:'#000000', ink:'#000000', axis:'#000000', grid:'#dddddd', shadeFill:'rgba(0,0,0,0.12)', shadeStroke:'#000000' };
+const WS_BW_THEME = { accent:'#000000', ink:'#000000', axis:'#000000', grid:'#dddddd', shadeFill:'rgba(0,0,0,0.12)', shadeStroke:'#000000', mono:true };
 
 async function generateWorksheet(){
   const course = document.getElementById('wsCourse').value;
@@ -4118,7 +4372,9 @@ async function generateWorksheet(){
         "\"table\" presents a data set as {\"headers\":[...],\"rows\":[[...],...]} — use this whenever the question refers to data \"in the table\"; " +
         "never put a table inside the \"q\" text itself. " +
         "\"graph\" plots a math.js-compatible expression of x over [xmin, xmax]; add \"shade\":{\"a\":..,\"b\":..} to shade a region (area/integral/volume) " +
-        "and/or \"markX\" to mark an x-value with a dashed line (limit/tangent point). " +
+        "and/or \"markX\" to mark an x-value with a dashed line (limit/tangent point). For TWO functions (area between curves, comparing f and g), use " +
+        "\"functions\":[{\"expr\":\"...\",\"label\":\"f(x)\"},{\"expr\":\"...\",\"label\":\"g(x)\"}] instead of \"expression\" (drawn as distinct dashed/solid lines for print) " +
+        "and \"shadeBetween\":{\"a\":..,\"b\":..} (using the exact intersection x-values) instead of \"shade\" — never combine two functions into a single \"expression\". " +
         "\"shape\" draws a labeled geometry diagram with type \"triangle\", \"right_triangle\", \"polygon\", \"circle\", or \"rectangle\", using \"points\"/\"labels\"/\"sideLabels\"/\"rightAngleAt\"/\"angleLabels\", " +
         "or for circle \"center\"/\"radius\"/\"labels\":{\"center\":..,\"radius\":..}, or for rectangle \"width\"/\"height\"/\"labels\":{\"width\":..,\"height\":..}. " +
         "Use \"graph\" for function/limit/area/volume questions and \"shape\" for geometry figures, whenever it helps the student understand the problem.";
@@ -4225,15 +4481,8 @@ function buildWorksheetDeck(data, pagesTarget){
       ).join('') + '</div>';
     }
 
-    if(q.graph && q.graph.expression){
-      const xmin = (typeof q.graph.xmin === 'number') ? q.graph.xmin : -10;
-      const xmax = (typeof q.graph.xmax === 'number') ? q.graph.xmax : 10;
-      let attrs = 'data-expr="' + escapeHtml(q.graph.expression) + '" data-xmin="' + xmin + '" data-xmax="' + xmax + '"';
-      if(q.graph.shade && isFinite(q.graph.shade.a) && isFinite(q.graph.shade.b)){
-        attrs += ' data-shade-a="' + q.graph.shade.a + '" data-shade-b="' + q.graph.shade.b + '"';
-      }
-      if(typeof q.graph.markX === 'number'){ attrs += ' data-markx="' + q.graph.markX + '"'; }
-      bodyHtml += '<div class="ws-graph-wrap"><canvas width="360" height="270" ' + attrs + '></canvas></div>';
+    if(q.graph && (q.graph.expression || (q.graph.functions && q.graph.functions.length))){
+      bodyHtml += '<div class="ws-graph-wrap"><canvas width="360" height="270" ' + graphCanvasAttrs(q.graph) + '></canvas></div>';
     } else if(q.shape && q.shape.type){
       const enc = encodeURIComponent(JSON.stringify(q.shape));
       bodyHtml += '<div class="ws-graph-wrap"><canvas width="360" height="270" data-shape="' + enc + '"></canvas></div>';
@@ -4274,17 +4523,7 @@ function buildWorksheetDeck(data, pagesTarget){
 
   // Render math and draw any graph/shape canvases before measuring sizes.
   renderMath(measure);
-  measure.querySelectorAll('canvas[data-expr]').forEach(cv => {
-    const opts = {};
-    if(cv.dataset.shadeA !== undefined && cv.dataset.shadeB !== undefined){
-      opts.shade = { a: parseFloat(cv.dataset.shadeA), b: parseFloat(cv.dataset.shadeB) };
-    }
-    if(cv.dataset.markx !== undefined){ opts.markX = parseFloat(cv.dataset.markx); }
-    drawGraph(cv, cv.dataset.expr, parseFloat(cv.dataset.xmin), parseFloat(cv.dataset.xmax), opts, WS_BW_THEME);
-  });
-  measure.querySelectorAll('canvas[data-shape]').forEach(cv => {
-    try{ drawShape(cv, JSON.parse(decodeURIComponent(cv.dataset.shape)), WS_BW_THEME); }catch(e){ /* skip bad shape data */ }
-  });
+  renderGraphCanvases(measure, WS_BW_THEME);
 
   // Measure each block's footprint (including its own margins).
   blocks.forEach(b => {
