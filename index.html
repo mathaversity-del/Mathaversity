@@ -99,15 +99,6 @@ img{max-width:100%;}
   letter-spacing:0.5px;
   display:flex; align-items:center; gap:0.5rem;
 }
-.nav-account{ display:flex; align-items:center; gap:0.7rem; }
-.nav-credits{ font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--yellow); white-space:nowrap; }
-.nav-account button{
-  background:none; border:1px solid var(--chalk-dim); color:var(--chalk);
-  padding:0.4rem 0.9rem; border-radius:999px; font-family:'Inter',sans-serif;
-  font-size:0.82rem; font-weight:600; cursor:pointer; white-space:nowrap;
-}
-.nav-account button:hover{ border-color:var(--chalk); background:rgba(246,242,231,0.08); }
-.nav-account button.primary{ background:var(--yellow); color:var(--board-deep); border-color:var(--yellow); }
 .brand .dot{color:var(--coral);}
 .brand-logo{flex-shrink:0;}
 .navlinks{display:flex; gap:0.4rem; flex-wrap:wrap;}
@@ -220,10 +211,16 @@ img{max-width:100%;}
   background:var(--paper);
   padding:3rem 1.5rem;
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns:repeat(3, 1fr);
   gap:1.5rem;
   max-width:1100px;
   margin:0 auto;
+}
+@media (max-width:860px){
+  .feature-strip{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:600px){
+  .feature-strip{ grid-template-columns:1fr; }
 }
 .feature-card{
   border:1px solid var(--paper-line);
@@ -677,7 +674,6 @@ footer p{margin:0.5rem 0;}
     <button data-view="worksheets" onclick="showView('worksheets')">Worksheets</button>
     <button data-view="tools" onclick="showView('tools')">Practice Tools</button>
   </div>
-  <div class="nav-account" id="navAccount"></div>
 </nav>
 
 <!-- ================= HOME ================= -->
@@ -1140,9 +1136,6 @@ footer p{margin:0.5rem 0;}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/lib/supabaseClient.js"></script>
-<script src="/lib/sabaq-usage.js"></script>
 
 <script>
 /* ============ MATH CURRICULUM ============ */
@@ -2827,8 +2820,6 @@ async function callClaude(messages, system) {
     throw new Error(data.error || "Claude API request failed");
   }
 
-  if (typeof sabaqStashUsage === "function") { sabaqStashUsage(data.usage); }
-
   return data.text || "";
 }
 
@@ -3303,12 +3294,6 @@ function removeImage(){
 async function sendChat(){
   const text = chatInput.value.trim();
   if(!text && !pendingImage) return;
-
-  if(typeof sabaqCheckCredits === 'function'){
-    const ok = await sabaqCheckCredits('ask_tutor');
-    if(!ok) return;
-  }
-
   chatInput.value = '';
 
   let userContent;
@@ -3345,10 +3330,6 @@ async function sendChat(){
     const speakBtn = addSpeakButton(loadingEl, reply);
     if(speakBtn && document.getElementById('readAloud').checked){
       toggleSpeak(speakBtn, reply);
-    }
-    if(typeof sabaqTakeUsage === 'function'){
-      const usage = sabaqTakeUsage();
-      sabaqTrackUsage({ tool:'ask_tutor', title: text.slice(0,60) || 'Ask & Learn', inputTokens: usage.input_tokens, outputTokens: usage.output_tokens });
     }
   }catch(err){
     loadingEl.innerHTML = '<span class="tag">Sabaq</span><br>Sorry, something went wrong: ' + err.message;
@@ -3440,11 +3421,6 @@ async function generateLesson(){
   const totalSlides = parseInt(document.getElementById('lsSlides').value, 10);
   const notes = document.getElementById('lsNotes').value.trim();
 
-  if(typeof sabaqCheckCredits === 'function'){
-    const ok = await sabaqCheckCredits('lesson', 'lsStatus');
-    if(!ok) return;
-  }
-
   statusEl.classList.remove('error');
   document.getElementById('genBtn').disabled = true;
   document.getElementById('downloadPptxBtn').style.display = 'none';
@@ -3454,7 +3430,6 @@ async function generateLesson(){
 
   const BATCH = 3;
   let done = 0;
-  let usedInputTokens = 0, usedOutputTokens = 0;
 
   try{
     while(done < totalSlides){
@@ -3462,10 +3437,6 @@ async function generateLesson(){
       statusEl.textContent = 'Generating slides ' + (done+1) + '-' + (done+count) + ' of ' + totalSlides + '...';
       const prompt = buildLessonPrompt(course, topic, notes, done, count, totalSlides, lessonData.title);
       const text = await callClaude([{role:'user', content:prompt}], LESSON_SYSTEM);
-      if(typeof sabaqTakeUsage === 'function'){
-        const u = sabaqTakeUsage();
-        usedInputTokens += u.input_tokens; usedOutputTokens += u.output_tokens;
-      }
       const data = extractJSON(text);
       if(done === 0){
         lessonData.title = data.title || (course + ': ' + topic);
@@ -3478,15 +3449,6 @@ async function generateLesson(){
     statusEl.textContent = 'Outline ready (' + lessonData.slides.length + ' slides). Download below.';
     document.getElementById('downloadPptxBtn').style.display = 'inline-block';
     document.getElementById('downloadPdfBtn').style.display = 'inline-block';
-
-    if(typeof sabaqTrackUsage === 'function'){
-      const colorScheme = document.getElementById('lsColorScheme') ? document.getElementById('lsColorScheme').value : '';
-      sabaqTrackUsage({
-        tool: 'lesson', title: lessonData.title, course: course, chapter: chapter, topics: selectedTopics,
-        extra: { slide_count: lessonData.slides.length, color_scheme: colorScheme, prompt_used: topic },
-        inputTokens: usedInputTokens, outputTokens: usedOutputTokens
-      }).then(result => { if(result) window.__sabaqLastLessonId = result.resourceId; });
-    }
   }catch(err){
     statusEl.textContent = 'Could not generate outline: ' + err.message;
     statusEl.classList.add('error');
@@ -3614,11 +3576,6 @@ async function downloadPptx(){
     return;
   }
 
-  if(typeof sabaqCheckCredits === 'function'){
-    const ok = await sabaqCheckCredits('ppt_lesson', 'lsStatus');
-    if(!ok) return;
-  }
-
   statusEl.textContent = 'Building PowerPoint (rendering slides)...';
   buildDeck(lessonData, logoData, document.getElementById('lsColorScheme').value);
   await new Promise(r => setTimeout(r, 400)); // let fonts/KaTeX/canvas settle
@@ -3641,14 +3598,6 @@ async function downloadPptx(){
     const safeName = (lessonData.title || 'lesson').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
     pres.writeFile({ fileName: safeName + '.pptx' });
     statusEl.textContent = 'PowerPoint downloaded.';
-
-    if(typeof sabaqTrackUsage === 'function'){
-      sabaqTrackUsage({
-        tool: 'ppt_lesson', title: lessonData.title, course: lessonData.course || '',
-        lessonId: window.__sabaqLastLessonId || null,
-        inputTokens: 0, outputTokens: 0
-      });
-    }
   }catch(err){
     statusEl.textContent = 'Could not build PowerPoint: ' + err.message;
     statusEl.classList.add('error');
@@ -4316,12 +4265,6 @@ async function generateQuiz(){
   const total = parseInt(document.getElementById('qzCount').value, 10);
   const qType = document.getElementById('qzType').value;
   const box = document.getElementById('qzBox');
-
-  if(typeof sabaqCheckCredits === 'function'){
-    const ok = await sabaqCheckCredits('quiz', 'qzStatus');
-    if(!ok) return;
-  }
-
   statusEl.classList.remove('error');
   box.innerHTML = '';
 
@@ -4330,7 +4273,6 @@ async function generateQuiz(){
   let seen = new Set();
   let done = 0;
   let attempts = 0;
-  let usedInputTokens = 0, usedOutputTokens = 0;
   const maxAttempts = Math.ceil(total / BATCH) + 3; // allow a few retries if duplicates get filtered out
 
   try{
@@ -4377,10 +4319,6 @@ async function generateQuiz(){
         [{role:'user', content:prompt}],
         "You are an API that returns only valid, minified JSON for math quizzes. Never include markdown or commentary. " + JSON_LATEX_RULES
       );
-      if(typeof sabaqTakeUsage === 'function'){
-        const u = sabaqTakeUsage();
-        usedInputTokens += u.input_tokens; usedOutputTokens += u.output_tokens;
-      }
       const data = extractJSON(text);
       (data.questions || []).forEach(q => {
         const key = normalizeQuestionText(q.q);
@@ -4393,14 +4331,6 @@ async function generateQuiz(){
     renderQuiz(all);
     statusEl.textContent = 'Pick an answer for each question, then check your score.' +
       (all.length < total ? ' (Generated ' + all.length + ' unique questions.)' : '');
-
-    if(typeof sabaqTrackUsage === 'function'){
-      sabaqTrackUsage({
-        tool: 'quiz', title: course + ': ' + topic, course: course, chapter: chapter, topics: selectedTopics,
-        extra: { question_count: all.length, difficulty: difficulty, question_type: qType },
-        inputTokens: usedInputTokens, outputTokens: usedOutputTokens
-      });
-    }
   }catch(err){
     statusEl.textContent = 'Could not generate quiz: ' + err.message;
     statusEl.classList.add('error');
@@ -4537,11 +4467,6 @@ async function generateWorksheet(){
     ? ('Every question should be ' + formats[0] + ' format.')
     : ('Use a mix of these formats across the questions: ' + formats.join(', ') + '.');
 
-  if(typeof sabaqCheckCredits === 'function'){
-    const ok = await sabaqCheckCredits('worksheet', 'wsStatus');
-    if(!ok) return;
-  }
-
   document.getElementById('wsGenBtn').disabled = true;
   document.getElementById('downloadWsBtn').style.display = 'none';
   document.getElementById('wsPdfLink').style.display = 'none';
@@ -4550,7 +4475,6 @@ async function generateWorksheet(){
   const BATCH = 3;
   let seen = new Set();
   let attempts = 0;
-  let usedInputTokens = 0, usedOutputTokens = 0;
   const maxAttempts = Math.ceil(total / BATCH) + 3;
 
   try{
@@ -4595,10 +4519,6 @@ async function generateWorksheet(){
         [{role:'user', content:prompt}],
         "You are an API that returns only valid, minified JSON for math worksheets. Never include markdown or commentary. " + JSON_LATEX_RULES
       );
-      if(typeof sabaqTakeUsage === 'function'){
-        const u = sabaqTakeUsage();
-        usedInputTokens += u.input_tokens; usedOutputTokens += u.output_tokens;
-      }
       const data = extractJSON(text);
       if(!worksheetData.title && data.title){ worksheetData.title = data.title; }
       (data.questions || []).forEach(q => {
@@ -4616,14 +4536,6 @@ async function generateWorksheet(){
     statusEl.textContent = 'Worksheet ready (' + worksheetData.questions.length + ' questions). Download below.' +
       (worksheetData.questions.length < total ? ' (Generated ' + worksheetData.questions.length + ' unique questions.)' : '');
     document.getElementById('downloadWsBtn').style.display = 'inline-block';
-
-    if(typeof sabaqTrackUsage === 'function'){
-      sabaqTrackUsage({
-        tool: 'worksheet', title: worksheetData.title, course: course, chapter: chapter, topics: selectedTopics,
-        extra: { question_count: worksheetData.questions.length, style: style, prompt_used: topic },
-        inputTokens: usedInputTokens, outputTokens: usedOutputTokens
-      });
-    }
   }catch(err){
     statusEl.textContent = 'Could not generate worksheet: ' + err.message;
     statusEl.classList.add('error');
