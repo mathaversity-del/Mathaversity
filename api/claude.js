@@ -23,7 +23,11 @@ export default async function handler(req, res) {
       .map((block) => block.text || "")
       .join("\n");
 
-    return res.status(200).json({ text });
+    const usage = response.usage
+      ? { input_tokens: response.usage.input_tokens || 0, output_tokens: response.usage.output_tokens || 0 }
+      : { input_tokens: 0, output_tokens: 0 };
+
+    return res.status(200).json({ text, usage });
 
   } catch (error) {
     console.error(error);
