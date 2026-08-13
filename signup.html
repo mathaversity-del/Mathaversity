@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — Sabaq Math</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/lib/auth-theme.css">
+</head>
+<body>
+
+<div class="sabaq-topbar">
+  <a class="sabaq-brand" href="/index.html">
+    <span class="badge">M</span> Sabaq
+  </a>
+</div>
+
+<div class="sabaq-auth-wrap">
+  <div class="sabaq-auth-card">
+    <h1>Create your account</h1>
+    <p class="sub">Start with 20 free credits — no card required.</p>
+
+    <form id="signupForm">
+      <div class="sabaq-field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" autocomplete="name" required>
+      </div>
+      <div class="sabaq-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="email" required>
+      </div>
+      <div class="sabaq-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" autocomplete="new-password" minlength="8" required>
+      </div>
+      <div class="sabaq-field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" autocomplete="new-password" minlength="8" required>
+      </div>
+      <button type="submit" class="sabaq-btn" id="signupBtn">Create account</button>
+      <div class="sabaq-status" id="statusEl"></div>
+    </form>
+
+    <p class="sabaq-alt-link">Already have an account? <a href="/login.html">Log in</a></p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/lib/supabaseClient.js"></script>
+<script>
+function showStatus(msg, type){
+  const el = document.getElementById('statusEl');
+  el.textContent = msg;
+  el.className = 'sabaq-status show ' + type;
+}
+
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const btn = document.getElementById('signupBtn');
+
+  if(password !== confirmPassword){
+    showStatus('Passwords do not match.', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account...';
+
+  const { data, error } = await sabaqSupabase.auth.signUp({
+    email: email,
+    password: password,
+    options: { data: { full_name: fullName } }
+  });
+
+  if(error){
+    showStatus(error.message, 'error');
+    btn.disabled = false;
+    btn.textContent = 'Create account';
+    return;
+  }
+
+  if(data.session){
+    window.location.href = '/profile.html';
+  } else {
+    showStatus('Account created — check your email to verify, then log in.', 'success');
+    btn.disabled = false;
+    btn.textContent = 'Create account';
+  }
+});
+</script>
+</body>
+</html>
